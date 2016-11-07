@@ -41,7 +41,18 @@ public class Picture {
                 case "LEFT":
                     colors.add(new Color(148,0,211));
                     break;
-
+                case "OUT":
+                    colors.add(new Color(0,255,0));
+                    break;
+                case "IN":
+                    colors.add(new Color(255,255,0));
+                    break;
+                case "JUMP":
+                    colors.add(new Color(255,127,0));
+                    break;
+                case "BACK":
+                    colors.add(new Color(255,0,0));
+                    break;
                 default:{
                     int size=ligne.length();
                     for(int a=0;a<size;a++){
@@ -58,6 +69,18 @@ public class Picture {
                     		    break;
                     		case '>':
                     		    colors.add(new Color(148,0,211));
+                    		    break;
+                    		case '.':
+                    		    colors.add(new Color(0,255,0));
+                    		    break;
+                    		case ',':
+                    		    colors.add(new Color(255,255,0));
+                    		    break;
+                    		case '[':
+                    		    colors.add(new Color(255,127,0));
+                    		    break;
+                    		case ']':
+                    		    colors.add(new Color(255,0,0));
                     		    break;
                     		default :
                     		    break;
