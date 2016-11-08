@@ -34,6 +34,14 @@ public class Interpreter{
                     computational.left();
                     break;
 
+                case "IN":
+                    computational.in();
+                    break;
+
+                case "OUT":
+                    computational.out();
+                    break;
+
                 default:{
                 	int size=line.length();
                 	for(int i=0;i<size;i++){
@@ -51,6 +59,12 @@ public class Interpreter{
                 			case '>':
                 				computational.right();
                 				break;
+                            case ',':
+                                computational.in();
+                                break;
+                            case'.':
+                                computational.out();
+                                break;
                 			default :
                 				break;
                 		}

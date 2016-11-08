@@ -8,13 +8,14 @@
  * Cette classe réalise les traitements sur le tableau
  */
 
+import java.util.*;
 public class Computational {
 
     public static final int MAX_POSITION=29999;
     public static final int MIN_POSITION=0;
     public static final int MAX_VALUE=255;
     public static final int MIN_VALUE=0;
-
+    private  Scanner sc = new Scanner(System.in);
     private Memory memory;
 
     public Computational(Memory memory){
@@ -78,5 +79,13 @@ public class Computational {
         }
     }
 
+    public void out(){
+        System.out.println(memory);
+    }
+
+    public void in(){
+    char val=sc.nextLine().charAt(0);
+    memory.setMemory(val);
+    }
 }
 

@@ -1,8 +1,6 @@
 import java.io.FileReader;
 import java.io.IOException;
 
-import Brainclass.Picture;
-
 
 /**
  * Created by user on 12/10/2016.
@@ -18,7 +16,7 @@ public class Bfck {
     public static void main(String[] args) throws IOException {
         
         //Initialisation des objets des autres classes
-        
+        int nbArgs=args.length;
 
 
         Memory memory = new Memory();
@@ -26,16 +24,17 @@ public class Bfck {
         Output output = new Output(memory);
         Interpreter interpreter = new Interpreter(computational);
         Reader reader=new Reader(interpreter,output);
-	if(args[1].equals("--rewrite")){
-		reader.rewrite(args[0]);
+
+	if(args[0].equals("--rewrite")){
+		reader.rewrite(args[nbArgs-1]);
 	}
-	else if (args[1].equals("-translate")){
+	else if (args[0].equals("-translate")){
             Picture picture = new Picture();
-            FileReader file = new FileReader(args[0]);
+            FileReader file = new FileReader(args[nbArgs-1]);
             picture.translate(file);
         }
 	else{    
-        reader.read(args[0]);
+        reader.read(args[nbArgs-1]);
         }
         
         
