@@ -17,7 +17,7 @@ public class Bfck {
         
         //Initialisation des objets des autres classes
         int nbArgs=args.length;
-
+        int i=0;
 
         Memory memory = new Memory();
         Computational computational = new Computational(memory);
@@ -25,19 +25,19 @@ public class Bfck {
         Interpreter interpreter = new Interpreter(computational);
         Reader reader=new Reader(interpreter,output);
 
-	if(args[0].equals("--rewrite")){
-		reader.rewrite(args[nbArgs-1]);
-	}
-	else if (args[0].equals("-translate")){
-            Picture picture = new Picture();
-            FileReader file = new FileReader(args[nbArgs-1]);
-            picture.translate(file);
-        }
-	else{    
-        reader.read(args[nbArgs-1]);
-        }
-        
-        
-    }
-        
+        while(i!=nbArgs-1){
+        	if(args[i].equals("--rewrite")){
+        		reader.rewrite(args[nbArgs-1]);
+        	}
+        	else if (args[i].equals("-translate")){
+                    Picture picture = new Picture();
+                    FileReader file = new FileReader(args[nbArgs-1]);
+                    picture.translate(file);
+                }
+        	else if (args[i].equals("-p")){    
+                reader.read(args[nbArgs-1]);
+                }
+            i++;
+        }       
+    }       
 }
