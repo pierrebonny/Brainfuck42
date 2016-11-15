@@ -1,7 +1,9 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.BufferedWriter;
+
 /**
+ *
  * Created by user on 12/10/2016.
  * @author Pierre Bonny
  * @author Marion Campora
@@ -20,9 +22,9 @@ public class Computational {
     private  Scanner sc = new Scanner(System.in);
     private Memory memory;
     private int indexOut=0;
+    private int count = 0;
 
     public Computational(Memory memory){
-
         this.memory=memory;
     }
 
@@ -82,6 +84,14 @@ public class Computational {
         }
     }
 
+    public void jump(){
+        count++;
+    }
+
+    public void back(){
+        count--;
+    }
+
     public void out(BufferedWriter fichierOut) throws IOException{
         if(fichierOut!=null){
             fichierOut.write(memory.getStringMemory());
@@ -99,10 +109,19 @@ public class Computational {
             memory.setMemory(val);
         }
         else{
-        val=sc.nextLine().charAt(0);
+            val=sc.nextLine().charAt(0);
             memory.setMemory(val);
         }
- 
-    }
-}
 
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public int getCount() {
+
+        return count;
+    }
+
+}

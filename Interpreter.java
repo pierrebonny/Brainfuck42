@@ -11,6 +11,7 @@ import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 
+
 /**
  * Created by user on 12/10/2016.
  * @author Pierre Bonny
@@ -54,6 +55,14 @@ public class Interpreter{
                     computational.out(fichierOut);
                     break;
 
+                case "JUMP":
+                    computational.jump();
+                    break;
+
+                case "BACK":
+                    computational.back();
+                    break;
+
                 default:{
                 	int size=line.length();
                 	for(int i=0;i<size;i++){
@@ -76,6 +85,12 @@ public class Interpreter{
                                 break;
                             case'.':
                                 computational.out(fichierOut);
+                                break;
+                            case '[':
+                                computational.jump();
+                                break;
+                            case ']':
+                                computational.back();
                                 break;
                 			default :
                 				break;

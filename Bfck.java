@@ -1,7 +1,6 @@
 import java.io.FileReader;
 import java.io.IOException;
 
-
 /**
  * Created by user on 12/10/2016.
  * @author Pierre Bonny
@@ -14,7 +13,7 @@ import java.io.IOException;
 public class Bfck {
 
     public static void main(String[] args) throws IOException {
-        
+
         //Initialisation des objets des autres classes
         int nbArgs=args.length;
         int i=0;
@@ -30,7 +29,15 @@ public class Bfck {
         String fichierOut=null;
 
         while(i!=nbArgs-1){
-        	if(args[i].equals("--rewrite")){
+            if (args[i].equals("--check")){
+                reader.readcheck(args[nbArgs-1],fichierIn,fichierOut);
+                if(computational.getCount() != 0){
+                    System.exit(4);
+                }
+
+
+            }
+            if(args[i].equals("--rewrite")){
                 if (args[nbArgs -1].contains("BMP")||args[nbArgs -1].contains("bmp")){
                     translatetointruct.rewriteImage(args[nbArgs - 1]);
                     System.exit(0);
@@ -40,12 +47,12 @@ public class Bfck {
                     System.exit(0);
                 }
 
-        	}
-        	else if (args[i].equals("-translate")){
-                    FileReader file = new FileReader(args[nbArgs-1]);
-                    translatetoimage.translate(file);
-                    System.exit(0);
-                }
+            }
+            else if (args[i].equals("--translate")){
+                FileReader file = new FileReader(args[nbArgs-1]);
+                translatetoimage.translate(file);
+                System.exit(0);
+            }
             else if(args[i].equals("-i")){
                 i++;
                 fichierIn=args[i];
@@ -55,6 +62,7 @@ public class Bfck {
                 fichierOut=args[i];
             }
 
+
             i++;
         }
         if (args[nbArgs -1].contains("BMP")||args[nbArgs -1].contains("bmp")){
@@ -62,7 +70,7 @@ public class Bfck {
         }
         else {
             reader.read(args[nbArgs-1],fichierIn,fichierOut);
-       }
-                      
-    }       
+        }
+
+    }
 }
