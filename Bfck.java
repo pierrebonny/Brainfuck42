@@ -34,14 +34,6 @@ public class Bfck {
         String fichierOut=null;
 
         while(i!=nbArgs-1){
-            if (args[i].equals("--check")){
-                reader.readcheck(args[nbArgs-1],fichierIn,fichierOut);
-                if(computational.getCount() != 0){
-                    System.exit(4);
-                }
-
-
-            }
             if(args[i].equals("--rewrite")){
                 if (args[nbArgs -1].contains("BMP")||args[nbArgs -1].contains("bmp")){
                     translatetointruct.rewriteImage(args[nbArgs - 1]);
