@@ -1,3 +1,5 @@
+
+
 /**
  * Created by user on 12/10/2016.
  * @author Pierre Bonny
@@ -10,7 +12,10 @@
 public class Output {
     private Memory memory;
 
+    
+
     public Output (Memory memory){
+
         this.memory = memory;
     }
 
@@ -26,4 +31,6 @@ public class Output {
                 System.out.println(memory.toString(i));
         }
     }
+  
+        
 }

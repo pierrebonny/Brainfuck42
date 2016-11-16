@@ -1,3 +1,6 @@
+
+
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -10,8 +13,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
-
-
 /**
  * Created by user on 12/10/2016.
  * @author Pierre Bonny
@@ -22,84 +23,120 @@ import java.io.FileNotFoundException;
  */
 
 public class Interpreter{
-	private Computational computational;
+    private Computational computational;
+    private Back loops ;
 
+    public Interpreter(Computational computational,Back loops){
+        this.computational=computational;
+        this.loops=loops;
+    }
 
-	public Interpreter(Computational computational){
-		this.computational=computational;
-	}
-
-	public void interprete(String line,BufferedReader fichierIn,BufferedWriter fichierOut) throws IOException{
+    public void interprete(String line,BufferedReader fichierIn,BufferedWriter fichierOut) throws IOException{
             switch (line) {
-                case "INCR":
-                    computational.incr();
+                case "INCR":{
+                    if(loops.getStock())
+                        loops.getInstructions().add('+');
+                    if(loops.getRead())
+                        computational.incr();
+                }
                     break;
 
-                case "DECR":
-                    computational.decr();
+                case "DECR":{
+                    if(loops.getStock())
+                        loops.getInstructions().add('-');
+                    if(loops.getRead())
+                        computational.decr();
+                }
                     break;
 
-                case "RIGHT":
-                    computational.right();
+                case "RIGHT":{
+                    if(loops.getStock())
+                        loops.getInstructions().add('>');
+                    if (loops.getRead())
+                        computational.right();
+                }
                     break;
 
-                case "LEFT":
-                    computational.left();
+                case "LEFT":{
+                    if(loops.getStock())
+                        loops.getInstructions().add('<');
+                    if(loops.getRead())
+                        computational.left();
+                }
                     break;
-
-                case "IN":
-                    computational.in(fichierIn);
+                case "IN":{
+                    if(loops.getStock())
+                        loops.getInstructions().add(',');
+                    if(loops.getRead())
+                        computational.in(fichierIn);
+                }
                     break;
-
-                case "OUT":
-                    computational.out(fichierOut);
+                case "OUT":{
+                    if(loops.getStock())
+                        loops.getInstructions().add('.');
+                    if(loops.getRead())
+                        computational.out(fichierOut);
+                }
                     break;
-
-                case "JUMP":
-                    computational.jump();
+                case "JUMP":{
+                    if(loops.getRead())
+                        loops.getJump().jump();
+                    if(loops.getStock())
+                        loops.getInstructions().add('[');
+                }
                     break;
-
-                case "BACK":
-                    computational.back();
+                case "loops":{
+                    if(loops.getStock())
+                        loops.getInstructions().add(']');
+                    if(loops.jumpAssociated(loops.getInstructions().size()-1)==0)
+                        loops.back(loops.getInstructions().size()-1,fichierIn,fichierOut);
+                    }
                     break;
-
                 default:{
-                	int size=line.length();
-                	for(int i=0;i<size;i++){
-                		char c=line.charAt(i);
-                		switch (c){
-                			case '+':
-                				computational.incr();
-                				break;
-                			case '-':
-                				computational.decr();
-                				break;
-                			case '<':
-                				computational.left();
-                				break;
-                			case '>':
-                				computational.right();
-                				break;
-                            case ',':
-                                computational.in(fichierIn);
-                                break;
-                            case'.':
-                                computational.out(fichierOut);
-                                break;
-                            case '[':
-                                computational.jump();
-                                break;
-                            case ']':
-                                computational.back();
-                                break;
-                			default :
-                				break;
-                		}
-                	}
-                	break;
-               }
+                    int size=line.length();
+                    for(int i=0;i<size;i++){
+                        char c=line.charAt(i);
+                        if(loops.getRead()){
+                            switch (c){
+                                case '+':
+                                    computational.incr();
+                                    break;
+                                case '-':
+                                    computational.decr();
+                                    break;
+                                case '<':
+                                    computational.left();
+                                    break;
+                                case '>':
+                                    computational.right();
+                                    break;
+                                case '.':
+                                    computational.out(fichierOut);
+                                    break;
+                                case ',':
+                                    computational.in(fichierIn);
+                                    break;
+                                case '[':
+                                    loops.getJump().jump();
+                                    break;
+                                default :
+                                    break;
+                            }
+                        }
+                        if(loops.getStock())
+                            loops.getInstructions().add(c);
+                        if(c==']' && loops.getJump().jumpAssociated(loops.getInstructions().size()-1)==0){
+                            loops.back(loops.getInstructions().size()-1,fichierIn,fichierOut);
+                        }
+
+                    }
+                }
+                break;
             }
-	}
+    }
+    
+            
+    
     public void interpreteImage(String picturefile, String fichierIn,String fichierOut) throws IOException {
         InputStream is = new BufferedInputStream(new FileInputStream(picturefile));
         BufferedImage image;
@@ -170,6 +207,11 @@ public class Interpreter{
             bufferFichierIn.close();
         if(bufferFichierOut!=null)
             bufferFichierOut.close();
-    }
-	
+    }      
+
+
 }
+
+
+
+
