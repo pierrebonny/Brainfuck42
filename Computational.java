@@ -1,9 +1,9 @@
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.BufferedWriter;
-
+import java.util.*;
 /**
- *
  * Created by user on 12/10/2016.
  * @author Pierre Bonny
  * @author Marion Campora
@@ -12,7 +12,7 @@ import java.io.BufferedWriter;
  * Cette classe réalise les traitements sur le tableau
  */
 
-import java.util.*;
+
 public class Computational {
 
     public static final int MAX_POSITION=29999;
@@ -21,10 +21,10 @@ public class Computational {
     public static final int MIN_VALUE=0;
     private  Scanner sc = new Scanner(System.in);
     private Memory memory;
-    private int indexOut=0;
-    private int count = 0;
+
 
     public Computational(Memory memory){
+
         this.memory=memory;
     }
 
@@ -84,14 +84,6 @@ public class Computational {
         }
     }
 
-    public void jump(){
-        count++;
-    }
-
-    public void back(){
-        count--;
-    }
-
     public void out(BufferedWriter fichierOut) throws IOException{
         if(fichierOut!=null){
             fichierOut.write(memory.getStringMemory());
@@ -109,19 +101,11 @@ public class Computational {
             memory.setMemory(val);
         }
         else{
-            val=sc.nextLine().charAt(0);
+        val=sc.nextLine().charAt(0);
             memory.setMemory(val);
         }
-
+ 
     }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public int getCount() {
-
-        return count;
-    }
-
+    
+    public Memory getObjectMemory(){ return memory;}
 }

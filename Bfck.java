@@ -18,10 +18,15 @@ public class Bfck {
         int nbArgs=args.length;
         int i=0;
 
+
+ 
         Memory memory = new Memory();
         Computational computational = new Computational(memory);
+        Jump jump=new Jump(computational);
+        Back back=new Back(computational,jump);
+
+        Interpreter interpreter = new Interpreter(computational,back);
         Output output = new Output(memory);
-        Interpreter interpreter = new Interpreter(computational);
         Reader reader=new Reader(interpreter,output);
         Translatetoimage translatetoimage = new Translatetoimage();
         Translatetointruct translatetointruct = new Translatetointruct();
