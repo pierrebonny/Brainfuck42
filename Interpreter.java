@@ -25,118 +25,120 @@ import java.io.FileNotFoundException;
 public class Interpreter{
     private Computational computational;
     private Back loops ;
+    private Output output;
 
-    public Interpreter(Computational computational,Back loops){
+    public Interpreter(Computational computational,Back loops, Output output){
         this.computational=computational;
         this.loops=loops;
+        this.output=output;
     }
 
     public void interprete(String line,BufferedReader fichierIn,BufferedWriter fichierOut) throws IOException{
-            switch (line) {
-                case "INCR":{
-                    if(loops.getStock())
-                        loops.getInstructions().add('+');
-                    if(loops.getRead())
-                        computational.incr();
-                }
-                    break;
+        switch (line) {
+            case "INCR":{
+                if(loops.getStock())
+                    loops.getInstructions().add('+');
+                if(loops.getRead())
+                    computational.incr();
+            }
+            break;
 
-                case "DECR":{
-                    if(loops.getStock())
-                        loops.getInstructions().add('-');
-                    if(loops.getRead())
-                        computational.decr();
-                }
-                    break;
+            case "DECR":{
+                if(loops.getStock())
+                    loops.getInstructions().add('-');
+                if(loops.getRead())
+                    computational.decr();
+            }
+            break;
 
-                case "RIGHT":{
-                    if(loops.getStock())
-                        loops.getInstructions().add('>');
-                    if (loops.getRead())
-                        computational.right();
-                }
-                    break;
+            case "RIGHT":{
+                if(loops.getStock())
+                    loops.getInstructions().add('>');
+                if (loops.getRead())
+                    computational.right();
+            }
+            break;
 
-                case "LEFT":{
+            case "LEFT":{
+                if(loops.getStock())
+                    loops.getInstructions().add('<');
+                if(loops.getRead())
+                    computational.left();
+            }
+            break;
+            case "IN":{
+                if(loops.getStock())
+                    loops.getInstructions().add(',');
+                if(loops.getRead())
+                    computational.in(fichierIn);
+            }
+            break;
+            case "OUT":{
+                if(loops.getStock())
+                    loops.getInstructions().add('.');
+                if(loops.getRead())
+                    computational.out(fichierOut);
+            }
+            break;
+            case "JUMP":{
+                if(loops.getRead())
+                    loops.getJump().jump();
+                if(loops.getStock())
+                    loops.getInstructions().add('[');
+            }
+            break;
+            case "loops":{
+                if(loops.getStock())
+                    loops.getInstructions().add(']');
+                if(loops.jumpAssociated(loops.getInstructions().size()-1)==0)
+                    loops.back(loops.getInstructions().size()-1,fichierIn,fichierOut);
+            }
+            break;
+            default:{
+                int size=line.length();
+                for(int i=0;i<size;i++){
+                    char c=line.charAt(i);
+                    if(loops.getRead()){
+                        switch (c){
+                            case '+':
+                                computational.incr();
+                                break;
+                            case '-':
+                                computational.decr();
+                                break;
+                            case '<':
+                                computational.left();
+                                break;
+                            case '>':
+                                computational.right();
+                                break;
+                            case '.':
+                                computational.out(fichierOut);
+                                break;
+                            case ',':
+                                computational.in(fichierIn);
+                                break;
+                            case '[':
+                                loops.getJump().jump();
+                                break;
+                            default :
+                                break;
+                        }
+                    }
                     if(loops.getStock())
-                        loops.getInstructions().add('<');
-                    if(loops.getRead())
-                        computational.left();
-                }
-                    break;
-                case "IN":{
-                    if(loops.getStock())
-                        loops.getInstructions().add(',');
-                    if(loops.getRead())
-                        computational.in(fichierIn);
-                }
-                    break;
-                case "OUT":{
-                    if(loops.getStock())
-                        loops.getInstructions().add('.');
-                    if(loops.getRead())
-                        computational.out(fichierOut);
-                }
-                    break;
-                case "JUMP":{
-                    if(loops.getRead())
-                        loops.getJump().jump();
-                    if(loops.getStock())
-                        loops.getInstructions().add('[');
-                }
-                    break;
-                case "loops":{
-                    if(loops.getStock())
-                        loops.getInstructions().add(']');
-                    if(loops.jumpAssociated(loops.getInstructions().size()-1)==0)
+                        loops.getInstructions().add(c);
+                    if(c==']' && loops.getJump().jumpAssociated(loops.getInstructions().size()-1)==0){
                         loops.back(loops.getInstructions().size()-1,fichierIn,fichierOut);
                     }
-                    break;
-                default:{
-                    int size=line.length();
-                    for(int i=0;i<size;i++){
-                        char c=line.charAt(i);
-                        if(loops.getRead()){
-                            switch (c){
-                                case '+':
-                                    computational.incr();
-                                    break;
-                                case '-':
-                                    computational.decr();
-                                    break;
-                                case '<':
-                                    computational.left();
-                                    break;
-                                case '>':
-                                    computational.right();
-                                    break;
-                                case '.':
-                                    computational.out(fichierOut);
-                                    break;
-                                case ',':
-                                    computational.in(fichierIn);
-                                    break;
-                                case '[':
-                                    loops.getJump().jump();
-                                    break;
-                                default :
-                                    break;
-                            }
-                        }
-                        if(loops.getStock())
-                            loops.getInstructions().add(c);
-                        if(c==']' && loops.getJump().jumpAssociated(loops.getInstructions().size()-1)==0){
-                            loops.back(loops.getInstructions().size()-1,fichierIn,fichierOut);
-                        }
 
-                    }
                 }
-                break;
             }
+            break;
+        }
     }
-    
-            
-    
+
+
+
     public void interpreteImage(String picturefile, String fichierIn,String fichierOut) throws IOException {
         InputStream is = new BufferedInputStream(new FileInputStream(picturefile));
         BufferedImage image;
@@ -150,16 +152,16 @@ public class Interpreter{
         BufferedWriter bufferFichierOut = null;
         if(fichierIn!=null){
             try{
-            bufferFichierIn = new BufferedReader(new FileReader(fichierIn));
+                bufferFichierIn = new BufferedReader(new FileReader(fichierIn));
             }
             catch(FileNotFoundException exc){
                 System.out.println("Erreur d'ouverture");
             }
         }
 
-      if(fichierOut!=null){
+        if(fichierOut!=null){
             try{
-            bufferFichierOut = new BufferedWriter(new FileWriter(fichierOut));
+                bufferFichierOut = new BufferedWriter(new FileWriter(fichierOut));
             }
             catch(FileNotFoundException exc){
                 System.out.println("Erreur d'ouverture");
@@ -202,12 +204,16 @@ public class Interpreter{
                 y += 3;
             }
 
+
         }
         if(bufferFichierIn!=null)
             bufferFichierIn.close();
         if(bufferFichierOut!=null)
             bufferFichierOut.close();
-    }      
+
+        output.afficher();
+    }
+
 
 
 }

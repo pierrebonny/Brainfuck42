@@ -19,21 +19,31 @@ public class Bfck {
         int i=0;
 
 
- 
+
         Memory memory = new Memory();
         Computational computational = new Computational(memory);
         Jump jump=new Jump(computational);
         Back back=new Back(computational,jump);
-
-        Interpreter interpreter = new Interpreter(computational,back);
+        Check check = new Check();
         Output output = new Output(memory);
+        Interpreter interpreter = new Interpreter(computational,back,output);
+
         Reader reader=new Reader(interpreter,output);
         Translatetoimage translatetoimage = new Translatetoimage();
         Translatetointruct translatetointruct = new Translatetointruct();
         String fichierIn=null;
         String fichierOut=null;
 
+        check.read(args[nbArgs-1]);
+        if(check.getCount() != 0){
+            System.exit(4);
+        }
+
         while(i!=nbArgs-1){
+
+            if (args[i].equals("--check")){
+                System.exit(0);
+            }
             if(args[i].equals("--rewrite")){
                 if (args[nbArgs -1].contains("BMP")||args[nbArgs -1].contains("bmp")){
                     translatetointruct.rewriteImage(args[nbArgs - 1]);
@@ -66,7 +76,7 @@ public class Bfck {
             interpreter.interpreteImage(args[nbArgs - 1],fichierIn,fichierOut);
         }
         else {
-            reader.read(args[nbArgs-1],fichierIn,fichierOut);
+            reader.read(args[nbArgs - 1], fichierIn, fichierOut);
         }
 
     }

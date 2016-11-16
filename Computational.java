@@ -101,11 +101,11 @@ public class Computational {
             memory.setMemory(val);
         }
         else{
-        val=sc.nextLine().charAt(0);
+            val=sc.nextLine().charAt(0);
             memory.setMemory(val);
         }
- 
+
     }
-    
+
     public Memory getObjectMemory(){ return memory;}
 }
