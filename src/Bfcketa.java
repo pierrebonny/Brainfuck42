@@ -10,7 +10,7 @@ import java.io.IOException;
  * Classe excecutable.
  */
 
-public class Bfck {
+public class Bfcketa {
 
     public static void main(String[] args) throws IOException {
 
@@ -28,7 +28,7 @@ public class Bfck {
         Output output = new Output(memory);
         Interpretereta interpreter = new Interpreter(computational,back,output);
 
-        Reader reader = new Reader(interpreter,output);
+        Reader reader=new Reader(interpreter,output);
         Translatetoimage translatetoimage = new Translatetoimage();
         Translatetointruct translatetointruct = new Translatetointruct();
         String fichierIn=null;
@@ -45,8 +45,14 @@ public class Bfck {
                 System.exit(0);
             }
             if(args[i].equals("--rewrite")){
-                reader.rewrite(args[nbArgs-1]);
-                System.exit(0);
+                if (args[nbArgs -1].contains("BMP")||args[nbArgs -1].contains("bmp")){
+                    translatetointruct.rewriteImage(args[nbArgs - 1]);
+                    System.exit(0);
+                }
+                else{
+                    reader.rewrite(args[nbArgs-1]);
+                    System.exit(0);
+                }
 
             }
             else if (args[i].equals("--translate")){
@@ -66,8 +72,12 @@ public class Bfck {
 
             i++;
         }
-        reader.read(args[nbArgs - 1], fichierIn, fichierOut);
-
+        if (args[nbArgs -1].contains("BMP")||args[nbArgs -1].contains("bmp")){
+            interpreter.interpreteImg(args[nbArgs - 1],fichierIn,fichierOut);
+        }
+        else {
+            reader.read(args[nbArgs - 1], fichierIn, fichierOut);
+        }
 
     }
 }

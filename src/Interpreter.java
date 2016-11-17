@@ -35,14 +35,16 @@ public class Interpreter{
     private Commandes out = Commandes.OUT;
     //private Commandes jump = Commandes.JUMP;
     //private Commandes back = Commandes.Back;
+    private Map<Commandes,Computational> interprete = new HashMap<>();
 
     public Interpreter(Computational computational,Back loops, Output output,Memory memory){
         this.computational=computational;
         this.loops=loops;
         this.output=output;
         this.memory = memory;
+        fillHashmap(interprete);
     }
-    private Map<Commandes,Computational> interprete = new HashMap<>();
+
     public void fillHashmap(Map<Commandes,Computational> hashmap) {
         interprete.put(incr,new Incr(memory));
         interprete.put(decr ,new Decr(memory));
@@ -54,8 +56,8 @@ public class Interpreter{
         //interprete.put(back,new Back(memory));
     }
 
-    public void interprete(String line,BufferedReader fichierIn,BufferedWriter fichierOut) throws IOException{
-        fillHashmap(interprete);
+    public void interprete(String line){
+
         if (interprete.get(line) != null){
             interprete.get(line).execute();
         }
@@ -68,10 +70,25 @@ public class Interpreter{
         }
     }
 
-    public void intertpreteImg(String picturefile, String fichierIn,String fichierOut) throws IOException{
-
+    public void intertpreteImg(Color color){
+        interprete.get(color).execute();
     }
+    public void rewrite(String line) {
 
+        if (interprete.get(line) != null) {
+            interprete.get(line).rewrite();
+        } else {
+            int size = line.length();
+            for (int i = 0; i < size; i++) {
+                char c = line.charAt(i);
+                interprete.get(c).rewrite();
+            }
+        }
+    }
+    public void rewriteImg(Color color){
+        fillHashmap(interprete);
+        interprete.get(color).rewrite();
+    }
 }
 
 

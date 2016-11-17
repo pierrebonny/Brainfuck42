@@ -1,5 +1,6 @@
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.lang.reflect.Array;
@@ -53,22 +54,28 @@ public class Reader {
 				System.out.println("Erreur d'ouverture");
 			}
 		}
-		/*if (nameFile.contains("BMP")||nameFile.contains("bmp")){
-			InputStream is = new BufferedInputStream(new FileInputStream(nameFile));
-			BufferedImage image;
-			image = ImageIO.read(is);
-			int largeurImage = image.getWidth();
-			int hauteurImage = image.getHeight();
-			int x = 0;
-			int y = 0;
-			int couleur;
-			BufferedReader bufferFichierIn = null;
-			BufferedWriter bufferFichierOut = null;
-			//interpreter.interpreteImg(nameFile,bufferFichierIn,bufferFichierOut);
-		}*/
+        if ((nameFile.contains("BMP"))||(nameFile.contains("bmp"))){
+            InputStream is = new BufferedInputStream(new FileInputStream(nameFile));
+            BufferedImage image;
+            image = ImageIO.read(is);
+            int largeurImage = image.getWidth();
+            int hauteurImage = image.getHeight();
+            int x = 0;
+            int y = 0;
+            Color couleur;
+            while((x < largeurImage) &&(y < hauteurImage)) {
+                couleur = new Color(image.getRGB(x, y));
+                interpreter.intertpreteImg(couleur);
+                x += 3;
+                if (x == largeurImage) {
+                    x = 0;
+                    y += 3;
+                }
+            }
+        }
 		//On le lit le fichier ligne par ligne jusqu'a ce qu'il soit vide
 		while ((line = lecteurAvecBuffer.readLine()) != null) {
-			interpreter.interprete(line,bufferFichierIn,bufferFichierOut);
+			interpreter.interprete(line);
 		}
 		if(bufferFichierIn!=null)
 			bufferFichierIn.close();
@@ -79,82 +86,36 @@ public class Reader {
 
 	}
 
-	/*
-	readcheck c'est la même chose que read, sauf qu'il n'y a pas le output afficher 
-	 */
-	public void readcheck(String nameFile, String fichierIn, String fichierOut) throws IOException{
-		BufferedReader lecteurAvecBuffer = null;
-		BufferedReader bufferFichierIn = null;
-		BufferedWriter bufferFichierOut = null;
-		String line;
-
-		//On essaye de lire le fichier, si il n'y en a pas on renvoie une exception.
+	public void rewrite(String file) throws IOException{
+		BufferedReader lecteurAvecBuffer=null;
 		try{
-			lecteurAvecBuffer = new BufferedReader(new FileReader(nameFile));
+			lecteurAvecBuffer = new BufferedReader(new FileReader(file));
 		}
 		catch(FileNotFoundException exc){
 			System.out.println("Erreur d'ouverture");
 		}
-
-		if(fichierIn!=null){
-			try{
-				bufferFichierIn = new BufferedReader(new FileReader(fichierIn));
-			}
-			catch(FileNotFoundException exc){
-				System.out.println("Erreur d'ouverture");
-			}
-		}
-
-		if(fichierOut!=null){
-			try{
-				bufferFichierOut = new BufferedWriter(new FileWriter(fichierOut));
-			}
-			catch(FileNotFoundException exc){
-				System.out.println("Erreur d'ouverture");
-			}
-		}
-
-		//On le lit le fichier ligne par ligne jusqu'a ce qu'il soit vide
-		while ((line = lecteurAvecBuffer.readLine()) != null) {
-			interpreter.interprete(line,bufferFichierIn,bufferFichierOut);
-		}
-		if(bufferFichierIn!=null)
-			bufferFichierIn.close();
-		if(bufferFichierOut!=null)
-			bufferFichierOut.close();
-		lecteurAvecBuffer.close();
-
-	}
-
-	public static void rewrite(String file) throws IOException{
-		BufferedReader buffer=null;
-		try{
-			buffer = new BufferedReader(new FileReader(file));
-		}
-		catch(FileNotFoundException exc){
-			System.out.println("Erreur d'ouverture");
-		}
+        if ((file.contains("BMP"))||(file.contains("bmp"))){
+            InputStream is = new BufferedInputStream(new FileInputStream(file));
+            BufferedImage image;
+            image = ImageIO.read(is);
+            int largeurImage = image.getWidth();
+            int hauteurImage = image.getHeight();
+            int x = 0;
+            int y = 0;
+            Color couleur;
+            while((x < largeurImage) &&(y < hauteurImage)) {
+                couleur = new Color(image.getRGB(x, y));
+                interpreter.rewriteImg(couleur);
+                x += 3;
+                if (x == largeurImage) {
+                    x = 0;
+                    y += 3;
+                }
+            }
+        }
 		String ligne;
-		while ((ligne = buffer.readLine()) != null) {
-			switch (ligne){
-				case "INCR":
-					System.out.print("+");
-					break;
-				case "DECR":
-					System.out.print("-");
-					break;
-				case "RIGHT":
-					System.out.print(">");
-					break;
-				case "LEFT":
-					System.out.print("<");
-					break;
-				default:
-					System.out.print(ligne);
-					break;
-			}
-			//System.out.println();
-		}
-		System.out.println();
+		while ((ligne = lecteurAvecBuffer.readLine()) != null) {
+            interpreter.rewrite(ligne);
+        }
 	}
 }
