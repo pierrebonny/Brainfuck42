@@ -5,7 +5,7 @@ import java.awt.Color;
  */
 public class Decr implements Computational {
 
-    private Memory memory;
+    Memory memory;
     public static final int MIN_VALUE=0;
     private String courteSyntaxe="-";
     private Color couleur=new Color(75, 0, 130);

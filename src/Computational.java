@@ -11,6 +11,7 @@ import java.awt.*;
 
 
 public interface Computational {
+    Memory memory = new Memory();
 
     public void execute();
 

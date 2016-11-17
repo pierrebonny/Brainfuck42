@@ -1,11 +1,8 @@
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.lang.reflect.Array;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 
 /**
  * Created by user on 12/10/2016.
@@ -56,7 +53,19 @@ public class Reader {
 				System.out.println("Erreur d'ouverture");
 			}
 		}
-
+		/*if (nameFile.contains("BMP")||nameFile.contains("bmp")){
+			InputStream is = new BufferedInputStream(new FileInputStream(nameFile));
+			BufferedImage image;
+			image = ImageIO.read(is);
+			int largeurImage = image.getWidth();
+			int hauteurImage = image.getHeight();
+			int x = 0;
+			int y = 0;
+			int couleur;
+			BufferedReader bufferFichierIn = null;
+			BufferedWriter bufferFichierOut = null;
+			//interpreter.interpreteImg(nameFile,bufferFichierIn,bufferFichierOut);
+		}*/
 		//On le lit le fichier ligne par ligne jusqu'a ce qu'il soit vide
 		while ((line = lecteurAvecBuffer.readLine()) != null) {
 			interpreter.interprete(line,bufferFichierIn,bufferFichierOut);

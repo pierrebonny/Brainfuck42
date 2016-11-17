@@ -1,6 +1,3 @@
-
-
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -22,12 +19,12 @@ import java.io.FileNotFoundException;
  * Cette classe réalise les traitements sur le tableau
  */
 
-public class Interpreter{
-    private Computational computational;
+public class Interpretereta{
+    private Computationaleta computational;
     private Back loops ;
     private Output output;
 
-    public Interpreter(Computational computational,Back loops, Output output){
+    public Interpretereta(Computationaleta computational,Back loops, Output output){
         this.computational=computational;
         this.loops=loops;
         this.output=output;
@@ -217,7 +214,3 @@ public class Interpreter{
 
 
 }
-
-
-
-

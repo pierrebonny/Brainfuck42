@@ -21,12 +21,12 @@ public class Bfck {
 
 
         Memory memory = new Memory();
-        Computational computational = new Computational(memory);
+        Computationaleta computational = new Computationaleta(memory);
         Jump jump=new Jump(computational);
         Back back=new Back(computational,jump);
         Check check = new Check();
         Output output = new Output(memory);
-        Interpreter interpreter = new Interpreter(computational,back,output);
+        Interpretereta interpreter = new Interpreter(computational,back,output);
 
         Reader reader=new Reader(interpreter,output);
         Translatetoimage translatetoimage = new Translatetoimage();
@@ -73,7 +73,7 @@ public class Bfck {
             i++;
         }
         if (args[nbArgs -1].contains("BMP")||args[nbArgs -1].contains("bmp")){
-            interpreter.interpreteImage(args[nbArgs - 1],fichierIn,fichierOut);
+            interpreter.interpreteImg(args[nbArgs - 1],fichierIn,fichierOut);
         }
         else {
             reader.read(args[nbArgs - 1], fichierIn, fichierOut);
