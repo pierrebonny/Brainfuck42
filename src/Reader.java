@@ -73,16 +73,19 @@ public class Reader {
                 }
             }
         }
-		//On le lit le fichier ligne par ligne jusqu'a ce qu'il soit vide
-		while ((line = lecteurAvecBuffer.readLine()) != null) {
-			interpreter.interprete(line);
+        else {
+			//On le lit le fichier ligne par ligne jusqu'a ce qu'il soit vide
+			while ((line = lecteurAvecBuffer.readLine()) != null) {
+				interpreter.interprete(line);
+			}
+			if(bufferFichierIn!=null)
+				bufferFichierIn.close();
+			if(bufferFichierOut!=null)
+				bufferFichierOut.close();
+			output.afficher();
+			lecteurAvecBuffer.close();
 		}
-		if(bufferFichierIn!=null)
-			bufferFichierIn.close();
-		if(bufferFichierOut!=null)
-			bufferFichierOut.close();
-		output.afficher();
-		lecteurAvecBuffer.close();
+
 
 	}
 
@@ -113,9 +116,12 @@ public class Reader {
                 }
             }
         }
-		String ligne;
-		while ((ligne = lecteurAvecBuffer.readLine()) != null) {
-            interpreter.rewrite(ligne);
+        else {
+            String ligne;
+            while ((ligne = lecteurAvecBuffer.readLine()) != null) {
+                interpreter.rewrite(ligne);
+            }
         }
+
 	}
 }
