@@ -1,9 +1,8 @@
+package main;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.lang.reflect.Array;
 
 /**
  * Created by user on 12/10/2016.

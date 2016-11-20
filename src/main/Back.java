@@ -1,16 +1,13 @@
+package main;
+
 import java.awt.Color;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.*;
 
 public class Back implements Computational {
     
     
     private Memory memory;
-    private String courteSyntaxe="[";
-    private Color couleur=new Color(255, 127, 0);
+    private String courteSyntaxe="]";
+    private Color couleur=new Color(255, 0, 0);
     private int posBackAssocie;
     private int nbBoucleInterne=0;
 

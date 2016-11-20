@@ -2,6 +2,8 @@
  * Created by Pierre on 16/11/2016.
  */
 
+import main.Memory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.BufferedWriter;

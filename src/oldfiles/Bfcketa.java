@@ -1,3 +1,7 @@
+import main.*;
+import main.Back;
+import main.Jump;
+
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -22,7 +26,7 @@ public class Bfcketa {
 
         Memory memory = new Memory();
         Computationaleta computational = new Computationaleta(memory);
-        Jump jump=new Jump(computational);
+        main.Jump jump=new Jump(computational);
         Back back=new Back(computational,jump);
         Check check = new Check();
         Output output = new Output(memory);

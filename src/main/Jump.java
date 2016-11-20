@@ -1,9 +1,6 @@
+package main;
+
 import java.awt.Color;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.*;
 
 public class Jump implements Computational {
     

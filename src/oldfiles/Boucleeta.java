@@ -1,5 +1,7 @@
 
 
+import main.Computational;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,15 +107,15 @@ import java.io.IOException;
 public class Back extends Loops {
     
     
-    private Jump jump;
+    private main.Jump jump;
     
     
-    public Back(Computational computational,Jump jump){
+    public Back(Computational computational, main.Jump jump){
         super(computational);
         this.jump=jump;
     }
     
-    public Jump getJump(){ return jump;}
+    public main.Jump getJump(){ return jump;}
     
     
     public void back(int positionBack,BufferedReader fichierIn,BufferedWriter fichierOut) throws IOException{ // back de cloture entre le tout premier [ et le dernier ]

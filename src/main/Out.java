@@ -1,9 +1,10 @@
+package main;
+
 import java.awt.Color;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.util.*;
 
 /**
  * Created by Pierre on 16/11/2016.
