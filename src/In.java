@@ -30,6 +30,15 @@ public class In implements Computational {
         }
     }
 
+    public void setFichier(String file){
+        try{
+            fichierIn = new BufferedReader(new FileReader(file));
+        }
+        catch(FileNotFoundException exc){
+                System.out.println("Erreur d'ouverture");
+        }
+    }
+    
     public void execute(){
         int val;
         try{

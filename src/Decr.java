@@ -33,5 +33,5 @@ public class Decr implements Computational {
     }
 
     public void Check(){}
-
+    public void setFichier(String s){}
 }

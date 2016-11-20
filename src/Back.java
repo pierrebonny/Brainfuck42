@@ -1,89 +1,60 @@
-
-
+import java.awt.Color;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.*;
 
-public class Back extends Loops {
+public class Back implements Computational {
     
     
-    private Jump jump;
-    
-    
-    public Back(Computational computational,Jump jump){
-        super(computational);
-        this.jump=jump;
+    private Memory memory;
+    private String courteSyntaxe="[";
+    private Color couleur=new Color(255, 127, 0);
+    private int posBackAssocie;
+    private int nbBoucleInterne=0;
+
+    public Back(Memory memory){
+        this.memory = memory;
     }
     
-    public Jump getJump(){ return jump;}
-    
-    
-    public void back(int positionBack,BufferedReader fichierIn,BufferedWriter fichierOut) throws IOException{ // back de cloture entre le tout premier [ et le dernier ]
-        if(loops==false){ 
-            stock=false;
-            read=true;
-            instructions.clear();
-
-        } else if(loops==true) {
-            stock=false;
-            read=true;
-            while(this.computational.getObjectMemory().getMemory()!=0){
-                for(int i=(jumpAssociated(positionBack)+1);i<=positionBack-1;i++){ //utilise lautre back qui prend en parametre la position de la liste
-                    if(read){
-                        interpretec(instructions.get(i) , fichierIn , fichierOut);
-                        if(read==false){
-                            globalPositionJump=i;
-                        }
-                    }
-                    if(instructions.get(i)==']' && read==true ){
-                        back(i,fichierIn,fichierOut);
-                    }
-                    if(instructions.get(i)==']' && i==backAssociated(globalPositionJump)){
-                        read=true;
-                    }
-                }      
-
-            }
-            if(positionBack==instructions.size()-1){
-                instructions.clear();
-                loops=false;
-            }
-
-
-        }
-    }
-    
-    
-    
-    
-    public void interpretec(char c,BufferedReader fichierIn,BufferedWriter fichierOut) throws IOException{
-        switch (c){
-             case '+':
-                computational.incr();
-                break;
-            case '-':
-                computational.decr();
-                break;
-            case '<':
-                computational.left();
-                break;
-            case '>':
-                computational.right();
-                break;
-            case '.':
-                computational.out(fichierOut);
-                break;
-            case ',':
-                computational.in(fichierIn);
-                break;
-            case '[':
-                jump.jump();
-                break;
-            default :
-                break;
-        }
+    public void execute(){
+    //#CestLaMerde
     }
 
+    public void rewrite(){
+        System.out.print(courteSyntaxe);
+    }
 
+    public Color translate(){
+        return couleur;
+    }
+
+    public void Check(){}
+    public void setFichier(String s){}
 
 }
+
+    
+   /* 
+    public void jump(){
+        if(loops==false){ //on lit la premiere fois quon lit le fichier
+            if(memory.getMemory()==0){
+                read=false;
+                stock=true;
+            }else{
+                loops=true;
+                stock=true;
+                read=false;
+            }
+        }    
+        else { //loops==true , on lit ça lorsque quon le lit dans la liste
+            if(memory.getMemory()==0)
+                read=false;
+            else{
+                read=true; //ce qui est deja le cas normalement
+            }
+
+        }
+    }
+}*/

@@ -32,6 +32,18 @@ public class Out implements Computational {
         }
     }
 
+    public void setFichier(String file){
+        try{
+            fichierOut = new BufferedWriter(new FileWriter(file));
+        }
+        catch(FileNotFoundException exc){
+                System.out.println("Erreur d'ouverture");
+        }
+         catch(IOException e){
+                System.out.println("Erreur d'ouverture");
+        }
+    }
+
     public void execute(){
         try{
         if(fichierOut!=null){

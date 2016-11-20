@@ -20,4 +20,5 @@ public interface Computational {
 
     public void Check();
 
+    public void setFichier(String s);
 }

@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Translatetoimage {
@@ -14,84 +16,48 @@ public class Translatetoimage {
     private static final int L = 3;
     private static final int l = 3;    
     private List <Color> colors = new ArrayList <Color>();
+    private Map<Commandes,Computational> interprete = new HashMap<>();
+    private Memory memory = new Memory();
+    private Commandes commandes;
 
-    public void translate(FileReader file) throws IOException {
+    public Translatetoimage(){
+    	fillHashmap(interprete);
+    }
+
+    private void fillHashmap(Map<Commandes,Computational> hashmap) {
+        interprete.put(Commandes.INCR,new Incr(memory));
+        interprete.put(Commandes.DECR ,new Decr(memory));
+        interprete.put(Commandes.LEFT,new Left(memory));
+        interprete.put(Commandes.RIGHT,new Right(memory));
+        interprete.put(Commandes.IN,new In(memory));
+        interprete.put(Commandes.OUT,new Out(memory));
+        interprete.put(Commandes.JUMP,new Jump(memory));
+        interprete.put(Commandes.BACK,new Back(memory));
+    }
+
+    public void translate(String file) throws IOException {
 	
-	BufferedReader buff = new BufferedReader(file);
-			
+
+	BufferedReader buff = new BufferedReader(new FileReader(file));
 	
-	String ligne;
+	String line;
                 
-    	while ((ligne = buff.readLine()) != null){
-			switch (ligne) {
+    	while ((line = buff.readLine()) != null){
 
-				case "INCR":
-					colors.add(Color.white);
-					break;
+    		if (interprete.get(line) != null){
+	                colors.add(interprete.get(line).translate());
+	            
+	        }
+	        else {
+	            int size=line.length();
+	            for(int i=0;i<size;i++) {
+	                char c = line.charAt(i);
+	                if(interprete.get(commandes.findCourte(c))!=null)
+	                colors.add(interprete.get(commandes.findCourte(c)).translate());
+	            }
+	        }
 
-				case "DECR":
-					colors.add(new Color(75, 0, 130));
-					break;
-
-				case "RIGHT":
-					colors.add(new Color(0, 0, 255));
-					break;
-
-				case "LEFT":
-					colors.add(new Color(148, 0, 211));
-					break;
-				case "OUT":
-					colors.add(new Color(0, 255, 0));
-					break;
-				case "IN":
-					colors.add(new Color(255, 255, 0));
-					break;
-				case "JUMP":
-					colors.add(new Color(255, 127, 0));
-					break;
-				case "BACK":
-					colors.add(new Color(255, 0, 0));
-					break;
-				default: {
-					int size = ligne.length();
-					for (int a = 0; a < size; a++) {
-						char c = ligne.charAt(a);
-						switch (c) {
-							case '+':
-								colors.add(Color.white);
-								break;
-							case '-':
-								colors.add(new Color(75, 0, 130));
-								break;
-							case '<':
-								colors.add(new Color(0, 0, 255));
-								break;
-							case '>':
-								colors.add(new Color(148, 0, 211));
-								break;
-							case '.':
-								colors.add(new Color(0, 255, 0));
-								break;
-							case ',':
-								colors.add(new Color(255, 255, 0));
-								break;
-							case '[':
-								colors.add(new Color(255, 127, 0));
-								break;
-							case ']':
-								colors.add(new Color(255, 0, 0));
-								break;
-							default:
-								break;
-						}
-					}
-					break;
-				}
-
-			}
-
-		}
-            
+		} 
     	
     	int taille = colors.size();
     	int x = 0;

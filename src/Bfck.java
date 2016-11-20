@@ -1,4 +1,3 @@
-import java.io.FileReader;
 import java.io.IOException;
 
 /**
@@ -13,32 +12,24 @@ import java.io.IOException;
 public class Bfck {
 
     public static void main(String[] args) throws IOException {
-
         //Initialisation des objets des autres classes
         int nbArgs=args.length;
         int i=0;
 
-
-
         Memory memory = new Memory();
-        Computationaleta computational = new Computationaleta(memory);
-        Jump jump=new Jump(computational);
-        Back back=new Back(computational,jump);
         Check check = new Check();
         Output output = new Output(memory);
-        Interpretereta interpreter = new Interpreter(computational,back,output);
+        Interpreter interpreter = new Interpreter(output,memory);
 
         Reader reader = new Reader(interpreter,output);
         Translatetoimage translatetoimage = new Translatetoimage();
-        Translatetointruct translatetointruct = new Translatetointruct();
-        String fichierIn=null;
-        String fichierOut=null;
 
-        check.read(args[nbArgs-1]);
+/*
+        check.check(args[nbArgs-1]);
         if(check.getCount() != 0){
             System.exit(4);
         }
-
+*/
         while(i!=nbArgs-1){
 
             if (args[i].equals("--check")){
@@ -50,24 +41,20 @@ public class Bfck {
 
             }
             else if (args[i].equals("--translate")){
-                FileReader file = new FileReader(args[nbArgs-1]);
-                translatetoimage.translate(file);
+                translatetoimage.translate(args[nbArgs-1]);
                 System.exit(0);
             }
             else if(args[i].equals("-i")){
                 i++;
-                fichierIn=args[i];
+                interpreter.setFichierIn(args[i]);
             }
             else if(args[i].equals("-o")){
                 i++;
-                fichierOut=args[i];
+                interpreter.setFichierOut(args[i]);
             }
-
 
             i++;
         }
-        reader.read(args[nbArgs - 1], fichierIn, fichierOut);
-
-
+        reader.read(args[nbArgs - 1]);
     }
 }

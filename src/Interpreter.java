@@ -24,70 +24,77 @@ import java.util.Map;
 
 public class Interpreter{
     private Memory memory;
-    private Computational computational;
-    private Back loops ;
     private Output output;
-    private Commandes incr = Commandes.INCR;
-    private Commandes decr = Commandes.DECR;
-    private Commandes left = Commandes.LEFT;
-    private Commandes right = Commandes.RIGHT;
-    private Commandes in = Commandes.IN;
-    private Commandes out = Commandes.OUT;
-    //private Commandes jump = Commandes.JUMP;
-    //private Commandes back = Commandes.Back;
     private Map<Commandes,Computational> interprete = new HashMap<>();
+    private Commandes commandes;
+    private boolean boucle=false;
 
-    public Interpreter(Computational computational,Back loops, Output output,Memory memory){
-        this.computational=computational;
-        this.loops=loops;
+    public Interpreter(Output output,Memory memory){
         this.output=output;
         this.memory = memory;
         fillHashmap(interprete);
     }
 
-    public void fillHashmap(Map<Commandes,Computational> hashmap) {
-        interprete.put(incr,new Incr(memory));
-        interprete.put(decr ,new Decr(memory));
-        interprete.put(left,new Left(memory));
-        interprete.put(right,new Right(memory));
-        interprete.put(in,new In(memory));
-        interprete.put(out,new Out(memory));
-        //interprete.put(jump,new Jump(memory));
-        //interprete.put(back,new Back(memory));
+    private void fillHashmap(Map<Commandes,Computational> hashmap) {
+        interprete.put(Commandes.INCR,new Incr(memory));
+        interprete.put(Commandes.DECR ,new Decr(memory));
+        interprete.put(Commandes.LEFT,new Left(memory));
+        interprete.put(Commandes.RIGHT,new Right(memory));
+        interprete.put(Commandes.IN,new In(memory));
+        interprete.put(Commandes.OUT,new Out(memory));
+        interprete.put(Commandes.JUMP,new Jump(memory));
+        interprete.put(Commandes.BACK,new Back(memory));
     }
 
     public void interprete(String line){
+        boolean exec=false;
+        for(Commandes com : Commandes.values()){
+            if (com.getLongue().equals(line)){
+            /*    if(boucle){
 
-        if (interprete.get(line) != null){
-            interprete.get(line).execute();
-        }
-        else {
-            int size=line.length();
-            for(int i=0;i<size;i++) {
-                char c = line.charAt(i);
-                interprete.get(c).execute();
+                }
+                else{
+                    if(interprete.get(line)==JUMP)
+                        boucle=true;
+            */        interprete.get(com).execute();
+                        exec=true;
+                }
+        }          
+            if(!exec) {
+                int size=line.length();
+                for(int i=0;i<size;i++) {
+                    char c = line.charAt(i);
+                    for (Commandes com : Commandes.values()){
+                        if(com.getCourte()==c)
+                        interprete.get(com).execute();
+                    }
+                }
             }
-        }
+        
     }
 
-    public void intertpreteImg(Color color){
-        interprete.get(color).execute();
+    public void intertpreteImg(String  hexa){
+        interprete.get(commandes.findColor(hexa)).execute();
     }
-    public void rewrite(String line) {
-
+    public void rewriteFile(String line) {
         if (interprete.get(line) != null) {
             interprete.get(line).rewrite();
         } else {
-            int size = line.length();
-            for (int i = 0; i < size; i++) {
-                char c = line.charAt(i);
-                interprete.get(c).rewrite();
+            System.out.print(line);
             }
         }
+
+    public void rewriteImg(String hexa){
+        interprete.get(commandes.findColor(hexa)).rewrite();
     }
-    public void rewriteImg(Color color){
-        fillHashmap(interprete);
-        interprete.get(color).rewrite();
+
+
+    public void setFichierIn(String file){
+        interprete.get("IN").setFichier(file);
+    }
+
+    public void setFichierOut(String file){
+        interprete.get("OUT").setFichier(file);
     }
 }
 

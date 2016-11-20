@@ -1,7 +1,6 @@
-/**
- * Created by Campo on 16/11/2016.
- */
 import javax.imageio.ImageIO;
+import java.util.HashMap;
+import java.util.Map;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -11,21 +10,34 @@ import java.io.*;
  */
 public class Check {
     private int count = 0;
-
+    private Map<Commandes,Computational> interprete = new HashMap<>();
+    private Memory memory = new Memory();
     public Check() {
         this.count = count;
+        fillHashmap(interprete);
     }
 
-    public void read (String nameFile) throws IOException {
+    private void fillHashmap(Map<Commandes,Computational> hashmap) {
+        interprete.put(Commandes.INCR,new Incr(memory));
+        interprete.put(Commandes.DECR ,new Decr(memory));
+        interprete.put(Commandes.LEFT,new Left(memory));
+        interprete.put(Commandes.RIGHT,new Right(memory));
+        interprete.put(Commandes.IN,new In(memory));
+        interprete.put(Commandes.OUT,new Out(memory));
+        interprete.put(Commandes.JUMP,new Jump(memory));
+        interprete.put(Commandes.BACK,new Back(memory));
+    }
+
+    public void check (String nameFile) throws IOException {
         if(nameFile.contains("BMP")||nameFile.contains("bmp")){
-            readImage(nameFile);
+            checkImage(nameFile);
         }
         else{
-            readText(nameFile);
+            checkText(nameFile);
         }
     }
 
-    public void readText(String nameFile) throws IOException {
+    public void checkText(String nameFile) throws IOException {
         BufferedReader lecteurAvecBuffer = null;
         String line;
 
@@ -37,42 +49,35 @@ public class Check {
         }
 
         while ((line = lecteurAvecBuffer.readLine()) != null) {
-            switch (line) {
-                case "JUMP" :
-                    count++;
-                    break;
-                case"BACK" :
+
+            if (interprete.get(line) != null){
+                if(line.equals("JUMP")){
+                   count ++;
+                }        
+                else if(line.equals("BACK")){
                     if(count==0){
                         System.exit(4);
                     }
                     count--;
-                    break;
-
-                default:
-                    int size=line.length();
-                    for(int i=0;i<size;i++){
-                        char c=line.charAt(i);
-                        switch (c){
-                            case '[':
-                                count++;
-                                break;
-                            case ']':
-                                if(count==0){
+                }
+            }else{
+                int size=line.length();
+                for(int i=0;i<size;i++) {
+                    char c = line.charAt(i);
+                    if(c=='[')
+                        count++;
+                    else if (c==']')
+                        if(count==0){
                                     System.exit(4);
                                 }
                                 count--;
-                                break;
-                            default :
-                                break;
-                        }
-                    }
+                }
             }
-
         }
     }
 
 
-    public void readImage(String picturefile) throws IOException {
+    public void checkImage(String picturefile) throws IOException {
         InputStream is = new BufferedInputStream(new FileInputStream(picturefile));
         BufferedImage image;
         image = ImageIO.read(is);
