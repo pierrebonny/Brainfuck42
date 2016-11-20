@@ -4,14 +4,14 @@ import java.awt.*;
  */
 public enum Commandes {
 
-    INCR("INCR",'+',"FFFFFF"),
-    DECR("DECR",'-',"4B0082"),
-    LEFT("LEFT",'<',"9400D3"),
-    RIGHT("RIGHT",'>',"0000FF"),
-    OUT("OUT",'.',"00FF00"),
-    IN("IN",',',"FFFF00"),
-    JUMP("JUMP",'[',"FF7F00"),
-    BACK("BACK",']',"FF0000");
+    INCR("INCR",'+',"FFFFFFFF"),
+    DECR("DECR",'-',"FF4B0082"),
+    LEFT("LEFT",'<',"FF9400D3"),
+    RIGHT("RIGHT",'>',"FF0000FF"),
+    OUT("OUT",'.',"FF00FF00"),
+    IN("IN",',',"FFFFFF00"),
+    JUMP("JUMP",'[',"FFFF7F00"),
+    BACK("BACK",']',"FFFF0000");
 
     private String longue = "";
     private char courte = ' ';
@@ -35,6 +35,10 @@ public enum Commandes {
         return hexatoColor(hexa);
     }
 
+    public String getHexa(){
+        return hexa;
+    }
+
     private static Color hexatoColor(String hexa) {
     return new Color(
             Integer.valueOf( hexa.substring( 1, 3 ), 16 ),
@@ -44,7 +48,7 @@ public enum Commandes {
 
     public Commandes findLongue(String l){
         for(Commandes c : Commandes.values()){
-            //if(c.longue.equals(l)) return c;            
+            if(c.longue.equals(l)) return c;            
         }
         return null;
     }

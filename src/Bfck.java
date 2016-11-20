@@ -24,12 +24,12 @@ public class Bfck {
         Reader reader = new Reader(interpreter,output);
         Translatetoimage translatetoimage = new Translatetoimage();
 
-/*
+
         check.check(args[nbArgs-1]);
         if(check.getCount() != 0){
             System.exit(4);
         }
-*/
+
         while(i!=nbArgs-1){
 
             if (args[i].equals("--check")){

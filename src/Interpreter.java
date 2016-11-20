@@ -74,18 +74,29 @@ public class Interpreter{
     }
 
     public void intertpreteImg(String  hexa){
-        interprete.get(commandes.findColor(hexa)).execute();
+        //System.out.println(hexa);
+        for(Commandes com : Commandes.values())
+            if(com.getHexa().equals(hexa))
+                interprete.get(com).execute();
     }
     public void rewriteFile(String line) {
-        if (interprete.get(line) != null) {
-            interprete.get(line).rewrite();
-        } else {
-            System.out.print(line);
+        boolean exe=false;
+        for(Commandes com : Commandes.values()){
+
+            if(com.getLongue().equals(line)){
+                interprete.get(com).rewrite();
+                exe=true;
             }
         }
+        if(!exe)
+            System.out.print(line);
+    }
 
     public void rewriteImg(String hexa){
-        interprete.get(commandes.findColor(hexa)).rewrite();
+        //System.out.println(hexa);
+        for(Commandes com: Commandes.values())
+            if(com.getHexa().equals(hexa))
+                interprete.get(com).rewrite();
     }
 
 

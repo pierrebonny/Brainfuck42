@@ -44,18 +44,29 @@ public class Translatetoimage {
                 
     	while ((line = buff.readLine()) != null){
 
-    		if (interprete.get(line) != null){
-	                colors.add(interprete.get(line).translate());
-	            
-	        }
-	        else {
-	            int size=line.length();
-	            for(int i=0;i<size;i++) {
-	                char c = line.charAt(i);
-	                if(interprete.get(commandes.findCourte(c))!=null)
-	                colors.add(interprete.get(commandes.findCourte(c)).translate());
-	            }
-	        }
+            boolean exec=false;
+                for(Commandes com : Commandes.values()){
+                    if (com.getLongue().equals(line)){
+                    /*    if(boucle){
+
+                        }
+                        else{
+                            if(interprete.get(line)==JUMP)
+                                boucle=true;
+                    */        colors.add(interprete.get(com).translate());
+                                exec=true;
+                        }
+                }          
+                    if(!exec) {
+                        int size=line.length();
+                        for(int i=0;i<size;i++) {
+                            char c = line.charAt(i);
+                            for (Commandes com : Commandes.values()){
+                                if(com.getCourte()==c)
+                                colors.add(interprete.get(com).translate());
+                            }
+                        }
+                    }
 
 		} 
     	

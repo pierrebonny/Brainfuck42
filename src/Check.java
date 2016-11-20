@@ -50,7 +50,8 @@ public class Check {
 
         while ((line = lecteurAvecBuffer.readLine()) != null) {
 
-            if (interprete.get(line) != null){
+
+
                 if(line.equals("JUMP")){
                    count ++;
                 }        
@@ -60,18 +61,19 @@ public class Check {
                     }
                     count--;
                 }
-            }else{
-                int size=line.length();
-                for(int i=0;i<size;i++) {
-                    char c = line.charAt(i);
-                    if(c=='[')
-                        count++;
-                    else if (c==']')
-                        if(count==0){
+                else{
+                    int size=line.length();
+                    for(int i=0;i<size;i++) {
+                        char c = line.charAt(i);
+                        if(c=='[')
+                            count++;
+                        else if (c==']'){
+                            if(count==0){
                                     System.exit(4);
-                                }
-                                count--;
-                }
+                            }
+                            count--;
+                        }
+                    }
             }
         }
     }

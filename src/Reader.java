@@ -53,6 +53,7 @@ public class Reader {
                     y += 3;
                 }
             }
+            output.afficher();
 	}
 
 	public void readFile(String nameFile) throws IOException{
