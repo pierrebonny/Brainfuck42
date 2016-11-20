@@ -9,8 +9,8 @@ public class Back implements Computational {
     
     
     private Memory memory;
-    private String courteSyntaxe="[";
-    private Color couleur=new Color(255, 127, 0);
+    private String courteSyntaxe="]";
+    private Color couleur=new Color(255, 0, 0);
     private int posBackAssocie;
     private int nbBoucleInterne=0;
 
