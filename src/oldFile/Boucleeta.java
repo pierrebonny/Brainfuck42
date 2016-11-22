@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -115,8 +113,15 @@ public class Back extends Loops {
     
     public Jump getJump(){ return jump;}
     
+    public void back(){
+        try{
+            back(instructions.size()-1);
+        }
+        catch(IOException e){
+        }
+    }
     
-    public void back(int positionBack,BufferedReader fichierIn,BufferedWriter fichierOut) throws IOException{ // back de cloture entre le tout premier [ et le dernier ]
+    public void back(int positionBack) throws IOException{ // back de cloture entre le tout premier [ et le dernier ]
         if(loops==false){ 
             stock=false;
             read=true;
@@ -128,13 +133,13 @@ public class Back extends Loops {
             while(this.computational.getObjectMemory().getMemory()!=0){
                 for(int i=(jumpAssociated(positionBack)+1);i<=positionBack-1;i++){ //utilise lautre back qui prend en parametre la position de la liste
                     if(read){
-                        interpretec(instructions.get(i) , fichierIn , fichierOut);
+                        interpretec(instructions.get(i));
                         if(read==false){
                             globalPositionJump=i;
                         }
                     }
                     if(instructions.get(i)==']' && read==true ){
-                        back(i,fichierIn,fichierOut);
+                        back(i);
                     }
                     if(instructions.get(i)==']' && i==backAssociated(globalPositionJump)){
                         read=true;
@@ -154,7 +159,7 @@ public class Back extends Loops {
     
     
     
-    public void interpretec(char c,BufferedReader fichierIn,BufferedWriter fichierOut) throws IOException{
+    public void interpretec(char c) throws IOException{
         switch (c){
              case '+':
                 computational.incr();

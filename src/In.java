@@ -13,7 +13,7 @@ public class In implements Computational {
     private Memory memory;
     private String courteSyntaxe=",";
     private Color couleur=new Color(255, 255, 0);
-    private BufferedReader fichierIn=null;
+    private static  BufferedReader fichierIn=null;
     private  Scanner sc = new Scanner(System.in);
 
     public In(Memory memory){

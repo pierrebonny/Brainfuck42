@@ -25,13 +25,15 @@ import java.util.Map;
 public class Interpreter{
     private Memory memory;
     private Output output;
-    private Map<Commandes,Computational> interprete = new HashMap<>();
+    private Back loops;
+    protected Map<Commandes,Computational> interprete = new HashMap<>();
     private Commandes commandes;
     private boolean boucle=false;
 
     public Interpreter(Output output,Memory memory){
         this.output=output;
         this.memory = memory;
+        loops =new Back(memory);
         fillHashmap(interprete);
     }
 
@@ -50,23 +52,44 @@ public class Interpreter{
         boolean exec=false;
         for(Commandes com : Commandes.values()){
             if (com.getLongue().equals(line)){
-            /*    if(boucle){
 
+
+            if(line.equals("BACK")){
+                 if(loops.getStock())
+                    loops.getInstructions().add(com.getCourte());
+                if(loops.jumpAssociated(loops.getInstructions().size()-1)==0)
+                    loops.execute();
+            }else{
+                if(loops.getRead())
+                interprete.get(com).execute();
+                if(loops.getStock())
+                    loops.getInstructions().add(com.getCourte());
                 }
-                else{
-                    if(interprete.get(line)==JUMP)
-                        boucle=true;
-            */        interprete.get(com).execute();
-                        exec=true;
-                }
+                exec=true;
+            }
         }          
             if(!exec) {
                 int size=line.length();
                 for(int i=0;i<size;i++) {
                     char c = line.charAt(i);
                     for (Commandes com : Commandes.values()){
-                        if(com.getCourte()==c)
-                        interprete.get(com).execute();
+                        if(com.getCourte()==c){
+
+
+                            if(c==']'){
+                              if(loops.getStock())
+                                    loops.getInstructions().add(com.getCourte());
+                              if(loops.jumpAssociated(loops.getInstructions().size()-1)==0)
+                                    loops.execute();
+                             }else{
+
+                               if(loops.getRead())
+                                    interprete.get(com).execute();
+                                if(loops.getStock())
+                                    loops.getInstructions().add(com.getCourte());
+                                
+                            }
+                        }
                     }
                 }
             }
@@ -76,8 +99,22 @@ public class Interpreter{
     public void intertpreteImg(String  hexa){
         //System.out.println(hexa);
         for(Commandes com : Commandes.values())
-            if(com.getHexa().equals(hexa))
+            if(com.getHexa().equals(hexa)){
+
+
+            if(hexa.equals("FFFF0000")){
+                 if(loops.getStock())
+                    loops.getInstructions().add(com.getCourte());
+                if(loops.jumpAssociated(loops.getInstructions().size()-1)==0)
+                    loops.execute();
+            }else{
+                if(loops.getRead())
                 interprete.get(com).execute();
+                if(loops.getStock())
+                    loops.getInstructions().add(com.getCourte());
+                }
+
+            }
     }
     public void rewriteFile(String line) {
         boolean exe=false;
@@ -101,11 +138,11 @@ public class Interpreter{
 
 
     public void setFichierIn(String file){
-        interprete.get("IN").setFichier(file);
+        interprete.get(Commandes.IN).setFichier(file);
     }
 
     public void setFichierOut(String file){
-        interprete.get("OUT").setFichier(file);
+        interprete.get(Commandes.OUT).setFichier(file);
     }
 }
 

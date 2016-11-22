@@ -88,7 +88,7 @@ public class Interpretereta{
                 if(loops.getStock())
                     loops.getInstructions().add(']');
                 if(loops.jumpAssociated(loops.getInstructions().size()-1)==0)
-                    loops.back(loops.getInstructions().size()-1,fichierIn,fichierOut);
+                    loops.back();
             }
             break;
             default:{
@@ -125,7 +125,7 @@ public class Interpretereta{
                     if(loops.getStock())
                         loops.getInstructions().add(c);
                     if(c==']' && loops.getJump().jumpAssociated(loops.getInstructions().size()-1)==0){
-                        loops.back(loops.getInstructions().size()-1,fichierIn,fichierOut);
+                        loops.back(loops.getInstructions().size()-1);
                     }
 
                 }

@@ -13,7 +13,7 @@ public class Out implements Computational {
     private Memory memory;
     private String courteSyntaxe=".";
     private Color couleur=new Color(0, 255, 0);
-    private BufferedWriter fichierOut=null;
+    protected static BufferedWriter fichierOut=null;
 
     public Out(Memory memory){
         this.memory = memory;

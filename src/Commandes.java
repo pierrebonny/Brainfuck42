@@ -59,7 +59,7 @@ public enum Commandes {
                 return c;   
             }         
         }
-        return INCR;
+        return null;
     }
 
     public Commandes findColor(String couleur){
