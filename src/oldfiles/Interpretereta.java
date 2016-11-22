@@ -1,3 +1,6 @@
+import main.*;
+import main.Back;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -21,10 +24,10 @@ import java.io.FileNotFoundException;
 
 public class Interpretereta{
     private Computationaleta computational;
-    private Back loops ;
+    private main.Back loops ;
     private Output output;
 
-    public Interpretereta(Computationaleta computational,Back loops, Output output){
+    public Interpretereta(Computationaleta computational, Back loops, Output output){
         this.computational=computational;
         this.loops=loops;
         this.output=output;

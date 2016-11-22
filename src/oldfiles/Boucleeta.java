@@ -1,3 +1,10 @@
+<<<<<<< HEAD:src/oldFile/Boucleeta.java
+=======
+
+
+import main.Computational;
+
+>>>>>>> 5d7d5924b154f9440a011ddf357d10970f28e9e8:src/oldfiles/Boucleeta.java
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,15 +110,15 @@ import java.io.IOException;
 public class Back extends Loops {
     
     
-    private Jump jump;
+    private main.Jump jump;
     
     
-    public Back(Computational computational,Jump jump){
+    public Back(Computational computational, main.Jump jump){
         super(computational);
         this.jump=jump;
     }
     
-    public Jump getJump(){ return jump;}
+    public main.Jump getJump(){ return jump;}
     
     public void back(){
         try{

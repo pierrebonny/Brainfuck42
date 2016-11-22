@@ -1,3 +1,5 @@
+package main;
+
 import java.awt.*;
 /**
  * Created by Pierre on 16/11/2016.

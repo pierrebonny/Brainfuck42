@@ -1,3 +1,5 @@
+package main;
+
 import javax.imageio.ImageIO;
 import java.util.HashMap;
 import java.util.Map;
