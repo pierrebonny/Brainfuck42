@@ -28,6 +28,11 @@ public class Reader {
         	readFile(nameFile);
 		}
 
+        if(In.getFichier()!=null)
+            new In(interpreter.memory).closeFichier();
+
+        if(Out.getFichier()!=null)
+            new Out(interpreter.memory).closeFichier();
 	}
 
 	public void readImage(String nameFile) throws IOException {
@@ -43,6 +48,7 @@ public class Reader {
             while((x < largeurImage) &&(y < hauteurImage)) {
                 couleur = image.getRGB(x, y);
                 hexa =String.format("%06X", couleur);
+                //System.out.println(hexa);
                 interpreter.intertpreteImg(hexa);
                 x += 3;
                 if (x == largeurImage) {

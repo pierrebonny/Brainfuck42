@@ -34,4 +34,5 @@ public class Left implements Computational {
 
     public void Check(){}
     public void setFichier(String s){}
+    public void closeFichier(){}
 }

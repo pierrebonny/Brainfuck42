@@ -11,7 +11,7 @@ import java.util.Map;
  */
 
 public class Interpreter{
-    private Memory memory;
+    protected Memory memory;
     private Output output;
     private Back loops;
     protected Map<Commandes,Computational> interprete = new HashMap<>();
@@ -86,9 +86,10 @@ public class Interpreter{
 
     public void intertpreteImg(String  hexa){
         //System.out.println(hexa);
-        for(Commandes com : Commandes.values())
+        for(Commandes com : Commandes.values()){
+            //System.out.println(hexa);
             if(com.getHexa().equals(hexa)){
-
+                //System.out.println(com.getCourte());
 
             if(hexa.equals("FFFF0000")){
                  if(loops.getStock())
@@ -96,13 +97,17 @@ public class Interpreter{
                 if(loops.jumpAssociated(loops.getInstructions().size()-1)==0)
                     loops.execute();
             }else{
-                if(loops.getRead())
+                if(loops.getRead()){
                 interprete.get(com).execute();
+
+                }
                 if(loops.getStock())
                     loops.getInstructions().add(com.getCourte());
                 }
 
             }
+
+        }
     }
     public void rewriteFile(String line) {
         boolean exe=false;

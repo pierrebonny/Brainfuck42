@@ -38,6 +38,19 @@ public class In implements Computational {
                 System.out.println("Erreur d'ouverture");
         }
     }
+
+    public static BufferedReader getFichier(){
+        return fichierIn;
+    }
+
+    public void closeFichier(){
+        try{
+            fichierIn.close();
+        }
+        catch(IOException e){
+
+        }
+    }
     
     public void execute(){
         int val;

@@ -40,6 +40,7 @@ public class Jump extends Loops implements Computational{
 
     public void Check(){}
     public void setFichier(String s){}
+    public void closeFichier(){}
 }
 
     

@@ -32,6 +32,7 @@ public class Out implements Computational {
     }
 
     public void setFichier(String file){
+        //System.out.println("Creation du fichier");
         try{
             fichierOut = new BufferedWriter(new FileWriter(file));
         }
@@ -43,13 +44,29 @@ public class Out implements Computational {
         }
     }
 
+    public static BufferedWriter getFichier(){
+        return fichierOut;
+    }
+
+    public void closeFichier(){
+        //System.out.println("Fermeture du fichier");
+        try{
+        fichierOut.close();
+        }
+        catch(IOException e){
+
+        }
+
+    }
+
     public void execute(){
         try{
         if(fichierOut!=null){
             fichierOut.write(memory.getStringMemory());
         }
-        else
+        else{
             System.out.println(memory);
+        }
         }
         catch(IOException e){
             System.out.println("Erreur fichier Out");
