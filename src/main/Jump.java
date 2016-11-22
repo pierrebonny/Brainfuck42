@@ -1,5 +1,3 @@
-package main;
-
 import java.awt.Color;
 
 public class Jump extends Loops implements Computational{
