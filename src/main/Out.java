@@ -41,6 +41,7 @@ public class Out implements Computational {
         }
          catch(IOException e){
                 System.out.println("Erreur d'ouverture");
+                System.exit(3);
         }
     }
 

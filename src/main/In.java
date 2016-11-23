@@ -35,7 +35,9 @@ public class In implements Computational {
             fichierIn = new BufferedReader(new FileReader(file));
         }
         catch(FileNotFoundException exc){
+
                 System.out.println("Erreur d'ouverture");
+                System.exit(3);
         }
     }
 
