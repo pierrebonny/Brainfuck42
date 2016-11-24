@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Date;
 
 /**
  * Created by user on 12/10/2016.
@@ -13,6 +14,7 @@ public class Bfck {
 
     public static void main(String[] args) throws IOException {
         //Initialisation des objets des autres classes
+		
         int nbArgs=args.length;
         int i=0;
 
@@ -56,5 +58,14 @@ public class Bfck {
             i++;
         }
         reader.read(args[nbArgs - 1]);
+	
+	
+	System.out.println("DATA_READ : "+Computational.DATA_READ);
+	System.out.println("EXEC_MOVE : "+Computational.EXEC_MOVE);
+	System.out.println("DATA_WRITE : "+Computational.DATA_WRITE);
+	System.out.println("DATA_MOVE : "+Computational.DATA_MOVE);
+	
     }
+
 }
+

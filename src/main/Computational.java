@@ -10,16 +10,29 @@ import java.awt.*;
  */
 
 
-public interface Computational {
+public abstract class Computational {
 
-    public void execute();
+	public static int EXEC_MOVE;
+	public static int DATA_READ;
+	public static int DATA_WRITE;
+	public static int DATA_MOVE;
+	protected Memory memory;
+	protected String courteSyntaxe;
+	protected Color couleur;
 
-    public void rewrite();
+	public Computational(Memory memory){ this.memory=memory;}
 
-    public Color translate();
+    public void execute(){ EXEC_MOVE++;}
 
-    public void Check();
+    public abstract void rewrite();
 
-    public void setFichier(String s);
+    public abstract Color translate();
+
+    public abstract void Check();
+
+	public abstract void setFichier(String s);
+
     public abstract void closeFichier();
+
 }
+

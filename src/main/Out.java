@@ -7,19 +7,18 @@ import java.io.FileWriter;
 /**
  * Created by Pierre on 16/11/2016.
  */
-public class Out implements Computational {
+public class Out extends Computational {
 
-    private Memory memory;
-    private String courteSyntaxe=".";
-    private Color couleur=new Color(0, 255, 0);
     protected static BufferedWriter fichierOut=null;
 
     public Out(Memory memory){
-        this.memory = memory;
+        super(memory);
+        courteSyntaxe=".";
+        couleur=new Color(0, 255, 0);
     }
 
     public Out(Memory memory, String fichier){
-        this.memory = memory;
+        super(memory);
         try{
             fichierOut = new BufferedWriter(new FileWriter(fichier));
         }
@@ -61,6 +60,7 @@ public class Out implements Computational {
     }
 
     public void execute(){
+        super.execute();
         try{
         if(fichierOut!=null){
             fichierOut.write(memory.getStringMemory());
@@ -72,6 +72,7 @@ public class Out implements Computational {
         catch(IOException e){
             System.out.println("Erreur fichier Out");
         }
+        DATA_READ++;
     }
 
     public void rewrite(){
@@ -85,3 +86,4 @@ public class Out implements Computational {
     public void Check(){}
 
 }
+

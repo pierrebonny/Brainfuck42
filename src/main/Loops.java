@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Loops {
+public abstract class Loops extends Computational {
     
 
 
@@ -10,11 +10,14 @@ public class Loops {
     protected static  boolean stock=false;
     protected static List<Character> instructions=new ArrayList<>();
     protected static int globalPositionJump;
-    protected Memory memory;
+
     
     
-    public Loops(Memory memory){ this.memory=memory; }
-    
+    public Loops(Memory memory){ super(memory); }
+    public void execute(){ 
+        super.execute();
+        DATA_READ++;
+    }
     
     public boolean getRead(){ return read; }
     public boolean getLoops(){ return loops; }

@@ -8,20 +8,21 @@ import java.util.*;
 /**
  * Created by Pierre on 16/11/2016.
  */
-public class In implements Computational {
+public class In extends Computational{
 
-    private Memory memory;
-    private String courteSyntaxe=",";
-    private Color couleur=new Color(255, 255, 0);
+
+
     private static  BufferedReader fichierIn=null;
     private  Scanner sc = new Scanner(System.in);
 
     public In(Memory memory){
-        this.memory = memory;
+        super(memory);
+        courteSyntaxe=",";
+        couleur=new Color(255, 255, 0);
     }
 
     public In(Memory memory, String fichier){
-        this.memory = memory;
+        super(memory);
         try{
             fichierIn = new BufferedReader(new FileReader(fichier));
         }
@@ -55,6 +56,7 @@ public class In implements Computational {
     }
     
     public void execute(){
+        super.execute();
         int val;
         try{
             if(fichierIn!=null){
@@ -71,6 +73,7 @@ public class In implements Computational {
         catch(IOException e){
             System.out.println("Erreur fichier In");
         }
+        DATA_READ++;
     }
 
     public void rewrite(){
@@ -84,3 +87,4 @@ public class In implements Computational {
     public void Check(){}
 
 }
+

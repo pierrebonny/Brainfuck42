@@ -90,3 +90,4 @@ public class Translatetoimage {
     	ImageIO.write(buffImg, "bmp", new File("testimg.bmp"));
     }    	
 }    
+

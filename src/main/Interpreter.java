@@ -11,12 +11,13 @@ import java.util.Map;
  */
 
 public class Interpreter{
+
     protected Memory memory;
     private Output output;
     private Back loops;
     protected Map<Commandes,Computational> interprete = new HashMap<>();
     private Commandes commandes;
-    private boolean boucle=false;
+
 
     public Interpreter(Output output,Memory memory){
         this.output=output;
@@ -37,6 +38,7 @@ public class Interpreter{
     }
 
     public void interprete(String line){
+        boolean comments=false;
         boolean exec=false;
         for(Commandes com : Commandes.values()){
             if (com.getLongue().equals(line)){
@@ -61,7 +63,7 @@ public class Interpreter{
                 for(int i=0;i<size;i++) {
                     char c = line.charAt(i);
                     for (Commandes com : Commandes.values()){
-                        if(com.getCourte()==c){
+                        if(com.getCourte()==c && comments==false){
 
 
                             if(c==']'){
@@ -77,6 +79,9 @@ public class Interpreter{
                                     loops.getInstructions().add(com.getCourte());
                                 
                             }
+                        }else if(c=='#'){
+                            comments=true;
+
                         }
                     }
                 }
@@ -138,6 +143,7 @@ public class Interpreter{
         interprete.get(Commandes.OUT).setFichier(file);
     }
 }
+
 
 
 

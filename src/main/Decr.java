@@ -3,23 +3,25 @@ import java.awt.Color;
 /**
  * Created by Pierre on 16/11/2016.
  */
-public class Decr implements Computational {
+public class Decr extends Computational {
 
-    Memory memory;
+
     public static final int MIN_VALUE=0;
-    private String courteSyntaxe="-";
-    private Color couleur=new Color(75, 0, 130);
 
     public Decr(Memory memory){
-        this.memory = memory;
+        super(memory);
+        courteSyntaxe="-";
+        couleur=new Color(75, 0, 130);
     }
 
     public void execute(){
+        super.execute();
         if(memory.getMemory()==MIN_VALUE){
             System.out.println("Error 1");
             System.exit(1);
         }
         else{
+            DATA_WRITE++;
             memory.setMemory(memory.getMemory()-1);
         }
     }
@@ -34,5 +36,7 @@ public class Decr implements Computational {
 
     public void Check(){}
     public void setFichier(String s){}
-    public void closeFichier(){}
+    public  void closeFichier(){}
+
 }
+
