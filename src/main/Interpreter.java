@@ -1,4 +1,9 @@
+
+
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -38,11 +43,10 @@ public class Interpreter{
     }
 
     public void interprete(String line){
-        boolean comments=false;
         boolean exec=false;
         for(Commandes com : Commandes.values()){
             if (com.getLongue().equals(line)){
-
+                Computational.getProgramm().add(interprete.get(com));
 
             if(line.equals("BACK")){
                  if(loops.getStock())
@@ -63,7 +67,8 @@ public class Interpreter{
                 for(int i=0;i<size;i++) {
                     char c = line.charAt(i);
                     for (Commandes com : Commandes.values()){
-                        if(com.getCourte()==c && comments==false){
+                        if(com.getCourte()==c){
+                            Computational.getProgramm().add(interprete.get(com));
 
 
                             if(c==']'){
@@ -80,7 +85,7 @@ public class Interpreter{
                                 
                             }
                         }else if(c=='#'){
-                            comments=true;
+                            break;
 
                         }
                     }
@@ -142,6 +147,7 @@ public class Interpreter{
     public void setFichierOut(String file){
         interprete.get(Commandes.OUT).setFichier(file);
     }
+
 }
 
 

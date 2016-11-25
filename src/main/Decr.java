@@ -1,3 +1,6 @@
+
+
+
 import java.awt.Color;
 
 /**
@@ -14,14 +17,13 @@ public class Decr extends Computational {
         couleur=new Color(75, 0, 130);
     }
 
-    public void execute(){
+    public void execute() throws UnderFlowException{
         super.execute();
         if(memory.getMemory()==MIN_VALUE){
-            System.out.println("Error 1");
-            System.exit(1);
+            throw  new UnderFlowException("Error 1 : UnderFlowException",1);
         }
         else{
-            DATA_WRITE++;
+            Computational.incrDataWrite();
             memory.setMemory(memory.getMemory()-1);
         }
     }

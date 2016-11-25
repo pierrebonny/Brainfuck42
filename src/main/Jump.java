@@ -1,3 +1,6 @@
+
+
+
 import java.awt.Color;
 
 public class Jump extends Loops {
@@ -30,7 +33,6 @@ public class Jump extends Loops {
             }
 
         }
-        DATA_READ++;
     }
 
     public void rewrite(){

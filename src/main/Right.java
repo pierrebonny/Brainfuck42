@@ -1,3 +1,6 @@
+
+
+
 import java.awt.Color;
 
 /**
@@ -14,14 +17,13 @@ public class Right extends Computational {
         couleur=new Color(0, 0, 255);
     }
 
-    public void execute(){
+    public void execute() throws OutofBoundException {
         super.execute();
         if(memory.getPosition()==MAX_POSITION){
-            System.out.println("Error 2");
-            System.exit(2);
+            throw new OutofBoundException("Error 2 : OutofBoundException",2);
         }
         else{
-            DATA_MOVE++;
+            Computational.incrDataMove();
             memory.setPosition(memory.getPosition()+1);
 
             if(memory.getPosition()>memory.getMax()) memory.setMax(memory.getPosition());

@@ -1,3 +1,7 @@
+
+
+
+
 import java.awt.Color;
 import java.io.IOException;
 import java.io.FileNotFoundException;
@@ -72,7 +76,7 @@ public class Out extends Computational {
         catch(IOException e){
             System.out.println("Erreur fichier Out");
         }
-        DATA_READ++;
+        Computational.incrDataRead();
     }
 
     public void rewrite(){

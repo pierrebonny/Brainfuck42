@@ -1,5 +1,6 @@
+
+
 import java.io.IOException;
-import java.util.Date;
 
 /**
  * Created by user on 12/10/2016.
@@ -13,59 +14,63 @@ import java.util.Date;
 public class Bfck {
 
     public static void main(String[] args) throws IOException {
+        Computational.setExecTime(System.currentTimeMillis());
+
+
         //Initialisation des objets des autres classes
-		
-        int nbArgs=args.length;
-        int i=0;
+
+        int nbArgs = args.length;
+        int i = 0;
 
         Memory memory = new Memory();
         Check check = new Check();
         Output output = new Output(memory);
-        Interpreter interpreter = new Interpreter(output,memory);
+        Interpreter interpreter = new Interpreter(output, memory);
 
-        Reader reader = new Reader(interpreter,output);
+        Reader reader = new Reader(interpreter, output);
         Translatetoimage translatetoimage = new Translatetoimage();
 
 
-        check.check(args[nbArgs-1]);
-        if(check.getCount() != 0){
-            System.exit(4);
-        }
 
-        while(i!=nbArgs-1){
 
-            if (args[i].equals("--check")){
-                System.exit(0);
+            check.check(args[nbArgs - 1]);
+            if (check.getCount() != 0) {
+                System.exit(4);
             }
-            if(args[i].equals("--rewrite")){
-                reader.rewrite(args[nbArgs-1]);
-                System.exit(0);
 
-            }
-            else if (args[i].equals("--translate")){
-                translatetoimage.translate(args[nbArgs-1]);
-                System.exit(0);
-            }
-            else if(args[i].equals("-i")){
+            while (i != nbArgs - 1) {
+
+                if (args[i].equals("--check")) {
+                    System.exit(0);
+                }
+                if (args[i].equals("--rewrite")) {
+                    reader.rewrite(args[nbArgs - 1]);
+                    System.exit(0);
+
+                } else if (args[i].equals("--translate")) {
+                    translatetoimage.translate(args[nbArgs - 1]);
+                    System.exit(0);
+                } else if (args[i].equals("-i")) {
+                    i++;
+                    interpreter.setFichierIn(args[i]);
+                } else if (args[i].equals("-o")) {
+                    i++;
+                    interpreter.setFichierOut(args[i]);
+                }
+
                 i++;
-                interpreter.setFichierIn(args[i]);
             }
-            else if(args[i].equals("-o")){
-                i++;
-                interpreter.setFichierOut(args[i]);
-            }
+            reader.read(args[nbArgs - 1]);
 
-            i++;
-        }
-        reader.read(args[nbArgs - 1]);
-	
-	
-	System.out.println("DATA_READ : "+Computational.DATA_READ);
-	System.out.println("EXEC_MOVE : "+Computational.EXEC_MOVE);
-	System.out.println("DATA_WRITE : "+Computational.DATA_WRITE);
-	System.out.println("DATA_MOVE : "+Computational.DATA_MOVE);
-	
+
+        output.metrics();
+
     }
 
 }
+
+
+
+
+
 

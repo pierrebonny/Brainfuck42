@@ -1,3 +1,6 @@
+
+
+
 import java.awt.Color;
 
 /**
@@ -14,14 +17,13 @@ public class Incr extends Computational {
         couleur=Color.white;
     }
 
-    public void execute(){
+    public void execute() throws OverFlowException{
         super.execute();
         if(memory.getMemory()==MAX_VALUE){
-            System.out.println("Error 1");
-            System.exit(1);
+            throw new OverFlowException("Error 1 : OverFlowException",1);
         }
         else{
-            DATA_WRITE++;
+            Computational.incrDataWrite();
             memory.setMemory(memory.getMemory()+1);
         }
     }

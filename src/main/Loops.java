@@ -1,3 +1,7 @@
+
+
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +18,10 @@ public abstract class Loops extends Computational {
     
     
     public Loops(Memory memory){ super(memory); }
+
     public void execute(){ 
         super.execute();
-        DATA_READ++;
+        Computational.incrDataRead();
     }
     
     public boolean getRead(){ return read; }

@@ -1,3 +1,5 @@
+
+
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -73,7 +75,7 @@ public class In extends Computational{
         catch(IOException e){
             System.out.println("Erreur fichier In");
         }
-        DATA_READ++;
+        Computational.incrDataWrite();
     }
 
     public void rewrite(){
