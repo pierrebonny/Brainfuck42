@@ -1,6 +1,10 @@
+package BrainFuck.Instructions;
 
+
+import BrainFuck.Memory;
 
 import java.awt.*;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +21,7 @@ import java.util.List;
 
 public abstract class Computational {
 
+	private static String file=null;
 	private static List<Computational> programm= new ArrayList<>();
 	private static  long EXEC_TIME;
 	private static  int PROG_SIZE;
@@ -30,7 +35,13 @@ public abstract class Computational {
 
 	public Computational(Memory memory){ this.memory=memory;}
 
-    public void execute() { EXEC_MOVE++;}
+    public void execute() {
+		EXEC_MOVE++;
+		if (file != null)
+			trace();
+    }
+
+
 
     public abstract void rewrite();
 
@@ -49,6 +60,7 @@ public abstract class Computational {
 	public static int getDataWrite() {return DATA_WRITE;}
 	public static List<Computational> getProgramm(){ return programm;}
 	public static long getExecTime(){return EXEC_TIME;}
+	public String getFileWithoutExtension(){ return  file;}
 
 	public static void incrProgSize(){ PROG_SIZE++;}
 	public static void incrExecMove(){ EXEC_MOVE++;}
@@ -57,9 +69,38 @@ public abstract class Computational {
 	public static void incrDataWrite(){ DATA_WRITE++;}
 	public static void setProgSize(int progSize){ PROG_SIZE=progSize;}
 	public static void setExecTime(long execTime){ EXEC_TIME=execTime;}
+	public static void setFile(String newfile){ file=newfile;}
 
 
+	public static void createFichierLog(String file){
+		BufferedWriter newFichierLog;
+		try{
+			newFichierLog = new BufferedWriter(new FileWriter(new File(file)));
+		}catch (IOException e){
+			e.printStackTrace();
+		}
+	}
 
+
+	public  void trace() {
+			BufferedReader lireFichier;
+			BufferedWriter ecrireFichier;
+
+			try {
+				lireFichier = new BufferedReader(new FileReader(file));
+				String texte = "";
+				String ligne;
+				while ((ligne = lireFichier.readLine()) != null)
+					texte += ligne + '\n';
+
+				ecrireFichier = new BufferedWriter(new FileWriter(file));
+				ecrireFichier.write(texte + "Exec pointer :" + EXEC_MOVE + "			Position M:" + memory.getPosition() + "		Value M :" + memory.getMemory());
+				ecrireFichier.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+	}
 
 }
 

@@ -1,4 +1,6 @@
+package BrainFuck;
 
+import BrainFuck.Instructions.Computational;
 
 /**
  * Created by user on 12/10/2016.

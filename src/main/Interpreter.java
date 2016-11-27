@@ -43,10 +43,12 @@ public class Interpreter{
     }
 
     public void interprete(String line){
+
         boolean exec=false;
         for(Commandes com : Commandes.values()){
             if (com.getLongue().equals(line)){
                 Computational.getProgramm().add(interprete.get(com));
+
 
             if(line.equals("BACK")){
                  if(loops.getStock())
@@ -69,7 +71,6 @@ public class Interpreter{
                     for (Commandes com : Commandes.values()){
                         if(com.getCourte()==c){
                             Computational.getProgramm().add(interprete.get(com));
-
 
                             if(c==']'){
                               if(loops.getStock())

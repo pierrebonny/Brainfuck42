@@ -1,6 +1,8 @@
 
 
+
 import java.io.IOException;
+
 
 /**
  * Created by user on 12/10/2016.
@@ -14,6 +16,8 @@ import java.io.IOException;
 public class Bfck {
 
     public static void main(String[] args) throws IOException {
+
+
         Computational.setExecTime(System.currentTimeMillis());
 
 
@@ -39,6 +43,13 @@ public class Bfck {
             }
 
             while (i != nbArgs - 1) {
+                if(args[i].equals("--trace")){
+                    String file=args[nbArgs-1];
+                    int position=file.lastIndexOf('.');
+                    file=file.substring(0,position)+".log";
+                    Computational.setFile(file);
+                    Computational.createFichierLog(file);
+                }
 
                 if (args[i].equals("--check")) {
                     System.exit(0);
@@ -61,6 +72,7 @@ public class Bfck {
                 i++;
             }
             reader.read(args[nbArgs - 1]);
+
 
 
         output.metrics();

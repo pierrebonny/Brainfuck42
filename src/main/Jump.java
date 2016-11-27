@@ -1,4 +1,5 @@
-
+package BrainFuck.Instructions;
+import BrainFuck.*;
 
 
 import java.awt.Color;
@@ -14,7 +15,6 @@ public class Jump extends Loops {
     }
     
     public void execute(){
-        super.execute();
         if(loops==false){ //on lit la premiere fois quon lit le fichier
             if(this.memory.getMemory()==0){
                 read=false;
@@ -33,6 +33,7 @@ public class Jump extends Loops {
             }
 
         }
+        super.execute();
     }
 
     public void rewrite(){

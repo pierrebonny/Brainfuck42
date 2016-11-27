@@ -1,5 +1,6 @@
 
 
+
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -58,7 +59,6 @@ public class In extends Computational{
     }
     
     public void execute(){
-        super.execute();
         int val;
         try{
             if(fichierIn!=null){
@@ -76,6 +76,7 @@ public class In extends Computational{
             System.out.println("Erreur fichier In");
         }
         Computational.incrDataWrite();
+        super.execute();
     }
 
     public void rewrite(){

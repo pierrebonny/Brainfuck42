@@ -1,4 +1,6 @@
-
+package BrainFuck.Instructions;
+import BrainFuck.*;
+import BrainFuck.Exception.OutofBoundException;
 
 
 import java.awt.Color;
@@ -19,13 +21,13 @@ public class Left extends Computational {
     }
 
     public void execute() throws OutofBoundException {
-        super.execute();
         if(memory.getPosition()==MIN_POSITION){
             throw new OutofBoundException("Error 2 : OutofBoundException",2);
         }
         else{
             Computational.incrDataMove();
             memory.setPosition(memory.getPosition()-1);
+            super.execute();
         }
     }
 

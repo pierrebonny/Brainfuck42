@@ -1,7 +1,13 @@
+package BrainFuck.Instructions;
+import BrainFuck.*;
+import BrainFuck.Exception.OverFlowException;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
+import java.io.*;
 
 
 import java.awt.Color;
+import java.io.IOException;
 
 /**
  * Created by Pierre on 16/11/2016.
@@ -18,13 +24,13 @@ public class Incr extends Computational {
     }
 
     public void execute() throws OverFlowException{
-        super.execute();
         if(memory.getMemory()==MAX_VALUE){
             throw new OverFlowException("Error 1 : OverFlowException",1);
         }
         else{
             Computational.incrDataWrite();
             memory.setMemory(memory.getMemory()+1);
+            super.execute();
         }
     }
 
@@ -35,6 +41,8 @@ public class Incr extends Computational {
     public Color translate(){
         return couleur;
     }
+
+
 
     public void Check(){}
     public void setFichier(String s){}

@@ -11,6 +11,19 @@ import java.io.FileWriter;
 /**
  * Created by Pierre on 16/11/2016.
  */
+
+
+
+
+import java.awt.Color;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
+/**
+ * Created by Pierre on 16/11/2016.
+ */
 public class Out extends Computational {
 
     protected static BufferedWriter fichierOut=null;
@@ -27,10 +40,10 @@ public class Out extends Computational {
             fichierOut = new BufferedWriter(new FileWriter(fichier));
         }
         catch(FileNotFoundException exc){
-                System.out.println("Erreur d'ouverture");
+            System.out.println("Erreur d'ouverture");
         }
-         catch(IOException e){
-                System.out.println("Erreur d'ouverture");
+        catch(IOException e){
+            System.out.println("Erreur d'ouverture");
         }
     }
 
@@ -40,11 +53,11 @@ public class Out extends Computational {
             fichierOut = new BufferedWriter(new FileWriter(file));
         }
         catch(FileNotFoundException exc){
-                System.out.println("Erreur d'ouverture");
+            System.out.println("Erreur d'ouverture");
         }
-         catch(IOException e){
-                System.out.println("Erreur d'ouverture");
-                System.exit(3);
+        catch(IOException e){
+            System.out.println("Erreur d'ouverture");
+            System.exit(3);
         }
     }
 
@@ -55,7 +68,7 @@ public class Out extends Computational {
     public void closeFichier(){
         //System.out.println("Fermeture du fichier");
         try{
-        fichierOut.close();
+            fichierOut.close();
         }
         catch(IOException e){
 
@@ -64,19 +77,19 @@ public class Out extends Computational {
     }
 
     public void execute(){
-        super.execute();
         try{
-        if(fichierOut!=null){
-            fichierOut.write(memory.getStringMemory());
-        }
-        else{
-            System.out.println(memory);
-        }
+            if(fichierOut!=null){
+                fichierOut.write(memory.getStringMemory());
+            }
+            else{
+                System.out.println(memory);
+            }
         }
         catch(IOException e){
             System.out.println("Erreur fichier Out");
         }
         Computational.incrDataRead();
+        super.execute();
     }
 
     public void rewrite(){

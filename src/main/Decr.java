@@ -1,7 +1,13 @@
-
+package BrainFuck.Instructions;
+import BrainFuck.*;
+import BrainFuck.Exception.UnderFlowException;
 
 
 import java.awt.Color;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * Created by Pierre on 16/11/2016.
@@ -18,13 +24,13 @@ public class Decr extends Computational {
     }
 
     public void execute() throws UnderFlowException{
-        super.execute();
         if(memory.getMemory()==MIN_VALUE){
             throw  new UnderFlowException("Error 1 : UnderFlowException",1);
         }
         else{
             Computational.incrDataWrite();
             memory.setMemory(memory.getMemory()-1);
+            super.execute();
         }
     }
 
@@ -35,6 +41,9 @@ public class Decr extends Computational {
     public Color translate(){
         return couleur;
     }
+
+
+
 
     public void Check(){}
     public void setFichier(String s){}

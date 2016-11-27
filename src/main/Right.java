@@ -18,14 +18,13 @@ public class Right extends Computational {
     }
 
     public void execute() throws OutofBoundException {
-        super.execute();
         if(memory.getPosition()==MAX_POSITION){
             throw new OutofBoundException("Error 2 : OutofBoundException",2);
         }
         else{
             Computational.incrDataMove();
             memory.setPosition(memory.getPosition()+1);
-
+            super.execute();
             if(memory.getPosition()>memory.getMax()) memory.setMax(memory.getPosition());
         }
     }

@@ -1,4 +1,5 @@
-
+package BrainFuck;
+import BrainFuck.Instructions.*;
 
 
 import javax.imageio.ImageIO;
@@ -24,7 +25,7 @@ public class Translatetoimage {
     private Commandes commandes;
 
     public Translatetoimage(){
-        fillHashmap(interprete);
+    	fillHashmap(interprete);
     }
 
     private void fillHashmap(Map<Commandes,Computational> hashmap) {
@@ -39,13 +40,13 @@ public class Translatetoimage {
     }
 
     public void translate(String file) throws IOException {
-    
+	
 
-    BufferedReader buff = new BufferedReader(new FileReader(file));
-    
-    String line;
+	BufferedReader buff = new BufferedReader(new FileReader(file));
+	
+	String line;
                 
-        while ((line = buff.readLine()) != null){
+    	while ((line = buff.readLine()) != null){
 
             boolean exec=false;
                 for(Commandes com : Commandes.values()){
@@ -71,26 +72,26 @@ public class Translatetoimage {
                         }
                     }
 
-        } 
-        
-        int taille = colors.size();
-        int x = 0;
-        int y = 0;
-        int n = (int) (3.0 * Math.ceil(Math.sqrt(taille)));
-        BufferedImage buffImg = new BufferedImage(n,n,BufferedImage.TYPE_INT_RGB);
-        Graphics2D g2d = (Graphics2D)buffImg.getGraphics();
-        for (int i = 0; i < taille;i++){
-            g2d.setColor(colors.get(i));            
-            g2d.fillRect(x, y, l, L);
-            x += 3;
-            if (x == n){
-            x = 0;
-            y += 3;
-            }
-        
-        }
-        g2d.dispose();
-        ImageIO.write(buffImg, "bmp", new File("testimg.bmp"));
-    }       
+		} 
+    	
+    	int taille = colors.size();
+    	int x = 0;
+    	int y = 0;
+    	int n = (int) (3.0 * Math.ceil(Math.sqrt(taille)));
+    	BufferedImage buffImg = new BufferedImage(n,n,BufferedImage.TYPE_INT_RGB);
+    	Graphics2D g2d = (Graphics2D)buffImg.getGraphics();
+    	for (int i = 0; i < taille;i++){
+    	    g2d.setColor(colors.get(i));    	    
+    	    g2d.fillRect(x, y, l, L);
+    	    x += 3;
+    	    if (x == n){
+    		x = 0;
+    		y += 3;
+    	    }
+    	
+    	}
+    	g2d.dispose();
+    	ImageIO.write(buffImg, "bmp", new File("testimg.bmp"));
+    }    	
 }    
 

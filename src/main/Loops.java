@@ -19,9 +19,9 @@ public abstract class Loops extends Computational {
     
     public Loops(Memory memory){ super(memory); }
 
-    public void execute(){ 
-        super.execute();
+    public void execute(){
         Computational.incrDataRead();
+        super.execute();
     }
     
     public boolean getRead(){ return read; }
