@@ -1,27 +1,30 @@
+
+
+
 import java.awt.Color;
 
 /**
  * Created by Pierre on 16/11/2016.
  */
-public class Right implements Computational {
+public class Right extends Computational {
 
-    private Memory memory;
+
     public static final int MAX_POSITION=29999;
-    private String courteSyntaxe=">";
-    private Color couleur=new Color(0, 0, 255);
 
     public Right(Memory memory){
-        this.memory = memory;
+        super(memory);
+        courteSyntaxe=">";
+        couleur=new Color(0, 0, 255);
     }
 
-    public void execute(){
+    public void execute() throws OutofBoundException {
         if(memory.getPosition()==MAX_POSITION){
-            System.out.println("Error 2");
-            System.exit(2);
+            throw new OutofBoundException("Error 2 : OutofBoundException",2);
         }
         else{
+            Computational.incrDataMove();
             memory.setPosition(memory.getPosition()+1);
-
+            super.execute();
             if(memory.getPosition()>memory.getMax()) memory.setMax(memory.getPosition());
         }
     }
@@ -36,5 +39,7 @@ public class Right implements Computational {
 
     public void Check(){}
     public void setFichier(String s){}
-    public void closeFichier(){}
+    public  void closeFichier(){}
+
 }
+

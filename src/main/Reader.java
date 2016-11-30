@@ -1,3 +1,7 @@
+package BrainFuck;
+import BrainFuck.Instructions.*;
+
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -125,3 +129,4 @@ public class Reader {
 
 	}
 }
+

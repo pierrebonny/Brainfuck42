@@ -1,3 +1,7 @@
+package BrainFuck;
+import BrainFuck.Instructions.*;
+
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -90,3 +94,4 @@ public class Translatetoimage {
     	ImageIO.write(buffImg, "bmp", new File("testimg.bmp"));
     }    	
 }    
+

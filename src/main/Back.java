@@ -1,3 +1,6 @@
+
+
+
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -5,15 +8,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
 
-public class Back extends Loops implements Computational {
+public class Back extends Loops {
     
-    private String courteSyntaxe="]";
-    private Color couleur=new Color(255, 0, 0);
-    private int posBackAssocie;
-    private List<Computational> computationalContent= new ArrayList<Computational>();
+
+
 
     public Back(Memory memory){
         super(memory);
+        courteSyntaxe="]";
+        couleur=new Color(255, 0, 0);
 
     }
     
@@ -40,6 +43,7 @@ public class Back extends Loops implements Computational {
 
         
     public void back(int positionBack) throws IOException{ // back de cloture entre le tout premier [ et le dernier ]
+        super.execute();
         if(loops==false){ 
             stock=false;
             read=true;
@@ -105,29 +109,10 @@ public class Back extends Loops implements Computational {
         }
     }
 
+
+
 }
 
     
-   /* 
-    public void jump(){
-        if(loops==false){ //on lit la premiere fois quon lit le fichier
-            if(memory.getMemory()==0){
-                read=false;
-                stock=true;
-            }else{
-                loops=true;
-                stock=true;
-                read=false;
-            }
-        }    
-        else { //loops==true , on lit ça lorsque quon le lit dans la liste
-            if(memory.getMemory()==0)
-                read=false;
-            else{
-                read=true; //ce qui est deja le cas normalement
-            }
 
-        }
-    }
-}*/
 

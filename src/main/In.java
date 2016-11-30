@@ -1,3 +1,6 @@
+
+
+
 import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -5,21 +8,29 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
 
+<<<<<<< HEAD
 
 public class In implements Computational {
+=======
+/**
+ * Created by Pierre on 16/11/2016.
+ */
+public class In extends Computational{
 
-    private Memory memory;
-    private String courteSyntaxe=",";
-    private Color couleur=new Color(255, 255, 0);
+
+>>>>>>> 23547288c5902776e5e259e9ed1008cbd3c9d733
+
     private static  BufferedReader fichierIn=null;
     private  Scanner sc = new Scanner(System.in);
 
     public In(Memory memory){
-        this.memory = memory;
+        super(memory);
+        courteSyntaxe=",";
+        couleur=new Color(255, 255, 0);
     }
 
     public In(Memory memory, String fichier){
-        this.memory = memory;
+        super(memory);
         try{
             fichierIn = new BufferedReader(new FileReader(fichier));
         }
@@ -72,6 +83,8 @@ public class In implements Computational {
         catch(IOException e){
             System.out.println("Erreur fichier In");
         }
+        Computational.incrDataWrite();
+        super.execute();
     }
 
     public void rewrite(){
@@ -85,3 +98,4 @@ public class In implements Computational {
     public void Check(){}
 
 }
+

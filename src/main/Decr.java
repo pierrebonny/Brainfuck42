@@ -1,26 +1,36 @@
+package BrainFuck.Instructions;
+import BrainFuck.*;
+import BrainFuck.Exception.UnderFlowException;
+
+
 import java.awt.Color;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * Created by Pierre on 16/11/2016.
  */
-public class Decr implements Computational {
+public class Decr extends Computational {
 
-    Memory memory;
+
     public static final int MIN_VALUE=0;
-    private String courteSyntaxe="-";
-    private Color couleur=new Color(75, 0, 130);
 
     public Decr(Memory memory){
-        this.memory = memory;
+        super(memory);
+        courteSyntaxe="-";
+        couleur=new Color(75, 0, 130);
     }
 
-    public void execute(){
+    public void execute() throws UnderFlowException{
         if(memory.getMemory()==MIN_VALUE){
-            System.out.println("Error 1");
-            System.exit(1);
+            throw  new UnderFlowException("Error 1 : UnderFlowException",1);
         }
         else{
+            Computational.incrDataWrite();
             memory.setMemory(memory.getMemory()-1);
+            super.execute();
         }
     }
 
@@ -32,7 +42,12 @@ public class Decr implements Computational {
         return couleur;
     }
 
+
+
+
     public void Check(){}
     public void setFichier(String s){}
-    public void closeFichier(){}
+    public  void closeFichier(){}
+
 }
+

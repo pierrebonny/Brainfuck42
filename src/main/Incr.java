@@ -1,26 +1,36 @@
+package BrainFuck.Instructions;
+import BrainFuck.*;
+import BrainFuck.Exception.OverFlowException;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
+import java.io.*;
+
+
 import java.awt.Color;
+import java.io.IOException;
 
 /**
  * Created by Pierre on 16/11/2016.
  */
-public class Incr implements Computational {
+public class Incr extends Computational {
 
-    private Memory memory;
+
     public static final int MAX_VALUE=255;
-    private String courteSyntaxe="+";
-    private Color couleur=Color.white;
 
     public Incr(Memory memory){
-        this.memory = memory;
+        super(memory);
+        courteSyntaxe="+";
+        couleur=Color.white;
     }
 
-    public void execute(){
+    public void execute() throws OverFlowException{
         if(memory.getMemory()==MAX_VALUE){
-            System.out.println("Error 1");
-            System.exit(1);
+            throw new OverFlowException("Error 1 : OverFlowException",1);
         }
         else{
+            Computational.incrDataWrite();
             memory.setMemory(memory.getMemory()+1);
+            super.execute();
         }
     }
 
@@ -32,7 +42,10 @@ public class Incr implements Computational {
         return couleur;
     }
 
+
+
     public void Check(){}
     public void setFichier(String s){}
-    public void closeFichier(){}
+    public  void closeFichier(){}
 }
+

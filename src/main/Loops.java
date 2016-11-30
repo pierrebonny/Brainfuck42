@@ -1,18 +1,32 @@
+
+
+
+
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
 public class Loops {
+=======
+public abstract class Loops extends Computational {
+    
+
+>>>>>>> 23547288c5902776e5e259e9ed1008cbd3c9d733
 
     protected static  boolean read=true;
     protected static boolean loops=false;
     protected static  boolean stock=false;
     protected static List<Character> instructions=new ArrayList<>();
     protected static int globalPositionJump;
-    protected Memory memory;
+
     
     
-    public Loops(Memory memory){ this.memory=memory; }
-    
+    public Loops(Memory memory){ super(memory); }
+
+    public void execute(){
+        Computational.incrDataRead();
+        super.execute();
+    }
     
     public boolean getRead(){ return read; }
     public boolean getLoops(){ return loops; }
@@ -52,5 +66,12 @@ public class Loops {
             }
         }
         return -1;
+<<<<<<< HEAD
     }       
 }
+=======
+    }   
+    
+    
+}
+>>>>>>> 23547288c5902776e5e259e9ed1008cbd3c9d733
