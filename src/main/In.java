@@ -8,17 +8,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
 
-<<<<<<< HEAD
-
-public class In implements Computational {
-=======
 /**
  * Created by Pierre on 16/11/2016.
  */
 public class In extends Computational{
 
-
->>>>>>> 23547288c5902776e5e259e9ed1008cbd3c9d733
 
     private static  BufferedReader fichierIn=null;
     private  Scanner sc = new Scanner(System.in);

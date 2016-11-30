@@ -1,17 +1,8 @@
-
-
-
-
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
-public class Loops {
-=======
 public abstract class Loops extends Computational {
     
-
->>>>>>> 23547288c5902776e5e259e9ed1008cbd3c9d733
 
     protected static  boolean read=true;
     protected static boolean loops=false;
