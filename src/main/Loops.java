@@ -2,8 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Loops {
-    
-
 
     protected static  boolean read=true;
     protected static boolean loops=false;
@@ -54,7 +52,5 @@ public class Loops {
             }
         }
         return -1;
-    }   
-    
-    
+    }       
 }

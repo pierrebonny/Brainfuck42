@@ -5,9 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
 
-/**
- * Created by Pierre on 16/11/2016.
- */
+
 public class In implements Computational {
 
     private Memory memory;
@@ -59,11 +57,14 @@ public class In implements Computational {
         try{
             if(fichierIn!=null){
                 val=fichierIn.read();
-                if(val==-1)
+                if(val==-1){
+                    System.out.println("Please enter any value : ");
                     val=sc.nextLine().charAt(0);
+                }
                 memory.setMemory(val);
             }
             else{
+                System.out.println("Please enter any value : ");
                 val=sc.nextLine().charAt(0);
                 memory.setMemory(val);
             }
