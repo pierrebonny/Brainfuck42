@@ -82,7 +82,10 @@ public class Reader {
 		}
 					//On le lit le fichier ligne par ligne jusqu'a ce qu'il soit vide
 			while ((line = lecteurAvecBuffer.readLine()) != null) {
-                interpreter.saveInstructions(line);
+                if(line.charAt(0)=='@')
+                    interpreter.createMacro(line);
+                else
+                    interpreter.saveInstructions(line);
 			}
             interpreter.interprete();
 			output.afficher();

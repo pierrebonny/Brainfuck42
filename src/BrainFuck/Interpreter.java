@@ -21,7 +21,8 @@ public class Interpreter{
     protected Memory memory;
     private Output output;
     private Back loops;
-    protected Map<Commandes,Computational> interprete = new HashMap<>();
+    protected static Map<Commandes,Computational> interprete = new HashMap<>();
+    protected static Map<String,Macro> macros= new HashMap<>();
     private Commandes commandes;
 
 
@@ -51,6 +52,10 @@ public class Interpreter{
                 return ;
             }
         }
+        if(macros.get(line)!=null){
+            Computational.getProgramm().addAll(macros.get(line).getListeInst());
+            return ;
+        }
         int size = line.length();
         for (int i = 0; i < size; i++) {
             char c = line.charAt(i);
@@ -61,6 +66,11 @@ public class Interpreter{
                     Computational.getProgramm().add(interprete.get(com));
             }
         }
+    }
+
+    public void createMacro(String line){
+            String [] macroDef=line.split(" ");
+            macros.put(macroDef[1],new Macro(Integer.parseInt(macroDef[2]),macroDef[3]));
     }
 
     public void interprete() {

@@ -41,12 +41,12 @@ public class Bfck {
 
 
 
-
+/*
             check.check(args[nbArgs - 1]);
             if (check.getCount() != 0) {
                 System.exit(4);
             }
-
+*/
             while (i != nbArgs - 1) {
                 if(args[i].equals("--trace")){
                     String file=args[nbArgs-1];
