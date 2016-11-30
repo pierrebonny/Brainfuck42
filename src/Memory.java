@@ -1,7 +1,4 @@
 
-
-
-
 /**
  * @author Pierre Bonny
  * @author Marion Campora
@@ -82,4 +79,5 @@ public class Memory {
    
 
 }
+
 

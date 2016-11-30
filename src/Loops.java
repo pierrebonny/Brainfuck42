@@ -1,9 +1,11 @@
 
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Loops {
+public abstract class Loops extends Computational {
     
 
 
@@ -12,11 +14,15 @@ public class Loops {
     protected static  boolean stock=false;
     protected static List<Character> instructions=new ArrayList<>();
     protected static int globalPositionJump;
-    protected Computational computational;
+
     
     
-    public Loops(Computational computational){ this.computational=computational; }
-    
+    public Loops(Memory memory){ super(memory); }
+
+    public void execute(){
+        Computational.incrDataRead();
+        super.execute();
+    }
     
     public boolean getRead(){ return read; }
     public boolean getLoops(){ return loops; }
@@ -27,10 +33,10 @@ public class Loops {
     public int backAssociated(int positionJump){
         int compteur=1;
         int positionBack=0;
-        for(int i=positionJump+1; i<instructions.size();i++){
-            if(instructions.get(i)=='['){
+        for(int i=positionJump+1; i<Computational.getProgramm().size();i++){
+            if(Computational.getProgramm().get(i) instanceof  Jump){
                 compteur++;
-            } else if(instructions.get(i)==']'){
+            } else if(Computational.getProgramm().get(i) instanceof  Back){
                 compteur--;
                 if(compteur==0){
                     positionBack=i;
@@ -45,13 +51,13 @@ public class Loops {
         int compteur=1;
         int positionJump=0;
         for(int i=(positionBack-1); i>=0;i--){
-            if(instructions.get(i)=='['){
+            if(Computational.getProgramm().get(i) instanceof Jump){
                 compteur--;
                 if(compteur==0){
                     positionJump=i;
                     return positionJump;
                 }
-            } else if(instructions.get(i)==']'){
+            } else if(Computational.getProgramm().get(i) instanceof  Back){
                 compteur++;
             }
         }
