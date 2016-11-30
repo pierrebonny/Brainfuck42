@@ -1,3 +1,4 @@
+package BrainFuck;
 
 /**
  * @author Pierre Bonny
@@ -27,6 +28,11 @@ public class Memory {
     public int getMemory(){
 
         return memoryCells[position];
+    }
+
+    public String getStringMemory(){
+
+        return ""+memoryCells[position];
     }
 
     public int getMemoryIndex(int index){
@@ -64,14 +70,15 @@ public class Memory {
     }
 
     public String toString(int index){
-        return "C"+index+": "+getMemoryIndex(index);
+        return "C"+index+": decimale : "+ getMemoryIndex(index)+" char :  "  +(char) getMemoryIndex(index);
     }
-    
+
     public String toString(){
-        return "C"+getPosition()+": "+getMemory();
+        return "C"+getPosition()+": decimale : "+ getMemory()+" char :  "+(char) getMemory();
     }
     
    
 
 }
+
 
