@@ -1,8 +1,3 @@
-package BrainFuck.Instructions;
-
-
-import BrainFuck.Memory;
-
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;

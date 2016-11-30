@@ -1,7 +1,3 @@
-package BrainFuck.Instructions;
-import BrainFuck.*;
-
-
 import java.awt.Color;
 
 public class Jump extends Loops {

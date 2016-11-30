@@ -57,12 +57,5 @@ public abstract class Loops extends Computational {
             }
         }
         return -1;
-<<<<<<< HEAD
-    }       
+   }           
 }
-=======
-    }   
-    
-    
-}
->>>>>>> 23547288c5902776e5e259e9ed1008cbd3c9d733

@@ -1,8 +1,3 @@
-package BrainFuck.Instructions;
-import BrainFuck.*;
-import BrainFuck.Exception.UnderFlowException;
-
-
 import java.awt.Color;
 import java.io.BufferedWriter;
 import java.io.File;

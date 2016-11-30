@@ -69,11 +69,11 @@ public class Memory {
     }
 
     public String toString(int index){
-        return "C"+index+": "+getMemoryIndex(index);
+        return "C"+index+": "+ (char) getMemoryIndex(index);
     }
     
     public String toString(){
-        return "C"+getPosition()+": "+getMemory();
+        return "C"+getPosition()+": "+ (char) getMemory();
     }
     
    

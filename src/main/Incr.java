@@ -1,11 +1,4 @@
-package BrainFuck.Instructions;
-import BrainFuck.*;
-import BrainFuck.Exception.OverFlowException;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-
 import java.io.*;
-
-
 import java.awt.Color;
 import java.io.IOException;
 

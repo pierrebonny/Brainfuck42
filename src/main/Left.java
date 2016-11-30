@@ -1,8 +1,3 @@
-package BrainFuck.Instructions;
-import BrainFuck.*;
-import BrainFuck.Exception.OutofBoundException;
-
-
 import java.awt.Color;
 
 /**
