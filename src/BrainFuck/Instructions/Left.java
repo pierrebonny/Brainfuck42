@@ -25,8 +25,8 @@ public class Left extends Computational {
             throw new OutofBoundException("Error 2 : OutofBoundException",2);
         }
         else{
-            Computational.incrDataMove();
             memory.setPosition(memory.getPosition()-1);
+            Metrics.incrDataMove();
             super.execute();
         }
     }

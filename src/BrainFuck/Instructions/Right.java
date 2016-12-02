@@ -24,10 +24,10 @@ public class Right extends Computational {
             throw new OutofBoundException("Error 2 : OutofBoundException",2);
         }
         else{
-            Computational.incrDataMove();
             memory.setPosition(memory.getPosition()+1);
-            super.execute();
             if(memory.getPosition()>memory.getMax()) memory.setMax(memory.getPosition());
+            Metrics.incrDataMove();
+            super.execute();
         }
     }
 

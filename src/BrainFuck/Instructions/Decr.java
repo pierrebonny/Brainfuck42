@@ -28,8 +28,8 @@ public class Decr extends Computational {
             throw  new UnderFlowException("Error 1 : UnderFlowException",1);
         }
         else{
-            Computational.incrDataWrite();
             memory.setMemory(memory.getMemory()-1);
+            Metrics.incrDataWrite();
             super.execute();
         }
     }

@@ -1,10 +1,5 @@
 package BrainFuck;
-import BrainFuck.Exception.OutofBoundException;
-import BrainFuck.Exception.OverFlowException;
-import BrainFuck.Exception.UnderFlowException;
 import BrainFuck.Instructions.Computational;
-import BrainFuck.Instructions.Decr;
-import BrainFuck.Instructions.Incr;
 
 import java.io.IOException;
 
@@ -23,7 +18,7 @@ public class Bfck {
     public static void main(String[] args) throws IOException {
 
 
-        Computational.setExecTime(System.currentTimeMillis());
+        Metrics.setExecTime(System.currentTimeMillis());
 
 
         //Initialisation des objets des autres classes
@@ -32,39 +27,32 @@ public class Bfck {
         int i = 0;
 
         Memory memory = new Memory();
-        Check check = new Check();
+
         Output output = new Output(memory);
         Interpreter interpreter = new Interpreter(output, memory);
+        Trace trace=new Trace(memory);
+        BFReader reader = new BFReader(interpreter);
+        Check check = new Check(reader);
+        Translatetoimage translatetoimage = new Translatetoimage();
 
-        Reader reader = new Reader(interpreter, output);
-        Translatetoimage translatetoimage = new Translatetoimage(memory,reader);
 
 
+        //La méthode check va etre la seule méthode qui va lire le programme (image ou fichier texte) elle va enregistré égalemen
+        check.check(args[nbArgs - 1]);
 
-/*
-            check.check(args[nbArgs - 1]);
-            if (check.getCount() != 0) {
-                System.exit(4);
-            }
-*/
             while (i != nbArgs - 1) {
                 if(args[i].equals("--trace")){
-                    String file=args[nbArgs-1];
-                    int position=file.lastIndexOf('.');
-                    file=file.substring(0,position)+".log";
-                    Computational.setFile(file);
-                    Computational.createFichierLog(file);
+                    trace.setFile(args[nbArgs-1]);
                 }
-
                 if (args[i].equals("--check")) {
                     System.exit(0);
                 }
                 if (args[i].equals("--rewrite")) {
-                    reader.rewrite(args[nbArgs - 1]);
+                    interpreter.rewrite();
                     System.exit(0);
 
                 } else if (args[i].equals("--translate")) {
-                    translatetoimage.translate(args[nbArgs - 1]);
+                    translatetoimage.translate();
                     System.exit(0);
                 } else if (args[i].equals("-i")) {
                     i++;
@@ -76,11 +64,7 @@ public class Bfck {
 
                 i++;
             }
-            reader.read(args[nbArgs - 1]);
-
-
-
-        output.metrics();
+            interpreter.interprete();
 
     }
 

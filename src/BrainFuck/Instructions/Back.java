@@ -38,7 +38,7 @@ public class Back extends Loops {
         
     public void execute(){
         if (memory.getMemory() != 0)
-            Computational.locationExcecutionPointer = jumpAssociated(Computational.locationExcecutionPointer);
+            Computational.locationExcecutionPointer = Check.getJumpBackMap().get(Computational.locationExcecutionPointer);
         super.execute();
     }
     

@@ -1,5 +1,6 @@
 package BrainFuck.Instructions;
 import BrainFuck.*;
+import BrainFuck.Check;
 
 
 import java.awt.Color;
@@ -16,7 +17,7 @@ public class Jump extends Loops {
     
     public void execute(){
         if(memory.getMemory()==0)
-            Computational.locationExcecutionPointer = backAssociated(Computational.locationExcecutionPointer);
+            Computational.locationExcecutionPointer = Check.getJumpBackMap().get(Computational.locationExcecutionPointer);
         super.execute();
     }
 

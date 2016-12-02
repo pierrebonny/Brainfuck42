@@ -89,7 +89,7 @@ public class Out extends Computational {
         catch(IOException e){
             System.out.println("Erreur fichier Out");
         }
-        Computational.incrDataRead();
+        Metrics.incrDataRead();
         super.execute();
     }
 

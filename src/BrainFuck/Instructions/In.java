@@ -14,8 +14,8 @@ import java.util.*;
  */
 public class In extends Computational{
 
-
-
+    public static long timeAllIn;
+    public static long timeOneIN;
     private static  BufferedReader fichierIn=null;
     private  Scanner sc = new Scanner(System.in);
 
@@ -64,19 +64,26 @@ public class In extends Computational{
         try{
             if(fichierIn!=null){
                 val=fichierIn.read();
-                if(val==-1)
-                    val=sc.nextLine().charAt(0);
-                memory.setMemory(val);
+                if(val==-1) {
+                    timeOneIN=System.currentTimeMillis();
+                    val = sc.nextLine().charAt(0);
+                    timeOneIN=System.currentTimeMillis()-timeOneIN;
+                    timeAllIn+=timeOneIN;
+                    memory.setMemory(val);
+                }
             }
             else{
-                val=sc.nextLine().charAt(0);
+                timeOneIN=System.currentTimeMillis();
+                val = sc.nextLine().charAt(0);
+                timeOneIN=System.currentTimeMillis()-timeOneIN;
+                timeAllIn+=timeOneIN;
                 memory.setMemory(val);
             }
         }
         catch(IOException e){
             System.out.println("Erreur fichier In");
         }
-        Computational.incrDataWrite();
+        Metrics.incrDataWrite();
         super.execute();
     }
 

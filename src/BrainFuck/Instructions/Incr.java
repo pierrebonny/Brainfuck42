@@ -28,8 +28,8 @@ public class Incr extends Computational {
             throw new OverFlowException("Error 1 : OverFlowException",1);
         }
         else{
-            Computational.incrDataWrite();
             memory.setMemory(memory.getMemory()+1);
+            Metrics.incrDataWrite();
             super.execute();
         }
     }

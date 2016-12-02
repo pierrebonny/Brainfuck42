@@ -69,35 +69,23 @@ public class Interpreter{
     }
 
     public void createMacro(String line){
-            String [] macroDef=line.split(" ");
-            macros.put(macroDef[1],new Macro(Integer.parseInt(macroDef[2]),macroDef[3]));
+        String [] macroDef=line.split(" ");
+        macros.put(macroDef[1],new Macro(Integer.parseInt(macroDef[2]),macroDef[3]));
     }
 
     public void interprete() {
         for (Computational.locationExcecutionPointer = 0; Computational.locationExcecutionPointer < Computational.getProgramm().size(); Computational.locationExcecutionPointer++)
             Computational.getProgramm().get(Computational.locationExcecutionPointer).execute();
+        output.afficher();
+        output.metrics();
+    }
+
+    public void rewrite(){
+        for(int i=0;i<Computational.getProgramm().size();i++)
+            Computational.getProgramm().get(i).rewrite();
     }
 
 
-    public void rewriteFile(String line) {
-        boolean exe=false;
-        for(Commandes com : Commandes.values()){
-
-            if(com.getLongue().equals(line)){
-                interprete.get(com).rewrite();
-                exe=true;
-            }
-        }
-        if(!exe)
-            System.out.print(line);
-    }
-
-    public void rewriteImg(String hexa){
-        //System.out.println(hexa);
-        for(Commandes com: Commandes.values())
-            if(com.getHexa().equals(hexa))
-                interprete.get(com).rewrite();
-    }
 
 
     public void setFichierIn(String file){

@@ -10,26 +10,20 @@ public abstract class Loops extends Computational {
     
 
 
-    protected static  boolean read=true;
-    protected static boolean loops=false;
-    protected static  boolean stock=false;
-    protected static List<Character> instructions=new ArrayList<>();
-    protected static int globalPositionJump;
 
     
     
     public Loops(Memory memory){ super(memory); }
 
     public void execute(){
-        Computational.incrDataRead();
+        Metrics.incrDataRead();
         super.execute();
     }
     
-    public boolean getRead(){ return read; }
-    public boolean getLoops(){ return loops; }
-    public boolean getStock(){ return stock; }
-    public int getGlobalPositionJump(){ return globalPositionJump; }
-    public List<Character> getInstructions(){ return instructions; }
+
+
+
+
 
     public int backAssociated(int positionJump){
         int compteur=1;

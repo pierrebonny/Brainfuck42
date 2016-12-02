@@ -27,7 +27,7 @@ public class Macro{
 
         for(int i=0;i<nbInst;i++){
             instructions.addAll(premieres);
-         }
+        }
     }
 
 
@@ -35,4 +35,3 @@ public class Macro{
         return instructions;
     }
 }
-

@@ -1,6 +1,7 @@
 package BrainFuck;
 
 import BrainFuck.Instructions.Computational;
+import BrainFuck.Instructions.In;
 
 /**
  * Created by user on 12/10/2016.
@@ -24,15 +25,15 @@ public class Output {
 
 
     public void metrics(){
-        Computational.setProgSize(Computational.getProgramm().size());
+        Metrics.setProgSize(Computational.getProgramm().size());
         System.out.println("\nMetrics :");
-        System.out.println("PROG_SIZE : " + Computational.getProgSize());
-        System.out.println("EXEC_MOVE : " + Computational.getExecMove());
-        System.out.println("DATA_READ : " + Computational.getDataRead());
-        System.out.println("DATA_WRITE : " + Computational.getDataWrite());
-        System.out.println("DATA_MOVE : " + Computational.getDataMove());
-        Computational.setExecTime(System.currentTimeMillis()-Computational.getExecTime());
-        System.out.println("EXEC_TIME : " + Computational.getExecTime() +" milliseconds");
+        System.out.println("PROG_SIZE : " + Metrics.getProgSize());
+        System.out.println("EXEC_MOVE : " + Metrics.getExecMove());
+        System.out.println("DATA_READ : " + Metrics.getDataRead());
+        System.out.println("DATA_WRITE : " + Metrics.getDataWrite());
+        System.out.println("DATA_MOVE : " + Metrics.getDataMove());
+        Metrics.setExecTime(System.currentTimeMillis()-Metrics.getExecTime()- In.timeAllIn);
+        System.out.println("EXEC_TIME : " + Metrics.getExecTime() +" milliseconds");
 
     }
 
