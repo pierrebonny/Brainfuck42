@@ -17,14 +17,20 @@ public class Macro{
 
         ArrayList<Computational> premieres=new ArrayList<>();
 
-        for(int y=0;y<chaine.length();y++){
-            for(Commandes c : Commandes.values()){
-                if(c.getCourte()==chaine.charAt(y)) {
-                    premieres.add(Interpreter.interprete.get(c));
+
+        if (Interpreter.macros.get(chaine) != null) {
+                premieres.addAll(Interpreter.macros.get(chaine).getListeInst());
+        }else{
+
+            for(int y=0;y<chaine.length();y++){
+                for(Commandes c : Commandes.values()){
+                    if(c.getCourte()==chaine.charAt(y)) {
+                        premieres.add(Interpreter.interprete.get(c));
+                    }
                 }
             }
         }
-
+        
         for(int i=0;i<nbInst;i++){
             instructions.addAll(premieres);
         }
