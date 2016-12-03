@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BrainFuck.iml" filepath="$PROJECT_DIR$/BrainFuck.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/BrainFuck/BrainFuck.iml" filepath="$PROJECT_DIR$/src/BrainFuck/BrainFuck.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/BrainFuck1.iml" filepath="$PROJECT_DIR$/src/BrainFuck1.iml" />
     </modules>
   </component>
 </project>

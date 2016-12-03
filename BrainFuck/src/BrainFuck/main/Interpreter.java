@@ -46,24 +46,35 @@ public class Interpreter{
 
 
     public void saveInstructions(String line) {
-        for (Commandes com : Commandes.values()) {
-            if (com.getLongue().equals(line)) {
-                Computational.getProgramm().add(interprete.get(com));
-                return ;
-            }
-        }
-        if(macros.get(line)!=null){
-            Computational.getProgramm().addAll(macros.get(line).getListeInst());
-            return ;
-        }
         int size = line.length();
-        for (int i = 0; i < size; i++) {
-            char c = line.charAt(i);
+        int i = 0;
+        char c = line.charAt(i);
+        StringBuilder syntlong = new StringBuilder();
+
+        while (c != '#' && i < size) {
             for (Commandes com : Commandes.values()) {
-                if(c=='#')
-                    return ;
-                if (com.getCourte() == c)
+                if (com.getCourte() == c) {
                     Computational.getProgramm().add(interprete.get(com));
+                }
+            }
+            if (c != ' ' || c != '\t') {
+                syntlong.append(c);
+            }
+
+            i++;
+            if (i != size) {
+                c = line.charAt(i);
+            }
+
+        }
+        if ((syntlong.length() != 0)) {
+            for (Commandes com : Commandes.values()) {
+                if (com.getLongue().equals(syntlong.toString())) {
+                    Computational.getProgramm().add(interprete.get(com));
+                }
+            }
+            if (macros.get(line) != null) {
+                Computational.getProgramm().addAll(macros.get(line).getListeInst());
             }
         }
     }
