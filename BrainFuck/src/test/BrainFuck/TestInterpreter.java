@@ -1,4 +1,4 @@
-package Test;
+package BrainFuck;
 
 /**
  * Created by Pierre on 20/11/2016.
