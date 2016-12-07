@@ -33,6 +33,7 @@ public class Check {
 
     //Méthode Check est la SEULE méthode qui va lire le fichier (texte ou image), STOCKER les instructions dans la liste Programm de Computational, vérifier le parenthésage et remplir la jumpBackMap
     public void check(String nameFile) throws CheckException, IOException {
+        Metrics.setExecTime(System.currentTimeMillis());
         this.reader.read(nameFile);
         Stack<Integer> pile = new Stack();
         try {

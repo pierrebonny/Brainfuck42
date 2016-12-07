@@ -93,7 +93,6 @@ public class Out extends Computational {
         return couleur;
     }
 
-    public void Check(){}
 
 }
 

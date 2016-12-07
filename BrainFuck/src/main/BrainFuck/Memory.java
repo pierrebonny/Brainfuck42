@@ -74,7 +74,7 @@ public class Memory {
     }
 
     public String toString(){
-        return "C"+getPosition()+": decimale : "+ getMemory()+" char :  "+(char) getMemory();
+        return (char)this.getMemory()+"";
     }
     
    

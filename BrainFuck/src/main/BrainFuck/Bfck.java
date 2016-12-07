@@ -17,9 +17,6 @@ public class Bfck {
     public static void main(String[] args) throws IOException {
 
 
-        Metrics.setExecTime(System.currentTimeMillis());
-
-
         //Initialisation des objets des autres classes
 
         int nbArgs = args.length;
