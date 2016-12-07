@@ -61,7 +61,6 @@ public abstract class Computational {
 
 
 
-
 	public boolean endOfExecution(){
 		if ((locationExcecutionPointer==programm.size()-1)&&((programm.get(programm.size() - 1) instanceof Back && memory.getMemory() == 0)||!(programm.get(programm.size() - 1) instanceof Back)))
 			return true;

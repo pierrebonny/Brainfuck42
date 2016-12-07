@@ -1,4 +1,7 @@
 package BrainFuck;
+import BrainFuck.Exception.OutofBoundException;
+import BrainFuck.Exception.OverFlowException;
+import BrainFuck.Exception.UnderFlowException;
 import BrainFuck.Instructions.*;
 
 
@@ -82,7 +85,7 @@ public class Interpreter{
         macros.put(macroDef[1],new Macro(Integer.parseInt(macroDef[2]),macroDef[3]));
     }
 
-    public void interprete() {
+    public void interprete() throws OutofBoundException,OverFlowException,UnderFlowException{
         for (Computational.locationExcecutionPointer = 0; Computational.locationExcecutionPointer < Computational.getProgramm().size(); Computational.locationExcecutionPointer++)
             Computational.getProgramm().get(Computational.locationExcecutionPointer).execute();
         output.afficher();

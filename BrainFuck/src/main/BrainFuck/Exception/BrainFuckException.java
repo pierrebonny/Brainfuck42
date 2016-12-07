@@ -5,10 +5,18 @@ package BrainFuck.Exception;
  */
 public class BrainFuckException extends RuntimeException {
 
+    private String message;
+    private int number;
 
     public BrainFuckException(String message,int number){
-        System.err.println(message);
+        this.message=message;
+        this.number=number;
         printStackTrace();
+
+    }
+
+    public void erreur(){
+        System.err.println(message);
         System.exit(number);
     }
 }

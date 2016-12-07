@@ -2,7 +2,6 @@ package BrainFuck;
 import BrainFuck.Exception.CheckException;
 import org.junit.Test;
 import org.junit.Before;
-
 import java.io.*;
 
 import static org.junit.Assert.assertTrue;
@@ -26,6 +25,7 @@ public class TestCheck {
 
     @Before
     public void init()throws IOException{
+
         memory = new Memory();
         output = new Output(memory);
         interpreter = new Interpreter(output,memory);
@@ -50,22 +50,19 @@ public class TestCheck {
         }
         /*file.createNewFile();
         writer.write("[[]");
-        String str = writer.toString();*/
+        String str = writer.toString();
+        */
         check.check("Hello1.txt");
         titi.close();
     }
 
-    @Test //(expected = CheckException.class)
-    public void testCheck2 () throws IOException, CheckException {
+    @Test(expected = CheckException.class)
+    public void testCheck2 () throws IOException{
         String toto = "[]]";
-        char buffer[] = new char[toto.length()];
-        toto.getChars(0, toto.length(), buffer, 0);
         FileWriter titi = new FileWriter("Hello2.txt");
-        for (int i = 0 ; i < buffer.length; i++){
-            titi.write(buffer[i]);
-        }
-        check.check("Hello2.txt");
+        titi.write(toto);
         titi.close();
+        check.check("Hello2.txt");
     }
 
     @Test

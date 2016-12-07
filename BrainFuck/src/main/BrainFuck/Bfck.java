@@ -1,5 +1,10 @@
 package BrainFuck;
 
+import BrainFuck.Exception.CheckException;
+import BrainFuck.Exception.OutofBoundException;
+import BrainFuck.Exception.OverFlowException;
+import BrainFuck.Exception.UnderFlowException;
+
 import java.io.IOException;
 
 
@@ -37,7 +42,12 @@ public class Bfck {
 
 
         //La méthode check va etre la seule méthode qui va lire le programme (image ou fichier texte) elle va enregistré égalemen
-        check.check(args[nbArgs - 1]);
+
+        try{
+            check.check(args[nbArgs - 1]);
+        }catch(CheckException e){
+            e.erreur();
+        }
 
             while (i != nbArgs - 1) {
                 if(args[i].equals("--trace")){
@@ -63,7 +73,13 @@ public class Bfck {
 
                 i++;
             }
-            interpreter.interprete();
+
+            try {
+                interpreter.interprete();
+            }
+            catch(OutofBoundException e){e.erreur();}
+            catch(OverFlowException e){e.erreur();}
+            catch(UnderFlowException e){e.erreur();}
 
     }
 

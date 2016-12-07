@@ -1,8 +1,6 @@
 package BrainFuck;
 import BrainFuck.Instructions.In;
 import BrainFuck.Instructions.Out;
-
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;

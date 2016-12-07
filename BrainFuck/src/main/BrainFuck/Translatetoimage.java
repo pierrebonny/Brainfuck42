@@ -14,7 +14,6 @@ public class Translatetoimage {
     private static final int l = 3;
 
 
-
     public void translate() throws IOException {
     	int taille = Computational.getProgramm().size();
     	int x = 0;

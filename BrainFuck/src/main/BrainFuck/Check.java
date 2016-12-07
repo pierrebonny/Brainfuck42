@@ -3,13 +3,10 @@ import BrainFuck.Exception.CheckException;
 import BrainFuck.Instructions.Back;
 import BrainFuck.Instructions.Jump;
 
-
 import java.io.IOException;
-
 import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.Map;
-
 import java.util.Stack;
 
 /**

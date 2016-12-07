@@ -31,7 +31,7 @@ public class TestInterpreter {
 
     @Test
     public void TestFillHashmapIncr() throws IOException{
-        String toto = "+";
+        /*String toto = "+";
         char buffer[] = new char[toto.length()];
         toto.getChars(0, toto.length(), buffer, 0);
         FileWriter titi = new FileWriter("Incr.txt");
@@ -39,5 +39,6 @@ public class TestInterpreter {
             titi.write(buffer[i]);
         }
         titi.close();
+        */
     }
 }
