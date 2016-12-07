@@ -16,22 +16,29 @@ public class Translatetoimage {
 
     public void translate() throws IOException {
     	int taille = Computational.getProgramm().size();
-    	int x = 0;
-    	int y = 0;
-    	int n = (int) (3.0 * Math.ceil(Math.sqrt(taille)));
-    	BufferedImage buffImg = new BufferedImage(n,n,BufferedImage.TYPE_INT_RGB);
-    	Graphics2D g2d = (Graphics2D)buffImg.getGraphics();
-    	for (int i = 0; i < taille;i++){
-    	    g2d.setColor(Computational.getProgramm().get(i).translate());
-    	    g2d.fillRect(x, y, l, L);
-    	    x += 3;
-    	    if (x == n){
-    		x = 0;
-    		y += 3;
-    	    }
-    	}
-    	g2d.dispose();
-    	ImageIO.write(buffImg, "bmp", new File("testimg.bmp"));
-    }    	
+    	BufferedImage buffImg;
+    	if (taille != 0){
+			int x = 0;
+			int y = 0;
+			int n = (int) (3.0 * Math.ceil(Math.sqrt(taille)));
+			buffImg = new BufferedImage(n,n,BufferedImage.TYPE_INT_RGB);
+			Graphics2D g2d = (Graphics2D)buffImg.getGraphics();
+			for (int i = 0; i < taille;i++){
+				g2d.setColor(Computational.getProgramm().get(i).translate());
+				g2d.fillRect(x, y, l, L);
+				x += 3;
+				if (x == n){
+					x = 0;
+					y += 3;
+				}
+			}
+			g2d.dispose();
+		}
+		else {
+            buffImg = new BufferedImage(1,1,BufferedImage.TYPE_INT_RGB);
+        }
+        ImageIO.write(buffImg, "bmp", new File("testimg.bmp"));
+	}
+
 }    
 
