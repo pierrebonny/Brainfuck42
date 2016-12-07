@@ -50,7 +50,6 @@ public abstract class Computational {
 
     public abstract Color translate();
 
-    public abstract void Check();
 
 	public abstract void setFichier(String s);
 

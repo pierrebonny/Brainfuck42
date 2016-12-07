@@ -31,9 +31,7 @@ public class Output {
         System.out.println("DATA_READ : " + Metrics.getDataRead());
         System.out.println("DATA_WRITE : " + Metrics.getDataWrite());
         System.out.println("DATA_MOVE : " + Metrics.getDataMove());
-        Metrics.setExecTime(System.currentTimeMillis()-Metrics.getExecTime()- In.timeAllIn);
         System.out.println("EXEC_TIME : " + Metrics.getExecTime() +" milliseconds");
-
     }
 
     /*

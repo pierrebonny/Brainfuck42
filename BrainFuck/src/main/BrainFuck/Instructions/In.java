@@ -97,7 +97,7 @@ public class In extends Computational {
         return couleur;
     }
 
-    public void Check(){}
+
 
 }
 

@@ -88,6 +88,7 @@ public class Interpreter{
     public void interprete() throws OutofBoundException,OverFlowException,UnderFlowException{
         for (Computational.locationExcecutionPointer = 0; Computational.locationExcecutionPointer < Computational.getProgramm().size(); Computational.locationExcecutionPointer++)
             Computational.getProgramm().get(Computational.locationExcecutionPointer).execute();
+        Metrics.setExecTime(System.currentTimeMillis()-Metrics.getExecTime());
         output.afficher();
         output.metrics();
     }

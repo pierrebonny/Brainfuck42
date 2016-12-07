@@ -75,10 +75,13 @@ public class BFReader {
         }
         //On le lit le fichier ligne par ligne jusqu'a ce qu'il soit vide
         while ((line = lecteurAvecBuffer.readLine()) != null ) {
-            if (line.charAt(0)=='@') {
+            if (line.equals("")){
+               continue;
+            }else if (line.charAt(0)=='@') {
                 interpreter.createMacro(line);
 
-            } else {
+            }
+            else {
                 interpreter.saveInstructions(line);
             }
 

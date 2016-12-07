@@ -42,7 +42,7 @@ public class Incr extends Computational {
 
 
 
-    public void Check(){}
+
     public void setFichier(String s){}
     public  void closeFichier(){}
 }

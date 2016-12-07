@@ -34,7 +34,7 @@ public class TestInterpreter {
         /*String toto = "+";
         char buffer[] = new char[toto.length()];
         toto.getChars(0, toto.length(), buffer, 0);
-        FileWriter titi = new FileWriter("Incr.txt");
+        FileWriter titi = new FileWriter("LoopsEssai.txt");
         for (int i = 0 ; i < buffer.length; i++){
             titi.write(buffer[i]);
         }

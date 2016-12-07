@@ -30,7 +30,7 @@ public class Jump extends Loops {
         return couleur;
     }
 
-    public void Check(){}
+
     public void setFichier(String s){}
     public  void closeFichier(){}
 

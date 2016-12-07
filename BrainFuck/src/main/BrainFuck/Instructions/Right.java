@@ -41,7 +41,6 @@ public class Right extends Computational {
         return couleur;
     }
 
-    public void Check(){}
     public void setFichier(String s){}
     public  void closeFichier(){}
 
