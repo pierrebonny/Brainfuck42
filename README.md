@@ -11,9 +11,9 @@ Team Information
 
 ### Week 49
 
-Level 1 : done \n
-Level 2 : done \n
-Level 3 : all slice done, being tested, rapport in progress \n
+Level 1 : done /n
+Level 2 : done /n
+Level 3 : all slice done, being tested, rapport in progress /n
 Level 4 : to do
 
 
