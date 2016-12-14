@@ -33,6 +33,11 @@ public class Macro{
         }
     }
 
+    public void addInstructions(int number){
+        for(int i=0;i<number;i++){
+            Computational.getProgramm().addAll(this.instructions);
+        }
+    }
 
     public ArrayList<Instruction> getListeInst(){
         return instructions;

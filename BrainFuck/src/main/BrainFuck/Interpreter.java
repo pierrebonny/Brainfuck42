@@ -69,17 +69,25 @@ public class Interpreter{
         }
         if ((syntlong.length() != 0)) {
             for (Commandes com : Commandes.values()) {
-                if (com.getLongue().equals(syntlong.toString())) {
+                if (com.getLongue().equals(line)) {
                     Computational.getProgramm().add(interprete.get(com));
+                    return;
                 }
             }
             if (procedures.get(line)!=null){
                 Procedure.nbreTotalProcUtilise++;
                 procedures.get(line).incrNbUtilisation();
                 Computational.getProgramm().add(procedures.get(line));
+                return;
             }
             if (macros.get(line) != null) {
                 Computational.getProgramm().addAll(macros.get(line).getListeInst());
+                return;
+            }
+            String [] macroPara=line.split(" ");
+            if(macros.get(macroPara[0]) != null){
+                macros.get(macroPara[0]).addInstructions(Integer.parseInt(macroPara[1]));
+                return;
             }
         }
     }

@@ -1,2 +1,2 @@
 @define nomMacro 5 +++
-nomMacro
+nomMacro 2
