@@ -1,5 +1,5 @@
 package BrainFuck.Instructions;
-import BrainFuck.Computational;
+import BrainFuck.Instruction;
 import BrainFuck.Memory;
 import BrainFuck.Metrics;
 import BrainFuck.Exception.OverFlowException;
@@ -10,7 +10,7 @@ import java.awt.Color;
 /**
  * Created by Pierre on 16/11/2016.
  */
-public class Incr extends Computational {
+public class Incr extends Instruction {
 
 
     public static final int MAX_VALUE=255;

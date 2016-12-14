@@ -31,7 +31,7 @@ public class Trace {
     }
 
     public void updateFichierLog(){
-        contenuFichierLog+="Exec pointer :" + Metrics.getExecMove() + "		Location exec  "+(Computational.locationExcecutionPointer+1)+	"	Position M:" + memory.getPosition() + "		Value M :" + memory.getMemory()+"\n";
+        contenuFichierLog+="Exec pointer :" + Metrics.getExecMove() + "		Location exec  "+(Instruction.locationExcecutionPointer+1)+	"	Position M:" + memory.getPosition() + "		Value M :" + memory.getMemory()+"\n";
     }
 
     public String getFile(){ return file;}

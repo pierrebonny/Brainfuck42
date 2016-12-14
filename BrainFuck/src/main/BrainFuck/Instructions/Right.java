@@ -1,5 +1,5 @@
 package BrainFuck.Instructions;
-import BrainFuck.Computational;
+import BrainFuck.Instruction;
 import BrainFuck.Exception.OutofBoundException;
 import BrainFuck.Memory;
 import BrainFuck.Metrics;
@@ -10,7 +10,7 @@ import java.awt.Color;
 /**
  * Created by Pierre on 16/11/2016.
  */
-public class Right extends Computational {
+public class Right extends Instruction {
 
 
     public static final int MAX_POSITION=29999;

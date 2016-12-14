@@ -1,6 +1,6 @@
 package BrainFuck.Instructions;
 import BrainFuck.Check;
-import BrainFuck.Computational;
+import BrainFuck.Instruction;
 import BrainFuck.Memory;
 
 
@@ -18,7 +18,7 @@ public class Jump extends Loops {
     
     public void execute(){
         if(memory.getMemory()==0)
-            Computational.locationExcecutionPointer = Check.getJumpBackMap().get(Computational.locationExcecutionPointer);
+            Instruction.locationExcecutionPointer = Check.getJumpBackMap().get(Instruction.locationExcecutionPointer);
         super.execute();
     }
 

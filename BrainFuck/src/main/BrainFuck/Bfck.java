@@ -61,8 +61,8 @@ public class Bfck {
                 i++;
             }
             interpreter.interprete();
-
     }
+
 
 }
 

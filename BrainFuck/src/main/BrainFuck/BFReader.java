@@ -53,7 +53,7 @@ public class BFReader {
                 hexa =String.format("%06X", couleur);
                 for (Commandes com : Commandes.values()){
                     if(com.getHexa().equals(hexa)) {
-                        Computational.getProgramm().add(interpreter.interprete.get(com));
+                        Instruction.getProgramm().add(interpreter.interprete.get(com));
                     }
                 }
                 x += 3;
@@ -77,13 +77,15 @@ public class BFReader {
         }
         //On le lit le fichier ligne par ligne jusqu'a ce qu'il soit vide
         while ((line = lecteurAvecBuffer.readLine()) != null ) {
-            if (line.equals("")){
-               continue;
-            }else if (line.charAt(0)=='@') {
+            if (line.equals("")) {
+                continue;
+            } else if (line.charAt(0) == '@') {
                 interpreter.createMacro(line);
 
-            }
-            else {
+            } else if (line.charAt(0) == '$'){
+                interpreter.createProcedure(line);
+
+            }else {
                 interpreter.saveInstructions(line);
             }
 

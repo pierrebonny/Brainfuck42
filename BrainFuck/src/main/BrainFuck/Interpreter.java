@@ -1,7 +1,9 @@
 package BrainFuck;
+
+
 import BrainFuck.Instructions.*;
 
-
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,20 +20,19 @@ public class Interpreter{
 
     protected Memory memory;
     private Output output;
-    private Back loops;
-    protected static Map<Commandes,Computational> interprete = new HashMap<>();
+
+    protected static Map<Commandes, Instruction> interprete = new HashMap<>();
     protected static Map<String,Macro> macros= new HashMap<>();
-    private Commandes commandes;
+    protected  static Map<String,Procedure> procedures= new HashMap<>();
 
 
     public Interpreter(Output output,Memory memory){
         this.output = output;
         this.memory = memory;
-        loops = new Back(memory);
         fillHashmap(interprete);
     }
 
-    private void fillHashmap(Map<Commandes,Computational> hashmap) {
+    private void fillHashmap(Map<Commandes, Instruction> hashmap) {
         interprete.put(Commandes.INCR,new Incr(memory));
         interprete.put(Commandes.DECR ,new Decr(memory));
         interprete.put(Commandes.LEFT,new Left(memory));
@@ -71,6 +72,11 @@ public class Interpreter{
                     Computational.getProgramm().add(interprete.get(com));
                 }
             }
+            if (procedures.get(line)!=null){
+                Procedure.nbreTotalProcUtilise++;
+                procedures.get(line).incrNbUtilisation();
+                Computational.getProgramm().add(procedures.get(line));
+            }
             if (macros.get(line) != null) {
                 Computational.getProgramm().addAll(macros.get(line).getListeInst());
             }
@@ -81,17 +87,24 @@ public class Interpreter{
         String [] macroDef=line.split(" ");
         macros.put(macroDef[1],new Macro(Integer.parseInt(macroDef[2]),macroDef[3]));
     }
+    public void createProcedure(String line){
+        String [] procedureDef=line.split(" ");
+        procedures.put(procedureDef[1],new Procedure(this.memory,Integer.parseInt(procedureDef[2]),procedureDef[3]));
+    }
 
     public void interprete() {
-        for (Computational.locationExcecutionPointer = 0; Computational.locationExcecutionPointer < Computational.getProgramm().size(); Computational.locationExcecutionPointer++)
+        for (Computational.locationExcecutionPointer = Procedure.nbreTotalInstructionsProcedures; Computational.locationExcecutionPointer < Computational.getProgramm().size(); Computational.locationExcecutionPointer++) {
             Computational.getProgramm().get(Computational.locationExcecutionPointer).execute();
+        }
         Metrics.setExecTime(System.currentTimeMillis()-Metrics.getExecTime());
+        if(Trace.file!=null)
+            new Trace(memory).trace();
         output.afficher();
         output.metrics();
     }
 
     public void rewrite(){
-        for(int i=0;i<Computational.getProgramm().size();i++)
+        for(int i = 0; i< Computational.getProgramm().size(); i++)
             Computational.getProgramm().get(i).rewrite();
     }
 

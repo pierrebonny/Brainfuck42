@@ -1,5 +1,5 @@
 package BrainFuck.Instructions;
-import BrainFuck.Computational;
+import BrainFuck.Instruction;
 import BrainFuck.Memory;
 import BrainFuck.Metrics;
 
@@ -14,7 +14,7 @@ import java.util.*;
 /**
  * Created by Pierre on 16/11/2016.
  */
-public class In extends Computational {
+public class In extends Instruction {
 
     public static long timeAllIn;
     public static long timeOneIN;

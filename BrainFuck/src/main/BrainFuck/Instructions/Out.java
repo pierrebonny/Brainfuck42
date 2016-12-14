@@ -1,5 +1,5 @@
 package BrainFuck.Instructions;
-import BrainFuck.Computational;
+import BrainFuck.Instruction;
 import BrainFuck.Memory;
 import BrainFuck.Metrics;
 
@@ -17,7 +17,7 @@ import java.io.FileWriter;
 /**
  * Created by Pierre on 16/11/2016.
  */
-public class Out extends Computational {
+public class Out extends Instruction {
 
     protected static BufferedWriter fichierOut=null;
 
