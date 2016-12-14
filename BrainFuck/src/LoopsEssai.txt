@@ -1,3 +1,1 @@
-$proc procIncr 1 ++++
-$proc procIncr2 4 procIncr
-procIncr2
+++++++++++[>+++++>++++>+++>++>>+++[>+++++<-]>>>>[+]<<<<<<<<<<-]
