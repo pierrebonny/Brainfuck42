@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class TestInterpreter {
     Output output;
     Interpreter interpreter;
@@ -29,7 +30,7 @@ public class TestInterpreter {
 
     @Test
     public void TestFillHashmapIncr() throws IOException{
-        String toto = "+";
+        /*String toto = "+";
         char buffer[] = new char[toto.length()];
         toto.getChars(0, toto.length(), buffer, 0);
         FileWriter titi = new FileWriter("LoopsEssai.txt");
@@ -37,5 +38,6 @@ public class TestInterpreter {
             titi.write(buffer[i]);
         }
         titi.close();
+        */
     }
 }

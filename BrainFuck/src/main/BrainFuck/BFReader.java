@@ -1,8 +1,7 @@
 package BrainFuck;
+import BrainFuck.Exception.InvalidColorException;
 import BrainFuck.Instructions.In;
 import BrainFuck.Instructions.Out;
-
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -46,14 +45,31 @@ public class BFReader {
         int hauteurImage = image.getHeight();
         int x = 0;
         int y = 0;
+        int a = 0;
+        int b = 0;
         int couleur;
+        String hexatest;
         String hexa;
             while((x < largeurImage) &&(y < hauteurImage)) {
                 couleur = image.getRGB(x, y);
-                hexa =String.format("%06X", couleur);
+                hexa = String.format("%06X", couleur);
                 for (Commandes com : Commandes.values()){
                     if(com.getHexa().equals(hexa)) {
-                        Instruction.getProgramm().add(interpreter.interprete.get(com));
+                        Computational.getProgramm().add(interpreter.interprete.get(com));
+                        a = x;
+                        b = y;
+                        while ((a < x + 3) &&(b < y + 3)){
+                            couleur = image.getRGB(a, b);
+                            hexatest = String.format("%06X",couleur);
+                            if (!com.getHexa().equals(hexatest)){
+                                throw new InvalidColorException("Error 42 : InvalidColorException",42);
+                            }
+                            a += 1;
+                            if (a == x + 3){
+                                a = 0;
+                                b += 1;
+                            }
+                        }
                     }
                 }
                 x += 3;

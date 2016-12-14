@@ -1,9 +1,10 @@
 package BrainFuck;
 
 
-import BrainFuck.Instructions.*;
 
-import java.util.Calendar;
+import BrainFuck.Instructions.*;
+import BrainFuck.Exception.*;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -92,7 +93,8 @@ public class Interpreter{
         procedures.put(procedureDef[1],new Procedure(this.memory,Integer.parseInt(procedureDef[2]),procedureDef[3]));
     }
 
-    public void interprete() {
+
+    public void interprete() throws OutofBoundException,OverFlowException,UnderFlowException{
         for (Computational.locationExcecutionPointer = Procedure.nbreTotalInstructionsProcedures; Computational.locationExcecutionPointer < Computational.getProgramm().size(); Computational.locationExcecutionPointer++) {
             Computational.getProgramm().get(Computational.locationExcecutionPointer).execute();
         }
