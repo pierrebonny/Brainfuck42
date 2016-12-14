@@ -43,7 +43,8 @@ Affiche les cellules non nulles
                 System.out.println(memory.toString(i));
         }
     }
-  
+
+
         
 }
 

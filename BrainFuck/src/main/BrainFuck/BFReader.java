@@ -62,7 +62,6 @@ public class BFReader {
                             couleur = image.getRGB(a, b);
                             hexatest = String.format("%06X",couleur);
                             if (!com.getHexa().equals(hexatest)){
-                                System.out.println(hexatest);
                                 throw new InvalidColorException("Error 42 : InvalidColorException",42);
                             }
                             a += 1;

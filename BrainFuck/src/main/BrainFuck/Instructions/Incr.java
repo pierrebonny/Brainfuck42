@@ -27,6 +27,8 @@ public class Incr extends Instruction {
         }
         else{
             memory.setMemory(memory.getMemory()+1);
+            //if(memory.getPosition()>memory.getMax()) memory.setMax(memory.getPosition());
+            memory.updateMax();
             Metrics.incrDataWrite();
             super.execute();
         }

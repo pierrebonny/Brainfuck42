@@ -84,11 +84,16 @@ public class Interpreter{
                 Computational.getProgramm().addAll(macros.get(line).getListeInst());
                 return;
             }
-            String [] macroPara=line.split(" ");
-            if(macros.get(macroPara[0]) != null){
-                macros.get(macroPara[0]).addInstructions(Integer.parseInt(macroPara[1]));
+            String [] macro_procedure_Para=line.split(" ");
+            if(macros.get(macro_procedure_Para[0]) != null){
+                macros.get(macro_procedure_Para[0]).addInstructions(Integer.parseInt(macro_procedure_Para[1]));
                 return;
             }
+            if(procedures.get(macro_procedure_Para[0]) != null){
+                Procedure procedure =procedures.get(macro_procedure_Para[0]);
+                Computational.getProgramm().add(new Procedure(this.memory,procedure,Integer.parseInt(macro_procedure_Para[1])));
+            }
+
         }
     }
 
