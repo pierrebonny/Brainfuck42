@@ -2,3 +2,4 @@
 BrainFuck/out/
 BrainFuck/.idea/
 *.iml
+.out/
