@@ -73,12 +73,26 @@ public class Bfck {
             try {
                 interpreter.interprete();
             }
-            catch(OutofBoundException e){e.erreur();}
-            catch(OverFlowException e){e.erreur();}
-            catch(UnderFlowException e){e.erreur();}
+            catch(OutofBoundException e){
+                Trace t= new Trace(memory);
+                t.updateFichierLogException(e.getMessage());
+                t.trace();
+                e.erreur();
+            }
+            catch(OverFlowException e){
+                Trace t= new Trace(memory);
+                t.updateFichierLogException(e.getMessage());
+                t.trace();
+                e.erreur();
+            }
+            catch(UnderFlowException e){
+               Trace t= new Trace(memory);
+                t.updateFichierLogException(e.getMessage());
+                t.trace();
+                e.erreur();
+            }
 
     }
-
 
 }
 

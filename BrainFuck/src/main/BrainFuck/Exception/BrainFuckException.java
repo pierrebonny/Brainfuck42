@@ -19,4 +19,5 @@ public class BrainFuckException extends RuntimeException {
         System.err.println(message);
         System.exit(number);
     }
+    public String getMessage(){return message;}
 }

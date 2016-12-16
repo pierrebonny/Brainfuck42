@@ -112,8 +112,7 @@ public class Interpreter{
             Computational.getProgramm().get(Computational.locationExcecutionPointer).execute();
         }
         Metrics.setExecTime(System.currentTimeMillis()-Metrics.getExecTime());
-        if(Trace.file!=null)
-            new Trace(memory).trace();
+        new Trace(memory).trace();
         output.afficher();
         output.metrics();
     }

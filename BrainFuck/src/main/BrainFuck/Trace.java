@@ -18,16 +18,18 @@ public class Trace {
         this.memory=memory;
     }
 
-    public  void trace() {
-        BufferedWriter ecrireFichier;
-        try {
-            ecrireFichier = new BufferedWriter(new FileWriter(new File(file)));
-            ecrireFichier.write(contenuFichierLog);
-            ecrireFichier.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void trace() {
+        if(file!=null) {
 
+            BufferedWriter ecrireFichier;
+            try {
+                ecrireFichier = new BufferedWriter(new FileWriter(new File(file)));
+                ecrireFichier.write(contenuFichierLog);
+                ecrireFichier.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void updateFichierLog(){
@@ -39,5 +41,9 @@ public class Trace {
     public static void setFile(String newfile){
         int position=newfile.lastIndexOf('.');
         file=newfile.substring(0,position)+".log";
+    }
+
+    public void updateFichierLogException(String s){
+        contenuFichierLog+=s;
     }
 }
