@@ -18,20 +18,22 @@ public class Trace {
         this.memory=memory;
     }
 
-    public  void trace() {
-        BufferedWriter ecrireFichier;
-        try {
-            ecrireFichier = new BufferedWriter(new FileWriter(new File(file)));
-            ecrireFichier.write(contenuFichierLog);
-            ecrireFichier.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void trace() {
+        if(file!=null) {
 
+            BufferedWriter ecrireFichier;
+            try {
+                ecrireFichier = new BufferedWriter(new FileWriter(new File(file)));
+                ecrireFichier.write(contenuFichierLog);
+                ecrireFichier.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void updateFichierLog(){
-        contenuFichierLog+="Exec pointer :" + Metrics.getExecMove() + "		Location exec  "+(Computational.locationExcecutionPointer+1)+	"	Position M:" + memory.getPosition() + "		Value M :" + memory.getMemory()+"\n";
+        contenuFichierLog+="Exec pointer :" + Metrics.getExecMove() + "		Location exec  "+(Instruction.locationExcecutionPointer+1)+	"	Position M:" + memory.getPosition() + "		Value M :" + memory.getMemory()+"\n";
     }
 
     public String getFile(){ return file;}
@@ -39,5 +41,9 @@ public class Trace {
     public static void setFile(String newfile){
         int position=newfile.lastIndexOf('.');
         file=newfile.substring(0,position)+".log";
+    }
+
+    public void updateFichierLogException(String s){
+        contenuFichierLog+=s;
     }
 }

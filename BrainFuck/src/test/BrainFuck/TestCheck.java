@@ -61,7 +61,6 @@ public class TestCheck {
         thrown.expect(CheckException.class);
         check.check("Hello1.txt");
         Computational.getProgramm().clear();
-
     }
 
 

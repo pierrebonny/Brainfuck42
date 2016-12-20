@@ -35,7 +35,7 @@ public abstract class Instruction extends Computational {
 			trace.updateFichierLog();
 	}
 
-	@Override
+
 	public String getCourteSyntaxe() {
 		return courteSyntaxe;
 	}

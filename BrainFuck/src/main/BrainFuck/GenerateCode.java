@@ -1,5 +1,7 @@
 package BrainFuck;
 
+import BrainFuck.Instructions.Incr;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -48,7 +50,7 @@ public class GenerateCode {
         Boolean finish = false;
         Boolean loop = false;
         for (int i = 0; i < programm.size(); i++){
-                if (programm.get(i).getCourteSyntaxe() == "+" ||programm.get(i).getCourteSyntaxe() == "-"||programm.get(i).getCourteSyntaxe() == "<" || programm.get(i).getCourteSyntaxe() == ">"||programm.get(i).getCourteSyntaxe() == ","||programm.get(i).getCourteSyntaxe() == "."){
+                if (programm.get(i).getCourteSyntaxe().equals("+")||programm.get(i).getCourteSyntaxe().equals("-")||programm.get(i).getCourteSyntaxe().equals("<")||programm.get(i).getCourteSyntaxe().equals(">")||programm.get(i).getCourteSyntaxe().equals(",")||programm.get(i).getCourteSyntaxe().equals(".")){
                     if (i == programm.size() - 1 || programm.get(i).getCourteSyntaxe() != programm.get(i+1).getCourteSyntaxe()){
                         finish = true;
                         counter = programm.get(i).generateCode(counter,writer,finish,loop);

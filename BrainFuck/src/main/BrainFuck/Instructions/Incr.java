@@ -1,5 +1,4 @@
 package BrainFuck.Instructions;
-import BrainFuck.GenerateCode;
 import BrainFuck.Instruction;
 import BrainFuck.Memory;
 import BrainFuck.Metrics;

@@ -1,7 +1,5 @@
 package BrainFuck;
 
-import BrainFuck.Instructions.In;
-
 /**
  * Created by user on 12/10/2016.
  * @author Pierre Bonny
@@ -24,7 +22,7 @@ public class Output {
 
 
     public void metrics(){
-        Metrics.setProgSize(Computational.getProgramm().size());
+        Metrics.setProgSize(Instruction.getProgramm().size());
         System.out.println("\nMetrics :");
         System.out.println("PROG_SIZE : " + Metrics.getProgSize());
         System.out.println("EXEC_MOVE : " + Metrics.getExecMove());
@@ -45,7 +43,8 @@ Affiche les cellules non nulles
                 System.out.println(memory.toString(i));
         }
     }
-  
+
+
         
 }
 

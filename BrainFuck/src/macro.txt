@@ -1,0 +1,3 @@
+@define nomMacro 1 +++
+nomMacro
+

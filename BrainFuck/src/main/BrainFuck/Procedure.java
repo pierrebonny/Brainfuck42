@@ -5,6 +5,7 @@ import BrainFuck.Instructions.Out;
 
 import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -136,7 +137,10 @@ public class Procedure extends Computational{
     public ArrayList<Instruction> getListeInst(){
         return instructions;
     }
-
+    public String getCourteSyntaxe(){return("");}
+    public int generateCode(int counter, FileWriter writer, Boolean finish, Boolean loop){
+        return 0;
+    }
 
 
 }
