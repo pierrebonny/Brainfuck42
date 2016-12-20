@@ -1,25 +1,23 @@
 package BrainFuck.Instructions;
-import BrainFuck.Computational;
+import BrainFuck.Instruction;
 import BrainFuck.Memory;
 import BrainFuck.Metrics;
 
 
 import java.awt.Color;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.*;
 
 /**
  * Created by Pierre on 16/11/2016.
  */
-public class In extends Computational {
+public class In extends Instruction {
 
     public static long timeAllIn;
     public static long timeOneIN;
     private static  BufferedReader fichierIn=null;
     private  Scanner sc = new Scanner(System.in);
+    private  Scanner sc1 = new Scanner(System.in);
 
     public In(Memory memory){
         super(memory);
@@ -87,6 +85,20 @@ public class In extends Computational {
         }
         Metrics.incrDataWrite();
         super.execute();
+    }
+
+    public int generateCode(int counter, FileWriter writer,Boolean finish,Boolean loop) throws IOException {
+        if (loop){
+            writer.write("           if (fileIn == null || val = fileIn.read() == -1){\n" +
+                    "               val = sc.nextLine().charAt(0);\n           }\n" +
+                    "           tab[pointeur] = val;\n");
+        }
+        else {
+            writer.write("       if (fileIn == null || val = fileIn.read() == -1){\n" +
+                    "           val = sc.nextLine().charAt(0);\n       }\n" +
+                    "       tab[pointeur] = val;\n");
+        }
+        return 0;
     }
 
     public void rewrite(){

@@ -38,7 +38,7 @@ public class Bfck {
 
 
 
-        //La méthode check va etre la seule méthode qui va lire le programme (image ou fichier texte) elle va enregistré égalemen
+        //La méthode check va etre la seule méthode qui va lire le programme (image ou fichier texte) elle va enregistrer égalemen
 
         try{
             check.check(args[nbArgs - 1]);

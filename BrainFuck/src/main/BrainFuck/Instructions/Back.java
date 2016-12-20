@@ -4,6 +4,9 @@ import BrainFuck.Memory;
 
 
 import java.awt.Color;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Back extends Loops {
     
@@ -37,10 +40,11 @@ public class Back extends Loops {
             locationExcecutionPointer = Check.getJumpBackMap().get(locationExcecutionPointer);
         super.execute();
     }
-    
 
-
-
+    public int generateCode(int counter, FileWriter writer,Boolean finish,Boolean loop) throws IOException {
+        writer.write("       }\n");
+        return 0;
+    }
 }
 
     

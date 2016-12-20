@@ -1,9 +1,14 @@
 package BrainFuck;
 import BrainFuck.Exception.CheckException;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.Before;
+import org.junit.rules.ExpectedException;
+
 import java.io.*;
 
+import static com.sun.xml.internal.ws.dump.LoggingDumpTube.Position.Before;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Campo on 06/12/2016.
@@ -36,7 +41,8 @@ public class TestCheck {
     }
 
 
-
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @Test //(expected = CheckException.class)
     public void testCheck1() throws IOException, CheckException {
@@ -51,17 +57,23 @@ public class TestCheck {
         writer.write("[[]");
         String str = writer.toString();
         */
-        check.check("Hello1.txt");
         titi.close();
+        thrown.expect(CheckException.class);
+        check.check("Hello1.txt");
+        Computational.getProgramm().clear();
+
     }
 
-    @Test(expected = CheckException.class)
+
+    @Test//(expected = CheckException.class)
     public void testCheck2 () throws IOException{
         String toto = "[]]";
         FileWriter titi = new FileWriter("Hello2.txt");
         titi.write(toto);
         titi.close();
+        thrown.expect(CheckException.class);
         check.check("Hello2.txt");
+        Computational.getProgramm().clear();
     }
 
     @Test
@@ -73,8 +85,9 @@ public class TestCheck {
         for (int i = 0 ; i < buffer.length; i++){
             titi.write(buffer[i]);
         }
-        check.check("Hello3.txt");
         titi.close();
-    }
+        check.check("Hello3.txt");
+        Computational.getProgramm().clear();
 
+    }
 }

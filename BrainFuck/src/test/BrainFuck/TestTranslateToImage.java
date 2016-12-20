@@ -24,7 +24,7 @@ public class TestTranslateToImage {
     @Before
     public void init(){
         memory = new Memory();
-        output =new Output(memory);
+        output = new Output(memory);
         translatetoimage = new Translatetoimage();
         interpreter = new Interpreter(output,memory);
         bfreader = new BFReader(interpreter);
@@ -41,6 +41,8 @@ public class TestTranslateToImage {
         assertTrue(image.getWidth() == 1);
         color = new Color(image.getRGB(0, 0));
         assertTrue(color.equals(Color.black));
+        is.close();
+        Computational.getProgramm().clear();
     }
     @Test
     public void TestTranslateNormalFile()throws IOException{
@@ -70,5 +72,7 @@ public class TestTranslateToImage {
         assertTrue(color.equals(new Color(0, 255, 0)));
         color = new Color(image.getRGB(3,6));
         assertTrue(color.equals(new Color(255, 255, 0)));
+        is.close();
+        Computational.getProgramm().clear();
     }
 }

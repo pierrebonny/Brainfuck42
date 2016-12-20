@@ -1,9 +1,9 @@
 package BrainFuck.Instructions;
-import BrainFuck.Computational;
+import BrainFuck.Instruction;
 import BrainFuck.Memory;
 import BrainFuck.Metrics;
 
-public abstract class Loops extends Computational {
+public abstract class Loops extends Instruction {
     
 
 

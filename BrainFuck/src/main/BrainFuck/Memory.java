@@ -76,9 +76,14 @@ public class Memory {
     public String toString(){
         return (char)this.getMemory()+"";
     }
-    
-   
 
+
+    public void updateMax(){
+        if(position>max) max=position;
+    }
 }
+
+
+
 
 

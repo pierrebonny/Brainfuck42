@@ -4,6 +4,8 @@ package BrainFuck;
 import BrainFuck.Instructions.Back;
 
 import java.awt.*;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,11 +23,12 @@ import java.util.List;
 public abstract class Computational {
 
 	public static int locationExcecutionPointer;
-	private static List<Computational> programm= new ArrayList<>();
+	private static List<Computational> programm = new ArrayList<>();
 	protected Memory memory;
 	protected Trace trace;
 	protected String courteSyntaxe;
 	protected Color couleur;
+	protected GenerateCode generateCode;
 
 	public Computational(Memory memory){
 		this.memory=memory;
@@ -42,9 +45,13 @@ public abstract class Computational {
 		}
 	}
 
+	public int generateCode(int counter, FileWriter writer,Boolean finish,Boolean loop) throws IOException {
+	    return 0;
+    }
 
-
-
+    public String getCourteSyntaxe(){
+	    return courteSyntaxe;
+    }
 
     public abstract void rewrite();
 

@@ -1,9 +1,9 @@
 package BrainFuck;
-import BrainFuck.Exception.OutofBoundException;
-import BrainFuck.Exception.OverFlowException;
-import BrainFuck.Exception.UnderFlowException;
-import BrainFuck.Instructions.*;
 
+
+
+import BrainFuck.Instructions.*;
+import BrainFuck.Exception.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,20 +21,19 @@ public class Interpreter{
 
     protected Memory memory;
     private Output output;
-    private Back loops;
-    protected static Map<Commandes,Computational> interprete = new HashMap<>();
+
+    protected static Map<Commandes, Instruction> interprete = new HashMap<>();
     protected static Map<String,Macro> macros= new HashMap<>();
-    private Commandes commandes;
+    protected  static Map<String,Procedure> procedures= new HashMap<>();
 
 
     public Interpreter(Output output,Memory memory){
         this.output = output;
         this.memory = memory;
-        loops = new Back(memory);
         fillHashmap(interprete);
     }
 
-    private void fillHashmap(Map<Commandes,Computational> hashmap) {
+    private void fillHashmap(Map<Commandes, Instruction> hashmap) {
         interprete.put(Commandes.INCR,new Incr(memory));
         interprete.put(Commandes.DECR ,new Decr(memory));
         interprete.put(Commandes.LEFT,new Left(memory));
@@ -70,13 +69,31 @@ public class Interpreter{
         }
         if ((syntlong.length() != 0)) {
             for (Commandes com : Commandes.values()) {
-                if (com.getLongue().equals(syntlong.toString())) {
+                if (com.getLongue().equals(line)) {
                     Computational.getProgramm().add(interprete.get(com));
+                    return;
                 }
+            }
+            if (procedures.get(line)!=null){
+                Procedure.nbreTotalProcUtilise++;
+                procedures.get(line).incrNbUtilisation();
+                Computational.getProgramm().add(procedures.get(line));
+                return;
             }
             if (macros.get(line) != null) {
                 Computational.getProgramm().addAll(macros.get(line).getListeInst());
+                return;
             }
+            String [] macro_procedure_Para=line.split(" ");
+            if(macros.get(macro_procedure_Para[0]) != null){
+                macros.get(macro_procedure_Para[0]).addInstructions(Integer.parseInt(macro_procedure_Para[1]));
+                return;
+            }
+            if(procedures.get(macro_procedure_Para[0]) != null){
+                Procedure procedure =procedures.get(macro_procedure_Para[0]);
+                Computational.getProgramm().add(new Procedure(this.memory,procedure,Integer.parseInt(macro_procedure_Para[1])));
+            }
+
         }
     }
 
@@ -84,17 +101,25 @@ public class Interpreter{
         String [] macroDef=line.split(" ");
         macros.put(macroDef[1],new Macro(Integer.parseInt(macroDef[2]),macroDef[3]));
     }
+    public void createProcedure(String line){
+        String [] procedureDef=line.split(" ");
+        procedures.put(procedureDef[1],new Procedure(this.memory,Integer.parseInt(procedureDef[2]),procedureDef[3]));
+    }
+
 
     public void interprete() throws OutofBoundException,OverFlowException,UnderFlowException{
-        for (Computational.locationExcecutionPointer = 0; Computational.locationExcecutionPointer < Computational.getProgramm().size(); Computational.locationExcecutionPointer++)
+        for (Computational.locationExcecutionPointer = Procedure.nbreTotalInstructionsProcedures; Computational.locationExcecutionPointer < Computational.getProgramm().size(); Computational.locationExcecutionPointer++) {
             Computational.getProgramm().get(Computational.locationExcecutionPointer).execute();
+        }
         Metrics.setExecTime(System.currentTimeMillis()-Metrics.getExecTime());
+        if(Trace.file!=null)
+            new Trace(memory).trace();
         output.afficher();
         output.metrics();
     }
 
     public void rewrite(){
-        for(int i=0;i<Computational.getProgramm().size();i++)
+        for(int i = 0; i< Computational.getProgramm().size(); i++)
             Computational.getProgramm().get(i).rewrite();
     }
 
@@ -110,6 +135,14 @@ public class Interpreter{
     }
 
 }
+
+
+
+
+
+
+
+
 
 
 

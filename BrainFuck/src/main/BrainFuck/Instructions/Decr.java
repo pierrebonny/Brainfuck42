@@ -1,16 +1,18 @@
 package BrainFuck.Instructions;
-import BrainFuck.Computational;
+import BrainFuck.Instruction;
 import BrainFuck.Exception.UnderFlowException;
 import BrainFuck.Memory;
 import BrainFuck.Metrics;
 
 
 import java.awt.Color;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * Created by Pierre on 16/11/2016.
  */
-public class Decr extends Computational {
+public class Decr extends Instruction {
 
 
     public static final int MIN_VALUE=0;
@@ -40,8 +42,20 @@ public class Decr extends Computational {
         return couleur;
     }
 
-
-
+    public int generateCode(int counter, FileWriter writer, Boolean finish,Boolean loop) throws IOException {
+        counter ++;
+        if (finish){
+            if (loop) {
+                writer.write("           tab[pointeur] -= " + counter + ";\n");
+            }
+            else {
+                writer.write("       tab[pointeur] -= " + counter + ";\n");
+            }
+            counter = 0;
+            finish = false;
+        }
+        return counter;
+    }
 
 
     public void setFichier(String s){}

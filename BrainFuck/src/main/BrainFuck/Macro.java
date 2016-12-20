@@ -7,12 +7,12 @@ import java.util.ArrayList;
  */
 public class Macro{
 
-    private ArrayList<Computational> instructions=new ArrayList<>();
+    private ArrayList<Instruction> instructions=new ArrayList<>();
 
 
     public Macro(int nbInst,String chaine){
 
-        ArrayList<Computational> premieres=new ArrayList<>();
+        ArrayList<Instruction> premieres=new ArrayList<>();
 
 
         if (Interpreter.macros.get(chaine) != null) {
@@ -33,8 +33,13 @@ public class Macro{
         }
     }
 
+    public void addInstructions(int number){
+        for(int i=0;i<number;i++){
+            Computational.getProgramm().addAll(this.instructions);
+        }
+    }
 
-    public ArrayList<Computational> getListeInst(){
+    public ArrayList<Instruction> getListeInst(){
         return instructions;
     }
 }

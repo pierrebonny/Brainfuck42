@@ -1,10 +1,12 @@
 package BrainFuck.Instructions;
 import BrainFuck.Check;
-import BrainFuck.Computational;
+import BrainFuck.Instruction;
 import BrainFuck.Memory;
 
 
 import java.awt.Color;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Jump extends Loops {
     
@@ -18,7 +20,7 @@ public class Jump extends Loops {
     
     public void execute(){
         if(memory.getMemory()==0)
-            Computational.locationExcecutionPointer = Check.getJumpBackMap().get(Computational.locationExcecutionPointer);
+            Instruction.locationExcecutionPointer = Check.getJumpBackMap().get(Instruction.locationExcecutionPointer);
         super.execute();
     }
 
@@ -28,6 +30,11 @@ public class Jump extends Loops {
 
     public Color translate(){
         return couleur;
+    }
+
+    public int generateCode(int counter, FileWriter writer,Boolean finish,Boolean loop) throws IOException {
+        writer.write("       while(tab[pointeur] != 0){\n");
+        return 0;
     }
 
 

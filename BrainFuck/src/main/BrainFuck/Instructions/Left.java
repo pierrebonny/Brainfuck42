@@ -1,16 +1,18 @@
 package BrainFuck.Instructions;
-import BrainFuck.Computational;
+import BrainFuck.Instruction;
 import BrainFuck.Exception.OutofBoundException;
 import BrainFuck.Memory;
 import BrainFuck.Metrics;
 
 
 import java.awt.Color;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * Created by Pierre on 16/11/2016.
  */
-public class Left extends Computational {
+public class Left extends Instruction {
 
 
     public static final int MIN_POSITION=0;
@@ -41,7 +43,19 @@ public class Left extends Computational {
         return couleur;
     }
 
-
+    public int generateCode(int counter, FileWriter writer, Boolean finish,Boolean loop) throws IOException {
+        counter ++;
+        if (finish){
+            if (loop){
+                writer.write("           pointeur -= " + counter + ";\n");
+            }
+            else {
+                writer.write("       pointeur -= " + counter + ";\n");
+            }
+            counter = 0;
+        }
+        return counter;
+    }
     public void setFichier(String s){}
     public  void closeFichier(){}
 }

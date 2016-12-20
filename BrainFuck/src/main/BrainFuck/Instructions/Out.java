@@ -1,5 +1,5 @@
 package BrainFuck.Instructions;
-import BrainFuck.Computational;
+import BrainFuck.Instruction;
 import BrainFuck.Memory;
 import BrainFuck.Metrics;
 
@@ -17,7 +17,7 @@ import java.io.FileWriter;
 /**
  * Created by Pierre on 16/11/2016.
  */
-public class Out extends Computational {
+public class Out extends Instruction {
 
     protected static BufferedWriter fichierOut=null;
 
@@ -91,6 +91,20 @@ public class Out extends Computational {
 
     public Color translate(){
         return couleur;
+    }
+
+    public int generateCode(int counter,FileWriter writer,Boolean finish,Boolean loop) throws IOException {
+        if (loop){
+            writer.write("           if (fileOut == null){\n" +
+                    "               System.out.print((char)tab[pointeur]);\n           }\n" +
+                    "           else{\n               fileOut.write((char)tab[pointeur]);\n           }\n");
+        }
+        else{
+            writer.write("       if (fileOut == null){\n" +
+                    "           System.out.print((char)tab[pointeur]);\n       }\n" +
+                    "       else{\n           fileOut.write((char)tab[pointeur]);\n       }\n");
+        }
+        return 0;
     }
 
 

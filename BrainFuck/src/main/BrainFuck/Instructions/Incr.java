@@ -1,16 +1,19 @@
 package BrainFuck.Instructions;
-import BrainFuck.Computational;
+import BrainFuck.GenerateCode;
+import BrainFuck.Instruction;
 import BrainFuck.Memory;
 import BrainFuck.Metrics;
 import BrainFuck.Exception.OverFlowException;
 
 
 import java.awt.Color;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * Created by Pierre on 16/11/2016.
  */
-public class Incr extends Computational {
+public class Incr extends Instruction {
 
 
     public static final int MAX_VALUE=255;
@@ -27,6 +30,8 @@ public class Incr extends Computational {
         }
         else{
             memory.setMemory(memory.getMemory()+1);
+            //if(memory.getPosition()>memory.getMax()) memory.setMax(memory.getPosition());
+            memory.updateMax();
             Metrics.incrDataWrite();
             super.execute();
         }
@@ -40,7 +45,19 @@ public class Incr extends Computational {
         return couleur;
     }
 
-
+    public int generateCode(int counter,FileWriter writer,Boolean finish,Boolean loop) throws IOException {
+        counter ++;
+        if (finish){
+            if (loop){
+                writer.write("           tab[pointeur] += " + counter + ";\n");
+            }
+            else {
+                writer.write("       tab[pointeur] += " + counter + ";\n");
+            }
+            counter = 0;
+        }
+        return counter;
+    }
 
 
     public void setFichier(String s){}

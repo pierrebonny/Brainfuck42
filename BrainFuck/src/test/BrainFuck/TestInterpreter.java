@@ -4,10 +4,8 @@ package BrainFuck;
  * Created by Pierre on 20/11/2016.
  */
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Assert.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,7 +18,7 @@ public class TestInterpreter {
     Interpreter interpreter;
     Memory memory;
     BFReader bfReader;
-    Map<Commandes,Computational> hashMap = new HashMap<>();
+    Map<Commandes, Instruction> hashMap = new HashMap<>();
 
     @Before
     public void init(){
