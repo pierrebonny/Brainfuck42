@@ -20,6 +20,7 @@ public abstract class Computational {
     protected String courteSyntaxe;
     private static List<Computational> programm= new ArrayList<>();
 
+
     public Computational(Memory memory){
         this.memory=memory;
     }
@@ -32,8 +33,10 @@ public abstract class Computational {
 
     public abstract String getCourteSyntaxe();
 
+
     public abstract int generateCode(int counter,FileWriter writer,Boolean finish,Boolean loop)throws IOException;
     public static List<Computational> getProgramm(){ return programm;}
+
 
 
 }

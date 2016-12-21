@@ -60,11 +60,8 @@ public class TestCheck {
         titi.close();
         thrown.expect(CheckException.class);
         check.check("Hello1.txt");
-<<<<<<< HEAD
         Computational.getProgramm().clear();
-=======
 
->>>>>>> efbc5c146b11ad25a004fda8325aa18d55fc79ab
     }
 
 
@@ -90,10 +87,7 @@ public class TestCheck {
         }
         titi.close();
         check.check("Hello3.txt");
-<<<<<<< HEAD
         Computational.getProgramm().clear();
-=======
->>>>>>> efbc5c146b11ad25a004fda8325aa18d55fc79ab
 
     }
 }

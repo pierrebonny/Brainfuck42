@@ -5,10 +5,7 @@ import BrainFuck.Instructions.Out;
 
 import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
-<<<<<<< HEAD
 import java.io.FileWriter;
-=======
->>>>>>> efbc5c146b11ad25a004fda8325aa18d55fc79ab
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -140,14 +137,11 @@ public class Procedure extends Computational{
     public ArrayList<Instruction> getListeInst(){
         return instructions;
     }
-<<<<<<< HEAD
     public String getCourteSyntaxe(){return("");}
     public int generateCode(int counter, FileWriter writer, Boolean finish, Boolean loop){
         return 0;
     }
-=======
 
->>>>>>> efbc5c146b11ad25a004fda8325aa18d55fc79ab
 
 
 }

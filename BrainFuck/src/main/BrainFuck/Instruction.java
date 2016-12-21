@@ -35,14 +35,10 @@ public abstract class Instruction extends Computational {
 			trace.updateFichierLog();
 	}
 
-<<<<<<< HEAD
 
 	public String getCourteSyntaxe() {
 		return courteSyntaxe;
 	}
-
-=======
->>>>>>> efbc5c146b11ad25a004fda8325aa18d55fc79ab
 	public abstract Color translate();
 	public abstract void setFichier(String s);
 	public abstract void closeFichier();
