@@ -55,5 +55,8 @@ public class Translatetoimage {
 		ImageIO.write(buffImg, "bmp", new File("testimg.bmp"));
 	}
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> efbc5c146b11ad25a004fda8325aa18d55fc79ab
 
