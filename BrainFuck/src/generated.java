@@ -21,5 +21,15 @@ public class Main{
             }
             i++;
        }
+       tab[pointeur] += 50;
+       if (fileOut == null){
+           System.out.print((char)tab[pointeur]);
+       }
+       else{
+           fileOut.write((char)tab[pointeur]);
+       }
+       pointeur += 1;
+       tab[pointeur] += 2;
+       pointeur += 33;
    }
 }

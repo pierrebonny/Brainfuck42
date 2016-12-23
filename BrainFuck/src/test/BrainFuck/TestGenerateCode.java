@@ -42,6 +42,7 @@ public class TestGenerateCode {
         generateCode.generateCode("empty.txt");
         writer.close();
         Computational.getProgramm().clear();
+        assertTrue(generatedFile.canExecute());
     }
 
     @Test
