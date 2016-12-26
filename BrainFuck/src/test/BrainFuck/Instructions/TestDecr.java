@@ -1,7 +1,7 @@
-package BrainFuck;
+package BrainFuck.Instructions;
 
 import BrainFuck.Exception.UnderFlowException;
-import BrainFuck.Instructions.Decr;
+import BrainFuck.Memory;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -20,7 +20,7 @@ public class TestDecr {
     }
 
     @Test(expected = UnderFlowException.class)
-    public void testExecuteFullMemory(){
+    public void testExecuteEmptyMemory(){
         decr.execute();
     }
 

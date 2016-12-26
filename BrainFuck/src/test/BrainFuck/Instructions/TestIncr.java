@@ -1,7 +1,7 @@
-package BrainFuck;
+package BrainFuck.Instructions;
 
 import BrainFuck.Exception.OverFlowException;
-import BrainFuck.Instructions.Incr;
+import BrainFuck.Memory;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
