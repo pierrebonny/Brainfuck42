@@ -67,7 +67,7 @@ public class Bfck {
                     interpreter.setFichierOut(args[i]);
                 }else if(args[i].equals("-p")){
                     execute=true;
-                }
+                }else if()
 
                 i++;
             }

@@ -1,7 +1,5 @@
 package BrainFuck;
 
-
-
 /**
  * Created by Pierre on 13/12/2016.
  */

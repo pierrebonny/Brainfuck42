@@ -133,7 +133,7 @@ public class Interpreter{
     }
 
     public void rewrite(){
-        for(int i = 0; i< Computational.getProgramm().size(); i++)
+        for(int i = Procedure.nbreTotalInstructionsProcedures; i< Computational.getProgramm().size(); i++)
             Computational.getProgramm().get(i).rewrite();
     }
 
