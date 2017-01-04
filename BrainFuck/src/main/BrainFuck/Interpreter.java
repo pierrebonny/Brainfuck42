@@ -93,6 +93,7 @@ public class Interpreter{
             if(procedures.get(macro_procedure_Para[0]) != null){
                 Procedure procedure =procedures.get(macro_procedure_Para[0]);
                 Computational.getProgramm().add(new Procedure(this.memory,procedure,Integer.parseInt(macro_procedure_Para[1])));
+                return;
             }
 
             }
@@ -104,6 +105,7 @@ public class Interpreter{
             if(procedures.get(macro_procedure_Para[0]) != null){
                 Procedure procedure =procedures.get(macro_procedure_Para[0]);
                 Computational.getProgramm().add(new Procedure(this.memory,procedure,Integer.parseInt(macro_procedure_Para[1])));
+                return;
             }
 
         }
