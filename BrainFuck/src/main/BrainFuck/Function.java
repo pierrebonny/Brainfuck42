@@ -16,4 +16,6 @@ public  abstract class Function extends Computational {
     public  void rewrite(){}
 
 
+    public  void setFichier(String s){}
+    public  void closeFichier(){}
 }
