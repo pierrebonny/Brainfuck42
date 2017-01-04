@@ -34,7 +34,14 @@ public abstract class Computational {
     public abstract String getCourteSyntaxe();
 
 
-    public abstract int generateCode(int counter,FileWriter writer,Boolean finish,Boolean loop)throws IOException;
+    public int generateCode(int counter,FileWriter writer,Boolean finish,Boolean loop)throws IOException{
+        return 0;
+    };
+
+    public int generateCode(int counter, FileWriter writer, Boolean finish, Boolean loop,String name,int pt)throws IOException{
+        return 0;
+    };
+
     public static List<Computational> getProgramm(){ return programm;}
 
 

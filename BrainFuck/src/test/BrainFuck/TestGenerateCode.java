@@ -31,26 +31,19 @@ public class TestGenerateCode {
         output = new Output(memory);
         interpreter = new Interpreter(output,memory);
         bfReader = new BFReader(interpreter);
-        generatedFile = new File("generated.java");
-        generateCode = new GenerateCode();
+        generateCode = new GenerateCode(bfReader);
     }
 
     @Test
     public void TestEmptyFileGenerate() throws IOException {
-        generatedFile.createNewFile();
-        FileWriter writer = new FileWriter(generatedFile);
         generateCode.generateCode("empty.txt");
-        writer.close();
         Computational.getProgramm().clear();
         assertTrue(generatedFile.canExecute());
     }
 
     @Test
     public void TestHelloWordFileGenerate()throws IOException {
-        generatedFile.createNewFile();
-        FileWriter writer = new FileWriter(generatedFile);
         generateCode.generateCode("HelloWorld.txt");
-        writer.close();
         Computational.getProgramm().clear();
     }
 

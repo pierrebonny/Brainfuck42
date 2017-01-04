@@ -6,6 +6,7 @@ import BrainFuck.Instructions.Out;
 import javax.swing.plaf.ColorUIResource;
 import java.awt.*;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -14,7 +15,7 @@ import java.util.Objects;
  */
 public class Procedure extends Computational{
 
-    //Attribut propre à la à l'objet :
+    //Attribut propre à l'objet :
     public int nbRepetition;
     public String chaineInstructions;
 
@@ -38,22 +39,24 @@ public class Procedure extends Computational{
     //Nombre total de procédure utilisée dans le programme
     public static int nbreTotalProcUtilise=0;
 
-    //Nombre total d'instructions DEFINISANT  toutes les procédures : variable servant à initialiser le pointeur d'execution lors de l'execution de la liste d'intruction du programme
+    //Nombre total d'instructions DEFINISSANT  toutes les procédures : variable servant à initialiser le pointeur d'execution lors de l'execution de la liste d'intructions du programme
     public static int nbreTotalInstructionsProcedures;
 
 
 
     //Liste d'instructions de la procédure
-    public ArrayList<Instruction> instructions=new ArrayList<>();
+    public ArrayList<Computational> instructions=new ArrayList<>();
+
+    private String name;
 
 
-
-    public Procedure(Memory memory,int nbRepetition,String chaine){
+    public Procedure(Memory memory,int nbRepetition,String chaine,String name){
         super(memory);
         this.nbRepetition=nbRepetition;
         this.chaineInstructions=chaine;
+        this.name = name;
 
-        ArrayList<Instruction> premieres=new ArrayList<>();
+        ArrayList<Computational> premieres=new ArrayList<>();
 
 
         if (Interpreter.procedures.get(chaine) != null) {
@@ -80,7 +83,7 @@ public class Procedure extends Computational{
     }
 
 
-    public Procedure(Memory memory,Procedure procedure,int pointeurMémoire){
+    public Procedure(Memory memory,Procedure procedure,int pointeurMémoire,String name){
         super(memory);
         this.nbRepetition=procedure.nbRepetition;
         this.chaineInstructions=procedure.chaineInstructions;
@@ -89,6 +92,7 @@ public class Procedure extends Computational{
         this.nbreInstrProc=procedure.nbreInstrProc;
         this.pointeurMemoire=pointeurMémoire;
         this.instructions=procedure.instructions;
+        this.name = name;
         procedure.nbUtilisation++;
         nbreTotalProcUtilise++;
     }
@@ -133,12 +137,22 @@ public class Procedure extends Computational{
 
     public int getNbreInstrProc(){ return nbreInstrProc;}
     public int getNbUtilisation() { return nbUtilisation;}
+    public String getName(){
+        return name;
+    }
     public void incrNbUtilisation(){ nbUtilisation++;}
-    public ArrayList<Instruction> getListeInst(){
+    public ArrayList<Computational> getListeInst(){
         return instructions;
     }
     public String getCourteSyntaxe(){return("");}
-    public int generateCode(int counter, FileWriter writer, Boolean finish, Boolean loop){
+
+    public int generateCode(int counter, FileWriter writer, Boolean finish, Boolean loop,String name,int pt) throws IOException {
+        if (loop){
+            writer.write("           " + name + "(" + pt + ");\n");
+        }
+        else{
+            writer.write("       " + name + "(" + pt + ");\n");
+        }
         return 0;
     }
 

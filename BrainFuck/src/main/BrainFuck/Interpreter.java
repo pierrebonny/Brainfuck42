@@ -91,8 +91,9 @@ public class Interpreter{
                 return;
             }
             if(procedures.get(macro_procedure_Para[0]) != null){
-                Procedure procedure =procedures.get(macro_procedure_Para[0]);
-                Computational.getProgramm().add(new Procedure(this.memory,procedure,Integer.parseInt(macro_procedure_Para[1])));
+                Procedure procedure = procedures.get(macro_procedure_Para[0]);
+                Computational.getProgramm().add(new Procedure(this.memory,procedure,Integer.parseInt(macro_procedure_Para[1]),procedure.getName()));
+                return;
             }
 
             }
@@ -103,7 +104,8 @@ public class Interpreter{
             }
             if(procedures.get(macro_procedure_Para[0]) != null){
                 Procedure procedure =procedures.get(macro_procedure_Para[0]);
-                Computational.getProgramm().add(new Procedure(this.memory,procedure,Integer.parseInt(macro_procedure_Para[1])));
+                Computational.getProgramm().add(new Procedure(this.memory,procedure,Integer.parseInt(macro_procedure_Para[1]),procedure.getName()));
+                return;
             }
 
         }
@@ -114,7 +116,7 @@ public class Interpreter{
     }
     public void createProcedure(String line){
         String [] procedureDef=line.split(" ");
-        procedures.put(procedureDef[1],new Procedure(this.memory,Integer.parseInt(procedureDef[2]),procedureDef[3]));
+        procedures.put(procedureDef[1],new Procedure(this.memory,Integer.parseInt(procedureDef[2]),procedureDef[3],procedureDef[1]));
     }
 
 
