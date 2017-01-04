@@ -67,7 +67,10 @@ public class Bfck {
                     interpreter.setFichierOut(args[i]);
                 }else if(args[i].equals("-p")){
                     execute=true;
-                }else if()
+                }else if(args[i].equals("--generateJava")){
+                    GenerateCode generateur= new GenerateCode(reader);
+                    generateur.generateCode(args[nbArgs-1]);
+                }
 
                 i++;
             }

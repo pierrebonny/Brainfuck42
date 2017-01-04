@@ -32,7 +32,7 @@ public class TestGenerateCode {
         interpreter = new Interpreter(output,memory);
         bfReader = new BFReader(interpreter);
         generatedFile = new File("generated.java");
-        generateCode = new GenerateCode();
+        generateCode = new GenerateCode(bfReader);
     }
 
     @Test

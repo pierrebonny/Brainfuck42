@@ -14,16 +14,10 @@ import java.util.ArrayList;
 public class GenerateCode {
 
     private BFReader bfReader;
-    private Interpreter interpreter;
-    private Output output;
-    private Memory memory;
     private List<Computational> programm;
     private File generatedFile = new File("generated.java");
-    public GenerateCode(){
-        memory = new Memory();
-        output = new Output(memory);
-        interpreter = new Interpreter(output,memory);
-        bfReader = new BFReader(interpreter);
+    public GenerateCode(BFReader bfReader){
+        this.bfReader = bfReader;
     }
 
     public void generateCode(String namefile) throws IOException {
