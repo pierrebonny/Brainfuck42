@@ -19,6 +19,7 @@ public class GenerateCode {
     private List<Computational> programm;
     private File generatedFile;
     private String namef;
+
     public GenerateCode(BFReader bfReader){
         this.bfReader = bfReader;
     }

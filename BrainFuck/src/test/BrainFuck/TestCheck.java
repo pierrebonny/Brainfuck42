@@ -1,5 +1,6 @@
 package BrainFuck;
 import BrainFuck.Exception.CheckException;
+import com.sun.xml.internal.ws.policy.spi.AssertionCreationException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.Before;
@@ -21,48 +22,32 @@ public class TestCheck {
     Output output;
     Interpreter interpreter;
     BFReader bfReader;
-    //File file;
-    //FileWriter writer;
-    //FileReader reader;
-    //BufferedReader buff;
-    //BufferedWriter buffw;
 
     @Before
-    public void init()throws IOException{
+    public void init() throws IOException {
 
         memory = new Memory();
         output = new Output(memory);
-        interpreter = new Interpreter(output,memory);
+        interpreter = new Interpreter(output, memory);
         bfReader = new BFReader(interpreter);
         check = new Check(bfReader);
-        //FileInputStream fis = null;
-        //FileOutputStream fos = null;
-        //File inputFile = new File("bip.txt");
     }
 
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
+            @Test(expected = CheckException.class)
+            public void testCheck1 () throws IOException, CheckException {
+            String toto = "[[]";
+            char buffer[] = new char[toto.length()];
+            toto.getChars(0, toto.length(), buffer, 0);
+            FileWriter titi = new FileWriter("Hello1.txt");
+            for (int i = 0; i < buffer.length; i += 1) {
+                titi.write(buffer[i]);
+            }
+            titi.close();
+            check.check("Hello1.txt");
+            Computational.getProgramm().clear();
 
-    @Test //(expected = CheckException.class)
-    public void testCheck1() throws IOException, CheckException {
-        String toto = "[[]";
-        char buffer[] = new char[toto.length()];
-        toto.getChars(0, toto.length(), buffer, 0);
-        FileWriter titi = new FileWriter("Hello1.txt");
-        for (int i=0; i < buffer.length; i += 1) {
-            titi.write(buffer[i]);
         }
-        /*file.createNewFile();
-        writer.write("[[]");
-        String str = writer.toString();
-        */
-        titi.close();
-        thrown.expect(CheckException.class);
-        check.check("Hello1.txt");
-        Computational.getProgramm().clear();
-
-    }
 
 
     @Test//(expected = CheckException.class)
@@ -71,8 +56,10 @@ public class TestCheck {
         FileWriter titi = new FileWriter("Hello2.txt");
         titi.write(toto);
         titi.close();
-        thrown.expect(CheckException.class);
-        check.check("Hello2.txt");
+        try{
+            check.check("Hello2.txt");
+        }catch(CheckException e){
+        }
         Computational.getProgramm().clear();
     }
 
@@ -88,6 +75,5 @@ public class TestCheck {
         titi.close();
         check.check("Hello3.txt");
         Computational.getProgramm().clear();
-
     }
 }

@@ -38,7 +38,6 @@ public class TestGenerateCode {
     public void TestEmptyFileGenerate() throws IOException {
         generateCode.generateCode("empty.txt");
         Computational.getProgramm().clear();
-        assertTrue(generatedFile.canExecute());
     }
 
     @Test

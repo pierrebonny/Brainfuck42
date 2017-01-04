@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Set;
 
 
@@ -28,8 +29,8 @@ public class Translatetoimage {
     	int taille = Computational.getProgramm().size()+s-Procedure.nbreTotalInstructionsProcedures;
     	*/
 
-
-		int taille = Computational.getProgramm().size();
+		ArrayList<Instruction> programm = this.createListeOfInstructions();
+		int taille = programm.size();
 		BufferedImage buffImg;
 		if (taille != 0) {
 			int x = 0;
@@ -40,7 +41,7 @@ public class Translatetoimage {
 			for (int i = 0; i < taille; i++) {
 				//int j = Procedure.nbreTotalInstructionsProcedures;
 				//Computational.getProgramm().get(j);
-				g2d.setColor(Computational.getProgramm().get(i).translate());
+				g2d.setColor(programm.get(i).translate());
 				g2d.fillRect(x, y, l, L);
 				x += 3;
 				if (x == n) {
@@ -53,6 +54,20 @@ public class Translatetoimage {
 			buffImg = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
 		}
 		ImageIO.write(buffImg, "bmp", new File("testimg.bmp"));
+	}
+
+	public ArrayList<Instruction> createListeOfInstructions() {
+		ArrayList<Instruction> programmInstructions = new ArrayList<>();
+		for (int i = Procedure.nbreTotalInstructionsProcedures; i < Computational.getProgramm().size(); i++) {
+			if (Computational.getProgramm().get(i) instanceof Instruction)
+				programmInstructions.add((Instruction) Computational.getProgramm().get(i));
+			if (Computational.getProgramm().get(i) instanceof Procedure) {
+				for (int j = ((Procedure) Computational.getProgramm().get(i)).positionDebListeProg; j <= ((Procedure) Computational.getProgramm().get(i)).positionFinListeProg; j++) {
+					programmInstructions.add((Instruction) Computational.getProgramm().get(j));
+				}
+			}
+		}
+		return programmInstructions;
 	}
 }
 

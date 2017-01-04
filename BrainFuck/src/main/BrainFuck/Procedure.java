@@ -1,106 +1,22 @@
 package BrainFuck;
 
-import BrainFuck.Instructions.Incr;
-import BrainFuck.Instructions.Out;
 
-import javax.swing.plaf.ColorUIResource;
-import java.awt.*;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Created by Pierre on 12/12/2016.
  */
-public class Procedure extends Computational{
 
-    //Attribut propre à l'objet :
-    public int nbRepetition;
-    public String chaineInstructions;
-
-    //Position/Indice du début des instructions de la procédure dans la liste des Instructions du programme
-    public int positionDebListeProg;
-
-    //Position/Indice de fin des instructions de la procédure dans la liste des Instructions du programme
-    public int positionFinListeProg;
-
-    //Nombre de fois que la procédure est utilisée
-    public int nbUtilisation=0;
-    //Nombre d'instructions de la procédure
-    public int nbreInstrProc;
-
-    //Pointeur sur la cellule mémoire parametre, -1 si cellule mémoire par défaut
-    public int pointeurMemoire=-1;
-
-
-    //Attributs global :
-
-    //Nombre total de procédure utilisée dans le programme
-    public static int nbreTotalProcUtilise=0;
-
-    //Nombre total d'instructions DEFINISSANT  toutes les procédures : variable servant à initialiser le pointeur d'execution lors de l'execution de la liste d'intructions du programme
-    public static int nbreTotalInstructionsProcedures;
-
-
-
-    //Liste d'instructions de la procédure
-    public ArrayList<Computational> instructions=new ArrayList<>();
-
-    private String name;
+public class Procedure extends Methode{
 
 
     public Procedure(Memory memory,int nbRepetition,String chaine,String name){
-        super(memory);
-        this.nbRepetition=nbRepetition;
-        this.chaineInstructions=chaine;
-        this.name = name;
-
-        ArrayList<Computational> premieres=new ArrayList<>();
-
-
-        if (Interpreter.procedures.get(chaine) != null) {
-            Procedure procedure =Interpreter.procedures.get(chaine);
-            premieres.addAll(procedure.getListeInst());
-        }else{
-            for(int y=0;y<chaine.length();y++){
-                for(Commandes c : Commandes.values()){
-                    if(c.getCourte()==chaine.charAt(y)) {
-                        premieres.add(Interpreter.interprete.get(c));
-                    }
-                }
-            }
-        }
-        for(int i=0;i<nbRepetition;i++){
-            instructions.addAll(premieres);
-        }
-
-        this.positionDebListeProg=getProgramm().size();
-        this.getProgramm().addAll(instructions);
-        this.positionFinListeProg=getProgramm().size()-1;
-        this.nbreTotalInstructionsProcedures+=instructions.size();
-        this.nbreInstrProc=instructions.size();
+        super(memory,nbRepetition,chaine,name);
     }
 
 
     public Procedure(Memory memory,Procedure procedure,int pointeurMémoire,String name){
-        super(memory);
-        this.nbRepetition=procedure.nbRepetition;
-        this.chaineInstructions=procedure.chaineInstructions;
-        this.positionDebListeProg=procedure.positionDebListeProg;
-        this.positionFinListeProg=procedure.positionFinListeProg;
-        this.nbreInstrProc=procedure.nbreInstrProc;
-        this.pointeurMemoire=pointeurMémoire;
-        this.instructions=procedure.instructions;
-        this.name = name;
-        procedure.nbUtilisation++;
-        nbreTotalProcUtilise++;
+        super(memory,procedure,pointeurMémoire,name);
     }
-
-    public int nbreInstrInProg(){
-        return nbreInstrProc*nbUtilisation;
-    }
-
 
     public  void execute(){
         int tmp=locationExcecutionPointer;
@@ -124,38 +40,7 @@ public class Procedure extends Computational{
         locationExcecutionPointer=tmp;
     }
 
-    public  Color translate() { /*//PB AVEC CETTE METHODE
-        int tmp = locationExcecutionPointer;
-        for (int locationExcecutionPointer = positionDebListeProg; locationExcecutionPointer <= positionFinListeProg; locationExcecutionPointer++)
-            return getProgramm().get(locationExcecutionPointer).translate();
-            */
-    return new Color(4);
-    }
-
-    public  void setFichier(String s){}
-    public  void closeFichier(){}
-
-    public int getNbreInstrProc(){ return nbreInstrProc;}
-    public int getNbUtilisation() { return nbUtilisation;}
     public String getName(){
         return name;
     }
-    public void incrNbUtilisation(){ nbUtilisation++;}
-    public ArrayList<Computational> getListeInst(){
-        return instructions;
-    }
-    public String getCourteSyntaxe(){return("");}
-
-    public int generateCode(int counter, FileWriter writer, Boolean finish, Boolean loop,String name,int pt) throws IOException {
-        if (loop){
-            writer.write("           " + name + "(" + pt + ");\n");
-        }
-        else{
-            writer.write("       " + name + "(" + pt + ");\n");
-        }
-        return 0;
-    }
-
-
-
 }
