@@ -66,7 +66,7 @@ public class BFReader {
                         }
                         a += 1;
                         if (a == x + 3){
-                            a = 0;
+                            a = x;
                             b += 1;
                         }
                     }
