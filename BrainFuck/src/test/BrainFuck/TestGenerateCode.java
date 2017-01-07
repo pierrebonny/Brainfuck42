@@ -5,21 +5,14 @@ package BrainFuck;
  */
 import org.junit.Test;
 import org.junit.Before;
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
-import static org.junit.Assert.*;
 
 public class TestGenerateCode {
     private BFReader bfReader;
     private Interpreter interpreter;
     private Output output;
     private Memory memory;
-    private List<Computational> programm;
-    private File generatedFile;
     private File empty;
     private GenerateCode generateCode;
 
@@ -44,6 +37,7 @@ public class TestGenerateCode {
     public void TestHelloWordFileGenerate()throws IOException {
         generateCode.generateCode("HelloWorld.txt");
         Computational.getProgramm().clear();
+        Procedure.nbreTotalInstructionsProcedures = 0;
     }
 
 }

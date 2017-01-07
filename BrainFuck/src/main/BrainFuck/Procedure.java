@@ -1,6 +1,8 @@
 package BrainFuck;
 
 
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * Created by Pierre on 12/12/2016.
@@ -42,5 +44,16 @@ public class Procedure extends Methode{
 
     public String getName(){
         return name;
+    }
+
+    public int generateCode(int counter, FileWriter writer, Boolean finish, Boolean loop,String name,int ptr) throws IOException {
+        if (loop){
+            writer.write("           " + name + "("+ptr+");\n");
+        }
+        else {
+
+            writer.write("       " + name + "("+ptr+");\n");
+        }
+        return 0;
     }
 }

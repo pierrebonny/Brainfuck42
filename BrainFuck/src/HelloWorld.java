@@ -37,6 +37,7 @@ public class HelloWorld{
             i++;
        }
        tab[pointeur] += 10;
+       hello(-1);
        pointeur += 1;
        tab[pointeur] += 2;
        if (fileOut == null){

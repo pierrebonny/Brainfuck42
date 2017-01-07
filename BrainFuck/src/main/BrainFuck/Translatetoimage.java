@@ -59,9 +59,11 @@ public class Translatetoimage {
 	public ArrayList<Instruction> createListeOfInstructions() {
 		ArrayList<Instruction> programmInstructions = new ArrayList<>();
 		for (int i = Procedure.nbreTotalInstructionsProcedures; i < Computational.getProgramm().size(); i++) {
-			if (Computational.getProgramm().get(i) instanceof Instruction)
+			if (Computational.getProgramm().get(i) instanceof Instruction){
 				programmInstructions.add((Instruction) Computational.getProgramm().get(i));
+			}
 			if (Computational.getProgramm().get(i) instanceof Procedure) {
+				System.out.println("procedure");
 				for (int j = ((Procedure) Computational.getProgramm().get(i)).positionDebListeProg; j <= ((Procedure) Computational.getProgramm().get(i)).positionFinListeProg; j++) {
 					programmInstructions.add((Instruction) Computational.getProgramm().get(j));
 				}
