@@ -53,7 +53,7 @@ public class GenerateCode {
         for (int l = 0; l <k;l++){
             writer.write("   private static int " + functions.get(l).name + "(int p){\n");
             decode(writer,functions.get(l).instructions,false);
-            writer.write("    return tab[pointeur];\n   }\n\n");
+            writer.write("       return tab[pointeur];\n   }\n\n");
         }
     }
 
@@ -67,16 +67,19 @@ public class GenerateCode {
         writer.write("            else if (args[i].equals(\"-o\")){\n                fileOut = new BufferedWriter(new FileWriter(args[i+1]));\n            }\n            i++;\n       }\n");
     }
 
-    private void decode(FileWriter writer,List<Computational> programim,Boolean proc) throws IOException {
+    private void decode(FileWriter writer,List<Computational> programim,Boolean meth) throws IOException {
         int counter = 0;
         int loop = 0;
         int p = 0;
-        if (proc){
-            p = Procedure.nbreTotalInstructionsProcedures;
+        if (meth){
+            p = Methode.nbreTotalInstructionsProceduresFonctions;
         }
         for (int i = p; i < programim.size(); i++){
             if (programim.get(i) instanceof Procedure){
                 programim.get(i).generateCode(counter,writer,false,loop,((Procedure) programim.get(i)).name,((Procedure) programim.get(i)).pointeurMemoire);
+            }
+            if (programim.get(i) instanceof Function){
+                programim.get(i).generateCode(counter,writer,false,loop,((Function) programim.get(i)).name,((Function) programim.get(i)).pointeurMemoire);
             }
             if ("+".equals(programim.get(i).getCourteSyntaxe())||"-".equals(programim.get(i).getCourteSyntaxe())||"<".equals(programim.get(i).getCourteSyntaxe())||">".equals(programim.get(i).getCourteSyntaxe())||",".equals(programim.get(i).getCourteSyntaxe())||".".equals(programim.get(i).getCourteSyntaxe())){
                 if (i == programim.size() - 1 || programim.get(i).getCourteSyntaxe() != programim.get(i+1).getCourteSyntaxe()){
