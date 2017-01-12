@@ -118,7 +118,7 @@ public abstract class Methode extends Computational {
         return instructions;
     }
     public String getCourteSyntaxe(){return("");}
-    public int generateCode(int counter, FileWriter writer, Boolean finish, Boolean loop){
+    public int generateCode(int counter, FileWriter writer, Boolean finish, int loop){
         return 0;
     }
 }

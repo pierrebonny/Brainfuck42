@@ -1,5 +1,8 @@
 package BrainFuck;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  * Created by Pierre on 13/12/2016.
  */
@@ -34,6 +37,13 @@ public  abstract class Function extends Methode {
             getProgramm().get(locationExcecutionPointer).rewrite();
         }
         locationExcecutionPointer=tmp;
+    }
+    public int generateCode(int counter, FileWriter writer, Boolean finish, int loop, String name, int ptr) throws IOException {
+        for(int i = 0;i<loop;i++){
+            writer.write("    ");
+        }
+            writer.write("       tab[pointeur] = " + name + "("+ptr+");\n");
+        return 0;
     }
 
 }

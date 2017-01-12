@@ -34,11 +34,11 @@ public abstract class Computational {
     public abstract String getCourteSyntaxe();
 
 
-    public int generateCode(int counter,FileWriter writer,Boolean finish,Boolean loop)throws IOException{
+    public int generateCode(int counter,FileWriter writer,Boolean finish,int loop)throws IOException{
         return 0;
     };
 
-    public int generateCode(int counter, FileWriter writer, Boolean finish, Boolean loop,String name,int pt)throws IOException{
+    public int generateCode(int counter, FileWriter writer, Boolean finish, int loop,String name,int pt)throws IOException{
         return 0;
     };
 

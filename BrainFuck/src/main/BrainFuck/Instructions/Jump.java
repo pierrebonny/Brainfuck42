@@ -32,7 +32,10 @@ public class Jump extends Loops {
         return couleur;
     }
 
-    public int generateCode(int counter, FileWriter writer,Boolean finish,Boolean loop) throws IOException {
+    public int generateCode(int counter, FileWriter writer,Boolean finish,int loop) throws IOException {
+        for(int i = 0;i<loop;i++){
+            writer.write("    ");
+        }
         writer.write("       while(tab[pointeur] != 0){\n");
         return 0;
     }

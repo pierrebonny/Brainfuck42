@@ -6,7 +6,6 @@ package BrainFuck;
 import org.junit.Test;
 import org.junit.Before;
 import java.io.*;
-import java.util.List;
 
 public class TestGenerateCode {
     private BFReader bfReader;
@@ -29,12 +28,14 @@ public class TestGenerateCode {
 
     @Test
     public void TestEmptyFileGenerate() throws IOException {
+        bfReader.read("empty.txt");
         generateCode.generateCode("empty.txt");
         Computational.getProgramm().clear();
     }
 
     @Test
     public void TestHelloWordFileGenerate()throws IOException {
+        bfReader.read("HelloWorld.txt");
         generateCode.generateCode("HelloWorld.txt");
         Computational.getProgramm().clear();
         Procedure.nbreTotalInstructionsProcedures = 0;

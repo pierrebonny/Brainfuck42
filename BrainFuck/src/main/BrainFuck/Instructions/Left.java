@@ -43,15 +43,13 @@ public class Left extends Instruction {
         return couleur;
     }
 
-    public int generateCode(int counter, FileWriter writer, Boolean finish,Boolean loop) throws IOException {
+    public int generateCode(int counter, FileWriter writer, Boolean finish,int loop) throws IOException {
         counter ++;
         if (finish){
-            if (loop){
-                writer.write("           pointeur -= " + counter + ";\n");
+            for(int i = 0;i<loop;i++){
+                writer.write("    ");
             }
-            else {
-                writer.write("       pointeur -= " + counter + ";\n");
-            }
+            writer.write("       pointeur -= " + counter + ";\n");
             counter = 0;
         }
         return counter;

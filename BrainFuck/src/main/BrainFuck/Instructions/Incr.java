@@ -44,15 +44,13 @@ public class Incr extends Instruction {
         return couleur;
     }
 
-    public int generateCode(int counter,FileWriter writer,Boolean finish,Boolean loop) throws IOException {
+    public int generateCode(int counter,FileWriter writer,Boolean finish,int loop) throws IOException {
         counter ++;
         if (finish){
-            if (loop){
-                writer.write("           tab[pointeur] += " + counter + ";\n");
+            for(int i = 0;i<loop;i++){
+                writer.write("    ");
             }
-            else {
-                writer.write("       tab[pointeur] += " + counter + ";\n");
-            }
+            writer.write("       tab[pointeur] += " + counter + ";\n");
             counter = 0;
         }
         return counter;

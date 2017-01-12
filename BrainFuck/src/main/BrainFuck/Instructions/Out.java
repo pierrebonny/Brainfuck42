@@ -93,17 +93,13 @@ public class Out extends Instruction {
         return couleur;
     }
 
-    public int generateCode(int counter,FileWriter writer,Boolean finish,Boolean loop) throws IOException {
-        if (loop){
-            writer.write("           if (fileOut == null){\n" +
-                    "               System.out.print((char)tab[pointeur]);\n           }\n" +
-                    "           else{\n               fileOut.write((char)tab[pointeur]);\n           }\n");
+    public int generateCode(int counter,FileWriter writer,Boolean finish,int loop) throws IOException {
+        for(int i = 0;i<loop;i++){
+            writer.write("    ");
         }
-        else{
-            writer.write("       if (fileOut == null){\n" +
+        writer.write("       if (fileOut == null){\n" +
                     "           System.out.print((char)tab[pointeur]);\n       }\n" +
                     "       else{\n           fileOut.write((char)tab[pointeur]);\n       }\n");
-        }
         return 0;
     }
 

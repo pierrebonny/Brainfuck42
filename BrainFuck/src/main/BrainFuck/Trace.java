@@ -36,7 +36,6 @@ public class Trace {
         contenuFichierLog+="Exec pointer :" + Metrics.getExecMove() + "		Location exec  "+(Instruction.locationExcecutionPointer+1)+	"	Position M:" + memory.getPosition() + "		Value M :" + memory.getMemory()+"\n";
     }
 
-    public String getFile(){ return file;}
     public String getContenuFichierLog(){ return contenuFichierLog;}
     public static void setFile(String newfile){
         int position=newfile.lastIndexOf('.');

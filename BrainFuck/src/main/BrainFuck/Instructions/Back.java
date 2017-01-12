@@ -41,7 +41,10 @@ public class Back extends Loops {
         super.execute();
     }
 
-    public int generateCode(int counter, FileWriter writer,Boolean finish,Boolean loop) throws IOException {
+    public int generateCode(int counter, FileWriter writer,Boolean finish,int loop) throws IOException {
+        for(int i = 0;i<loop-1;i++){
+            writer.write("    ");
+        }
         writer.write("       }\n");
         return 0;
     }

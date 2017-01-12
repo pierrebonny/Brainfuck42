@@ -46,14 +46,11 @@ public class Procedure extends Methode{
         return name;
     }
 
-    public int generateCode(int counter, FileWriter writer, Boolean finish, Boolean loop,String name,int ptr) throws IOException {
-        if (loop){
-            writer.write("           " + name + "("+ptr+");\n");
+    public int generateCode(int counter, FileWriter writer, Boolean finish, int loop,String name,int ptr) throws IOException {
+        for(int i = 0;i<loop;i++){
+            writer.write("    ");
         }
-        else {
-
-            writer.write("       " + name + "("+ptr+");\n");
-        }
+        writer.write("       " + name + "("+ptr+");\n");
         return 0;
     }
 }

@@ -19,16 +19,16 @@ public class GenerateCode {
     private List<Computational> programm;
     private File generatedFile;
     private String namef;
+    public static boolean b = false;
 
     public GenerateCode(BFReader bfReader){
         this.bfReader = bfReader;
     }
 
-    public void generateCode(String namefile) throws IOException {
+    protected void generateCode(String namefile) throws IOException {
 
         namef = namefile.split("\\.")[0];
         generatedFile = new File(namef + ".java");
-        bfReader.read(namefile);
         generatedFile.createNewFile();
         FileWriter writer = new FileWriter(generatedFile);
         init(writer);
@@ -38,7 +38,7 @@ public class GenerateCode {
         writer.close();
     }
 
-    public void initProcedures(FileWriter writer) throws IOException {
+    private void initProcedures(FileWriter writer) throws IOException {
         List <Procedure> proced = new ArrayList<Procedure>(Interpreter.procedures.values());
         int k = proced.size();
         for (int l = 0; l <k;l++){
@@ -47,8 +47,17 @@ public class GenerateCode {
             writer.write("   }\n\n");
         }
     }
+    /*private void initFunctions(FileWriter writer) throws IOException {
+        //List <Function> proced = new ArrayList<Function>(Interpreter.functions.values());
+        //int k = functions.size();
+        for (int l = 0; l <k;l++){
+            writer.write("   private static int " + function.get(l).getName() + "(int p){\n");
+            decode(writer,function.get(l).instructions,false);
+            writer.write("    return tab[pointeur];\n   }\n\n");
+        }
+    }*/
 
-    public void init(FileWriter writer) throws IOException {
+    private void init(FileWriter writer) throws IOException {
         generatedFile.createNewFile();
         writer.write("import java.io.IOException;\nimport java.io.BufferedWriter;\n" +"import java.io.File;\n" +"import java.io.FileWriter;\npublic class "+namef+"{\n\n   private static int[] tab = new int[30000];\n   private static int pointeur = 0;\n   private static File fileIn;\n   private static BufferedWriter fileOut;\n\n");
         initProcedures(writer);
@@ -57,9 +66,9 @@ public class GenerateCode {
         writer.write("            else if (args[i].equals(\"-o\")){\n                fileOut = new BufferedWriter(new FileWriter(args[i+1]));\n            }\n            i++;\n       }\n");
     }
 
-    public void decode(FileWriter writer,List<Computational> programim,Boolean proc) throws IOException {
+    private void decode(FileWriter writer,List<Computational> programim,Boolean proc) throws IOException {
         int counter = 0;
-        Boolean loop = false;
+        int loop = 0;
         int p = 0;
         if (proc){
             p = Procedure.nbreTotalInstructionsProcedures;
@@ -78,11 +87,11 @@ public class GenerateCode {
             }
             else if(programim.get(i).getCourteSyntaxe() == "["){
                 programim.get(i).generateCode(counter,writer,false,loop);
-                loop = true;
+                loop++;
             }
             else if(programim.get(i).getCourteSyntaxe() == "]"){
                 programim.get(i).generateCode(counter,writer,false,loop);
-                loop = false;
+                loop--;
             }
 
         }

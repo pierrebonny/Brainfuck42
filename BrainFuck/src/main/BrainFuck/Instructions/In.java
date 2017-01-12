@@ -87,17 +87,13 @@ public class In extends Instruction {
         super.execute();
     }
 
-    public int generateCode(int counter, FileWriter writer,Boolean finish,Boolean loop) throws IOException {
-        if (loop){
-            writer.write("           if (fileIn == null || val = fileIn.read() == -1){\n" +
-                    "               val = sc.nextLine().charAt(0);\n           }\n" +
-                    "           tab[pointeur] = val;\n");
+    public int generateCode(int counter, FileWriter writer,Boolean finish,int loop) throws IOException {
+        for(int i = 0;i<loop;i++){
+            writer.write("    ");
         }
-        else {
-            writer.write("       if (fileIn == null || val = fileIn.read() == -1){\n" +
+        writer.write("       if (fileIn == null || val = fileIn.read() == -1){\n" +
                     "           val = sc.nextLine().charAt(0);\n       }\n" +
                     "       tab[pointeur] = val;\n");
-        }
         return 0;
     }
 
