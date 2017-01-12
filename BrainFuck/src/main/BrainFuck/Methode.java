@@ -34,8 +34,8 @@ public abstract class Methode extends Computational {
     //Nombre total de procédure utilisée dans le programme
     public static int nbreTotalProcUtilise=0;
 
-    //Nombre total d'instructions DEFINISANT  toutes les procédures : variable servant à initialiser le pointeur d'execution lors de l'execution de la liste d'intruction du programme
-    public static int nbreTotalInstructionsProcedures;
+    //Nombre total d'instructions DEFINISANT  toutes les procédures  et fonctions: variable servant à initialiser le pointeur d'execution lors de l'execution de la liste d'intruction du programme
+    public static int nbreTotalInstructionsProceduresFonctions;
 
 
 
@@ -72,25 +72,26 @@ public abstract class Methode extends Computational {
         this.positionDebListeProg=getProgramm().size();
         this.getProgramm().addAll(instructions);
         this.positionFinListeProg=getProgramm().size()-1;
-        this.nbreTotalInstructionsProcedures+=instructions.size();
+        this.nbreTotalInstructionsProceduresFonctions+=instructions.size();
         this.nbreInstrProc=instructions.size();
     }
 
 
 
-    public Methode(Memory memory,Procedure procedure,int pointeurMémoire,String name){
+    public Methode(Memory memory,Methode methode,int pointeurMémoire,String name){
         super(memory);
-        this.nbRepetition=procedure.nbRepetition;
+        this.nbRepetition = methode.nbRepetition;
         this.name = name;
-        this.chaineInstructions=procedure.chaineInstructions;
-        this.positionDebListeProg=procedure.positionDebListeProg;
-        this.positionFinListeProg=procedure.positionFinListeProg;
-        this.nbreInstrProc=procedure.nbreInstrProc;
-        this.pointeurMemoire=pointeurMémoire;
-        this.instructions=procedure.instructions;
-        procedure.nbUtilisation++;
+        this.chaineInstructions = methode.chaineInstructions;
+        this.positionDebListeProg = methode.positionDebListeProg;
+        this.positionFinListeProg = methode.positionFinListeProg;
+        this.nbreInstrProc = methode.nbreInstrProc;
+        this.pointeurMemoire = pointeurMémoire;
+        this.instructions = methode.instructions;
+        methode.nbUtilisation++;
         nbreTotalProcUtilise++;
     }
+
 
 
     public abstract void execute();
@@ -118,7 +119,7 @@ public abstract class Methode extends Computational {
         return instructions;
     }
     public String getCourteSyntaxe(){return("");}
-    public int generateCode(int counter, FileWriter writer, Boolean finish, int loop){
+    public int generateCode(int counter, FileWriter writer, Boolean finish, Boolean loop){
         return 0;
     }
 }

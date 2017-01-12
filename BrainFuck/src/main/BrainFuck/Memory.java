@@ -80,9 +80,8 @@ public class Memory {
     public void updateMax(){
         if(position>max) max=position;
     }
+
+    public void setMemoryIndex(int index,int value){
+        memoryCells[index]=value;
+    }
 }
-
-
-
-
-

@@ -101,6 +101,9 @@ public class BFReader {
             } else if (line.charAt(0) == '$'){
                 interpreter.createProcedure(line);
 
+            } else if (line.charAt(0) =='~') {
+                interpreter.createFunction(line);
+
             }else {
                 interpreter.saveInstructions(line);
             }
@@ -129,4 +132,3 @@ public class BFReader {
 
 
 }
-

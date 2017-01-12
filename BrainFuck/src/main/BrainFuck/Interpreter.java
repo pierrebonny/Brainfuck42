@@ -2,11 +2,11 @@ package BrainFuck;
 
 
 
-import BrainFuck.Instructions.*;
-import BrainFuck.Exception.*;
+        import BrainFuck.Instructions.*;
+        import BrainFuck.Exception.*;
 
-import java.util.HashMap;
-import java.util.Map;
+        import java.util.HashMap;
+        import java.util.Map;
 
 /**
  * Created by user on 12/10/2016.
@@ -25,6 +25,7 @@ public class Interpreter{
     protected static Map<Commandes, Instruction> interprete = new HashMap<>();
     protected static Map<String,Macro> macros= new HashMap<>();
     protected  static Map<String,Procedure> procedures= new HashMap<>();
+    protected  static Map<String,Function> functions= new HashMap<>();
 
 
     public Interpreter(Output output,Memory memory){
@@ -85,6 +86,10 @@ public class Interpreter{
                 return;
 
             }
+            if(functions.get(line)!=null){
+                Computational.getProgramm().add(functions.get(line));
+                return;
+            }
             String [] macro_procedure_Para=line.split(" ");
             if(macros.get(macro_procedure_Para[0]) != null){
                 macros.get(macro_procedure_Para[0]).addInstructions(Integer.parseInt(macro_procedure_Para[1]));
@@ -92,24 +97,29 @@ public class Interpreter{
             }
             if(procedures.get(macro_procedure_Para[0]) != null){
                 Procedure procedure = procedures.get(macro_procedure_Para[0]);
-                Computational.getProgramm().add(new Procedure(this.memory,procedure,Integer.parseInt(macro_procedure_Para[1]),procedure.getName()));
+                Computational.getProgramm().add(new Procedure(this.memory,procedure,Integer.parseInt(macro_procedure_Para[1]),procedure.name));
 
                 return;
             }
-
-            }
-            String [] macro_procedure_Para=line.split(" ");
-            if(macros.get(macro_procedure_Para[0]) != null){
-                macros.get(macro_procedure_Para[0]).addInstructions(Integer.parseInt(macro_procedure_Para[1]));
-                return;
-            }
-            if(procedures.get(macro_procedure_Para[0]) != null){
-                Procedure procedure =procedures.get(macro_procedure_Para[0]);
-                Computational.getProgramm().add(new Procedure(this.memory,procedure,Integer.parseInt(macro_procedure_Para[1]),procedure.getName()));
+            if(functions.get(macro_procedure_Para[0]) != null){
+                Function function = functions.get(macro_procedure_Para[0]);
+                Computational.getProgramm().add(new Function(this.memory,function,Integer.parseInt(macro_procedure_Para[1]),function.name));
                 return;
             }
 
         }
+        String [] macro_procedure_Para=line.split(" ");
+        if(macros.get(macro_procedure_Para[0]) != null){
+            macros.get(macro_procedure_Para[0]).addInstructions(Integer.parseInt(macro_procedure_Para[1]));
+            return;
+        }
+        if(procedures.get(macro_procedure_Para[0]) != null){
+            Procedure procedure =procedures.get(macro_procedure_Para[0]);
+            Computational.getProgramm().add(new Procedure(this.memory,procedure,Integer.parseInt(macro_procedure_Para[1]),procedure.name));
+            return;
+        }
+
+    }
 
     public void createMacro(String line){
         String [] macroDef=line.split(" ");
@@ -120,9 +130,14 @@ public class Interpreter{
         procedures.put(procedureDef[1],new Procedure(this.memory,Integer.parseInt(procedureDef[2]),procedureDef[3],procedureDef[1]));
     }
 
+    public void createFunction(String line){
+        String [] functionDef=line.split(" ");
+        functions.put(functionDef[1],new Function(this.memory,Integer.parseInt(functionDef[2]),functionDef[3],functionDef[1]));
+    }
+
 
     public void interprete() throws OutofBoundException,OverFlowException,UnderFlowException{
-        for (Computational.locationExcecutionPointer = Procedure.nbreTotalInstructionsProcedures; Computational.locationExcecutionPointer < Computational.getProgramm().size(); Computational.locationExcecutionPointer++) {
+        for (Computational.locationExcecutionPointer = Methode.nbreTotalInstructionsProceduresFonctions; Computational.locationExcecutionPointer < Computational.getProgramm().size(); Computational.locationExcecutionPointer++) {
             Computational.getProgramm().get(Computational.locationExcecutionPointer).execute();
         }
         Metrics.setExecTime(System.currentTimeMillis()-Metrics.getExecTime());
@@ -134,7 +149,7 @@ public class Interpreter{
     }
 
     public void rewrite(){
-        for(int i = Procedure.nbreTotalInstructionsProcedures; i< Computational.getProgramm().size(); i++)
+        for(int i = Methode.nbreTotalInstructionsProceduresFonctions; i< Computational.getProgramm().size(); i++)
             Computational.getProgramm().get(i).rewrite();
     }
 
@@ -150,7 +165,6 @@ public class Interpreter{
     }
 
 }
-
 
 
 

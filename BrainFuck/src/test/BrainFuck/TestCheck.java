@@ -39,12 +39,12 @@ public class TestCheck {
             String toto = "[[]";
             char buffer[] = new char[toto.length()];
             toto.getChars(0, toto.length(), buffer, 0);
-            FileWriter titi = new FileWriter("Hello1.txt");
+            FileWriter titi = new FileWriter("function.txt");
             for (int i = 0; i < buffer.length; i += 1) {
                 titi.write(buffer[i]);
             }
             titi.close();
-            check.check("Hello1.txt");
+            check.check("function.txt");
             Computational.getProgramm().clear();
 
         }

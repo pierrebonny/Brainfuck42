@@ -1,36 +1,63 @@
 package BrainFuck;
 
+import BrainFuck.Exception.OutofBoundException;
+import BrainFuck.Exception.SegmentationException;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
 /**
  * Created by Pierre on 13/12/2016.
  */
-public  abstract class Function extends Methode {
+public   class Function extends Methode {
+
+
+    //Nombre total d'instructions DEFINISANT  toutes les  fonctions: variable servant à initialiser le pointeur d'execution lors de l'execution de la liste d'intruction du programme
+    public static int nbreTotalInstructionsFonctions;
+
 
     public Function(Memory memory,int nbRepetition,String chaine,String name){
         super(memory,nbRepetition,chaine,name);
+        nbreTotalInstructionsFonctions+=this.instructions.size();
     }
 
 
-    public Function(Memory memory,Procedure procedure,int pointeurMémoire,String name){
-        super(memory,procedure,pointeurMémoire,name);
+    public Function(Memory memory,Function function,int pointeurMémoire,String name){
+        super(memory,function,pointeurMémoire,name);
     }
 
     public  void execute(){
-        int tmp=locationExcecutionPointer;
-        int currentMemory=memory.getPosition();
-        if(pointeurMemoire!=-1){
-            memory.setPosition(pointeurMemoire-1);
+        int tmp=Computational.locationExcecutionPointer;
+
+        int savePositionMemory=memory.getPosition();
+        int tmpMax=memory.getMax();
+
+
+        memory.setPosition(tmpMax+1);
+
+        try {
+            for (Computational.locationExcecutionPointer = this.positionDebListeProg; locationExcecutionPointer <= this.positionFinListeProg; locationExcecutionPointer++) {
+                getProgramm().get(locationExcecutionPointer).execute();
+                memory.updateMax();
+            }
+        }catch (OutofBoundException e){
+            throw new SegmentationException("Segmentation Error",10);
         }
-        for(locationExcecutionPointer=positionDebListeProg;locationExcecutionPointer<=positionFinListeProg;locationExcecutionPointer++){
-            getProgramm().get(locationExcecutionPointer).execute();
+        if(this.pointeurMemoire!=-1) {
+            memory.setMemoryIndex(savePositionMemory, memory.getMemory() + memory.getMemoryIndex(pointeurMemoire));
+        } else {
+            memory.setMemoryIndex(savePositionMemory, memory.getMemory());
         }
-        locationExcecutionPointer=tmp;
-        if(pointeurMemoire!=-1)
-            memory.setPosition(currentMemory);
-        memory.updateMax();
+
+
+        for(int i=tmpMax+1;i<=memory.getMax();i++)
+            memory.setMemoryIndex(i,0);
+        memory.setMax(tmpMax);
+        Computational.locationExcecutionPointer=tmp;
+        memory.setPosition(savePositionMemory);
     }
+
+
     public  void rewrite() {
         int tmp=locationExcecutionPointer;
         for(locationExcecutionPointer=positionDebListeProg;locationExcecutionPointer<=positionFinListeProg;locationExcecutionPointer++){
@@ -38,6 +65,8 @@ public  abstract class Function extends Methode {
         }
         locationExcecutionPointer=tmp;
     }
+
+
     public int generateCode(int counter, FileWriter writer, Boolean finish, int loop, String name, int ptr) throws IOException {
         for(int i = 0;i<loop;i++){
             writer.write("    ");

@@ -10,9 +10,13 @@ import java.io.IOException;
 
 public class Procedure extends Methode{
 
+    //Nombre total d'instructions DEFINISANT  toutes les procédures  : variable servant à initialiser le pointeur d'execution lors de l'execution de la liste d'intruction du programme
+    public static int nbreTotalInstructionsProcedures;
+
 
     public Procedure(Memory memory,int nbRepetition,String chaine,String name){
         super(memory,nbRepetition,chaine,name);
+        nbreTotalInstructionsProcedures+=this.instructions.size();
     }
 
 
@@ -42,11 +46,8 @@ public class Procedure extends Methode{
         locationExcecutionPointer=tmp;
     }
 
-    public String getName(){
-        return name;
-    }
 
-    public int generateCode(int counter, FileWriter writer, Boolean finish, int loop,String name,int ptr) throws IOException {
+    public int generateCode(int counter, FileWriter writer, Boolean finish, int loop, String name, int ptr) throws IOException {
         for(int i = 0;i<loop;i++){
             writer.write("    ");
         }

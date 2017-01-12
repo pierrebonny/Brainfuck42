@@ -42,25 +42,26 @@ public class GenerateCode {
         List <Procedure> proced = new ArrayList<Procedure>(Interpreter.procedures.values());
         int k = proced.size();
         for (int l = 0; l <k;l++){
-            writer.write("   private static void " + proced.get(l).getName() + "(int p){\n");
+            writer.write("   private static void " + proced.get(l).name + "(int p){\n");
             decode(writer,proced.get(l).instructions,false);
             writer.write("   }\n\n");
         }
     }
-    /*private void initFunctions(FileWriter writer) throws IOException {
-        //List <Function> proced = new ArrayList<Function>(Interpreter.functions.values());
-        //int k = functions.size();
+    private void initFunctions(FileWriter writer) throws IOException {
+        List <Function> functions = new ArrayList<Function>(Interpreter.functions.values());
+        int k = functions.size();
         for (int l = 0; l <k;l++){
-            writer.write("   private static int " + function.get(l).getName() + "(int p){\n");
-            decode(writer,function.get(l).instructions,false);
+            writer.write("   private static int " + functions.get(l).name + "(int p){\n");
+            decode(writer,functions.get(l).instructions,false);
             writer.write("    return tab[pointeur];\n   }\n\n");
         }
-    }*/
+    }
 
     private void init(FileWriter writer) throws IOException {
         generatedFile.createNewFile();
         writer.write("import java.io.IOException;\nimport java.io.BufferedWriter;\n" +"import java.io.File;\n" +"import java.io.FileWriter;\npublic class "+namef+"{\n\n   private static int[] tab = new int[30000];\n   private static int pointeur = 0;\n   private static File fileIn;\n   private static BufferedWriter fileOut;\n\n");
         initProcedures(writer);
+        initFunctions(writer);
         writer.write("   public static void main(String[] args) throws IOException{\n       int nbArgs = args.length;\n       int i = 0;\n");
         writer.write("       while (i <= nbArgs - 1) {\n            if (args[i].equals(\"-i\")) {\n                fileIn = new File(args[i+1]);\n            }\n");
         writer.write("            else if (args[i].equals(\"-o\")){\n                fileOut = new BufferedWriter(new FileWriter(args[i+1]));\n            }\n            i++;\n       }\n");
@@ -75,7 +76,7 @@ public class GenerateCode {
         }
         for (int i = p; i < programim.size(); i++){
             if (programim.get(i) instanceof Procedure){
-                programim.get(i).generateCode(counter,writer,false,loop,((Procedure) programim.get(i)).getName(),((Procedure) programim.get(i)).pointeurMemoire);
+                programim.get(i).generateCode(counter,writer,false,loop,((Procedure) programim.get(i)).name,((Procedure) programim.get(i)).pointeurMemoire);
             }
             if ("+".equals(programim.get(i).getCourteSyntaxe())||"-".equals(programim.get(i).getCourteSyntaxe())||"<".equals(programim.get(i).getCourteSyntaxe())||">".equals(programim.get(i).getCourteSyntaxe())||",".equals(programim.get(i).getCourteSyntaxe())||".".equals(programim.get(i).getCourteSyntaxe())){
                 if (i == programim.size() - 1 || programim.get(i).getCourteSyntaxe() != programim.get(i+1).getCourteSyntaxe()){

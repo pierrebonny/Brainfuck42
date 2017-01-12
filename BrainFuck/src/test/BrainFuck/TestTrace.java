@@ -16,14 +16,15 @@ public class TestTrace {
     public void init(){
         memory = new Memory();
         trace = new Trace(memory);
-        trace.setFile("hello1.txt");
+        trace.setFile("HelloWorld.txt");
     }
 
     @Test
     public void testTrace(){
         assertNotEquals(Trace.file,null);
+        trace.updateFichierLog();
         trace.trace();
-        assertEquals(Trace.contenuFichierLog,trace.);
+        //assertEquals(Trace.contenuFichierLog,Trace.);
 
     }
 }

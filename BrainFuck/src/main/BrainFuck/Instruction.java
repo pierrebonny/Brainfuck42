@@ -31,7 +31,7 @@ public abstract class Instruction extends Computational {
 
 	public void execute() {
 		Metrics.incrExecMove();
-		if (trace.getFile() != null)
+		if (trace.file != null)
 			trace.updateFichierLog();
 	}
 
