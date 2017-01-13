@@ -77,7 +77,7 @@ public class Out extends Instruction {
                 fichierOut.write(String.valueOf(memory));
             }
             else{
-                System.out.println(memory);
+                System.out.print(memory);
             }
         }
         catch(IOException e){
