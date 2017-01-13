@@ -1,8 +1,1 @@
-~fct test 1 >>>>>++++
-~fct test2 1 >>>>>>++
-$proc procIncr 2 ++++
->>+
-test
->+++>>
-procIncr
-test2 2
+[[]
