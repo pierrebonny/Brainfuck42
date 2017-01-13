@@ -21,7 +21,7 @@ public class TestTrace {
 
     @Test
     public void testTrace(){
-        assertNotEquals(Trace.file,null);
+        assertNotEquals(Trace.getFile(),null);
         trace.updateFichierLog();
         trace.trace();
         //assertEquals(Trace.contenuFichierLog,Trace.);

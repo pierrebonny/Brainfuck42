@@ -11,8 +11,8 @@ import java.io.IOException;
 public class Trace {
 
     private Memory memory;
-    public static String contenuFichierLog="";
-    public static String file=null;
+    private static String contenuFichierLog="";
+    private static String file=null;
 
     public Trace(Memory memory){
         this.memory=memory;
@@ -46,4 +46,5 @@ public class Trace {
     public void updateFichierLogException(String s){
         contenuFichierLog+=s;
     }
+    public static String getFile(){ return file;}
 }

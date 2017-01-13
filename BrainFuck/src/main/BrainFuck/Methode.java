@@ -9,40 +9,36 @@ import java.util.ArrayList;
  */
 public abstract class Methode extends Computational {
 
+    //Nom de la méthode
+    protected String name;
 
-    //Attribut propre à la à l'objet :
-    public int nbRepetition;
-    public String chaineInstructions;
+    //Nombre de fois que l'on repete la chaine répresntant la méthode lors de la definitions :
+    protected int nbRepetition;
 
-    //Position/Indice du début des instructions de la procédure dans la liste des Instructions du programme
-    public int positionDebListeProg;
+    //String representant les instructions passées lors de la création
+    protected String chaineInstructions;
 
-    //Position/Indice de fin des instructions de la procédure dans la liste des Instructions du programme
-    public int positionFinListeProg;
+    //Position/Indice du début des instructions de la procédure dans la liste des BrainFuck.Instructions du programme
+    protected int positionDebListeProg;
 
-    //Nombre de fois que la procédure est utilisée
-    public int nbUtilisation=0;
-    //Nombre d'instructions de la procédure
-    public int nbreInstrProc;
+    //Position/Indice de fin des instructions de la procédure dans la liste des BrainFuck.Instructions du programme
+    protected int positionFinListeProg;
+
 
     //Pointeur sur la cellule mémoire parametre, -1 si cellule mémoire par défaut
-    public int pointeurMemoire=-1;
-
-
-    //Attributs global :
-
-    //Nombre total de procédure utilisée dans le programme
-    public static int nbreTotalProcUtilise=0;
-
-    //Nombre total d'instructions DEFINISANT  toutes les procédures  et fonctions: variable servant à initialiser le pointeur d'execution lors de l'execution de la liste d'intruction du programme
-    public static int nbreTotalInstructionsProceduresFonctions;
-
-
+    protected int pointeurMemoire=-1;
 
     //Liste d'instructions de la procédure
-    public ArrayList<Computational> instructions=new ArrayList<>();
+    protected ArrayList<Computational> instructions=new ArrayList<>();
 
-    public String name;
+
+    //Attribut commun pour toutes les objets functions, procedures :
+
+    //Nombre total d'instructions DEFINISANT  toutes les procédures  et fonctions: variable servant à initialiser le pointeur d'execution lors de l'execution de la liste d'intruction du programme
+    protected static int nbreTotalInstructionsProceduresFonctions;
+
+
+
 
     public Methode(Memory memory,int nbRepetition,String chaine,String name) {
         super(memory);
@@ -73,7 +69,7 @@ public abstract class Methode extends Computational {
         this.getProgramm().addAll(instructions);
         this.positionFinListeProg=getProgramm().size()-1;
         this.nbreTotalInstructionsProceduresFonctions+=instructions.size();
-        this.nbreInstrProc=instructions.size();
+
     }
 
 
@@ -85,11 +81,8 @@ public abstract class Methode extends Computational {
         this.chaineInstructions = methode.chaineInstructions;
         this.positionDebListeProg = methode.positionDebListeProg;
         this.positionFinListeProg = methode.positionFinListeProg;
-        this.nbreInstrProc = methode.nbreInstrProc;
         this.pointeurMemoire = pointeurMémoire;
         this.instructions = methode.instructions;
-        methode.nbUtilisation++;
-        nbreTotalProcUtilise++;
     }
 
 
@@ -98,23 +91,14 @@ public abstract class Methode extends Computational {
 
     public abstract void rewrite();
 
-    public  Color translate() { /*//PB AVEC CETTE METHODE
-        int tmp = locationExcecutionPointer;
-        for (int locationExcecutionPointer = positionDebListeProg; locationExcecutionPointer <= positionFinListeProg; locationExcecutionPointer++)
-            return getProgramm().get(locationExcecutionPointer).translate();
-            */
-        return new Color(4);
-    }
+
 
     public  void setFichier(String s){}
     public  void closeFichier(){}
 
-    public int nbreInstrInProg(){
-        return nbreInstrProc*nbUtilisation;
-    }
-    public int getNbreInstrProc(){ return nbreInstrProc;}
-    public int getNbUtilisation() { return nbUtilisation;}
-    public void incrNbUtilisation(){ nbUtilisation++;}
+
+
+
     public ArrayList<Computational> getListeInst(){
         return instructions;
     }

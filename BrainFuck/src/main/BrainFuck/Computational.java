@@ -14,7 +14,7 @@ import java.util.List;
 public abstract class Computational {
 
 
-    public static int locationExcecutionPointer;
+    protected static int locationExcecutionPointer;
     protected Memory memory;
     protected Trace trace;
     protected String courteSyntaxe;
@@ -29,9 +29,7 @@ public abstract class Computational {
     public abstract void execute();
     public abstract void rewrite();
 
-    public abstract Color translate();
 
-    public abstract String getCourteSyntaxe();
 
 
     public int generateCode(int counter,FileWriter writer,Boolean finish,int loop)throws IOException{

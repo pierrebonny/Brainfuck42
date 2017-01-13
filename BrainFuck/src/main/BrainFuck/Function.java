@@ -9,6 +9,9 @@ import java.io.IOException;
 /**
  * Created by Pierre on 13/12/2016.
  */
+
+
+
 public   class Function extends Methode {
 
 
@@ -18,7 +21,6 @@ public   class Function extends Methode {
 
     public Function(Memory memory,int nbRepetition,String chaine,String name){
         super(memory,nbRepetition,chaine,name);
-        nbreTotalInstructionsFonctions+=this.instructions.size();
     }
 
 
@@ -27,7 +29,7 @@ public   class Function extends Methode {
     }
 
     public  void execute(){
-        int tmp=Computational.locationExcecutionPointer;
+        int tmp= locationExcecutionPointer;
 
         int savePositionMemory=memory.getPosition();
         int tmpMax=memory.getMax();
@@ -36,7 +38,7 @@ public   class Function extends Methode {
         memory.setPosition(tmpMax+1);
 
         try {
-            for (Computational.locationExcecutionPointer = this.positionDebListeProg; locationExcecutionPointer <= this.positionFinListeProg; locationExcecutionPointer++) {
+            for (locationExcecutionPointer = this.positionDebListeProg; locationExcecutionPointer <= this.positionFinListeProg; locationExcecutionPointer++) {
                 getProgramm().get(locationExcecutionPointer).execute();
                 memory.updateMax();
             }
@@ -53,7 +55,7 @@ public   class Function extends Methode {
         for(int i=tmpMax+1;i<=memory.getMax();i++)
             memory.setMemoryIndex(i,0);
         memory.setMax(tmpMax);
-        Computational.locationExcecutionPointer=tmp;
+        locationExcecutionPointer =tmp;
         memory.setPosition(savePositionMemory);
     }
 
@@ -71,7 +73,7 @@ public   class Function extends Methode {
         for(int i = 0;i<loop;i++){
             writer.write("    ");
         }
-            writer.write("       tab[pointeur] = " + name + "("+ptr+");\n");
+        writer.write("       tab[pointeur] = " + name + "("+ptr+");\n");
         return 0;
     }
 

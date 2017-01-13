@@ -76,8 +76,6 @@ public class Interpreter{
                 }
             }
             if (procedures.get(line)!=null){
-                Procedure.nbreTotalProcUtilise++;
-                procedures.get(line).incrNbUtilisation();
                 Computational.getProgramm().add(procedures.get(line));
                 return;
             }

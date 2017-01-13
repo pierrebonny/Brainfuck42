@@ -19,15 +19,6 @@ public class Translatetoimage {
 
 
 	public void translate(String namefile) throws IOException {
-		/*
-		int s=0;
-		Set<String> keys=Interpreter.procedures.keySet();
-		for(String nameProcedure :keys){
-			s+=Interpreter.procedures.get(nameProcedure).nbreInstrInProg();
-		}
-		s=s- Procedure.nbreTotalProcUtilise;
-    	int taille = Computational.getProgramm().size()+s-Procedure.nbreTotalInstructionsProcedures;
-    	*/
 		String namef;
 		ArrayList<Instruction> programm = this.createListeOfInstructions();
 		int taille = programm.size();
@@ -39,8 +30,6 @@ public class Translatetoimage {
 			buffImg = new BufferedImage(n, n, BufferedImage.TYPE_INT_RGB);
 			Graphics2D g2d = (Graphics2D) buffImg.getGraphics();
 			for (int i = 0; i < taille; i++) {
-				//int j = Procedure.nbreTotalInstructionsProcedures;
-				//Computational.getProgramm().get(j);
 				g2d.setColor(programm.get(i).translate());
 				g2d.fillRect(x, y, l, L);
 				x += 3;

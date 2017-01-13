@@ -6,6 +6,7 @@ import java.io.IOException;
 
 /**
  * Created by Pierre on 12/12/2016.
+ *
  */
 
 public class Procedure extends Methode{
@@ -16,7 +17,6 @@ public class Procedure extends Methode{
 
     public Procedure(Memory memory,int nbRepetition,String chaine,String name){
         super(memory,nbRepetition,chaine,name);
-        nbreTotalInstructionsProcedures+=this.instructions.size();
     }
 
 

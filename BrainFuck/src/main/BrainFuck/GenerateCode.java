@@ -81,19 +81,20 @@ public class GenerateCode {
             if (programim.get(i) instanceof Function){
                 programim.get(i).generateCode(counter,writer,false,loop,((Function) programim.get(i)).name,((Function) programim.get(i)).pointeurMemoire);
             }
-            if ("+".equals(programim.get(i).getCourteSyntaxe())||"-".equals(programim.get(i).getCourteSyntaxe())||"<".equals(programim.get(i).getCourteSyntaxe())||">".equals(programim.get(i).getCourteSyntaxe())||",".equals(programim.get(i).getCourteSyntaxe())||".".equals(programim.get(i).getCourteSyntaxe())){
-                if (i == programim.size() - 1 || programim.get(i).getCourteSyntaxe() != programim.get(i+1).getCourteSyntaxe()){
+
+            if ("+".equals(((Instruction)programim.get(i)).getCourteSyntaxe())||"-".equals(((Instruction)programim.get(i)).getCourteSyntaxe())||"<".equals(((Instruction)programim.get(i)).getCourteSyntaxe())||">".equals(((Instruction)programim.get(i)).getCourteSyntaxe())||",".equals(((Instruction)programim.get(i)).getCourteSyntaxe())||".".equals(((Instruction)programim.get(i)).getCourteSyntaxe())){
+                if (i == programim.size() - 1 || ((Instruction)programim.get(i)).getCourteSyntaxe() != ((Instruction)programim.get(i+1)).getCourteSyntaxe()){
                     counter = programim.get(i).generateCode(counter,writer,true,loop);
                 }
                 else{
                     counter = programim.get(i).generateCode(counter,writer,false,loop);
                 }
             }
-            else if(programim.get(i).getCourteSyntaxe() == "["){
+            else if(((Instruction)programim.get(i)).getCourteSyntaxe() == "["){
                 programim.get(i).generateCode(counter,writer,false,loop);
                 loop++;
             }
-            else if(programim.get(i).getCourteSyntaxe() == "]"){
+            else if(((Instruction)programim.get(i)).getCourteSyntaxe() == "]"){
                 programim.get(i).generateCode(counter,writer,false,loop);
                 loop--;
             }

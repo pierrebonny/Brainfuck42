@@ -7,10 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 import static org.junit.Assert.*;
 
@@ -23,10 +20,12 @@ public class TestOut {
     private Incr incr;
 
     @Before
-    public void init(){
+    public void init() throws IOException {
+        File file = new File("testOut.txt");
+        file.createNewFile();
         memory = new Memory();
         incr= new Incr(memory);
-        out = new Out(memory,"tests/testOut.txt");
+        out = new Out(memory,"testOut.txt");
     }
 
     @After
@@ -41,11 +40,10 @@ public class TestOut {
             incr.execute();
             i++;
         }
-        System.out.println(memory.getMemory());
         //System.out.println(out.fichierOu);
         out.execute();
         out.closeFichier();
-        FileReader f= new FileReader(new File("tests/testOut.txt"));
+        FileReader f= new FileReader(new File("testOut.txt"));
         try {
             assertEquals(f.read(), 'a');
             f.close();

@@ -31,15 +31,16 @@ public abstract class Instruction extends Computational {
 
 	public void execute() {
 		Metrics.incrExecMove();
-		if (trace.file != null)
+		if (trace.getFile() != null)
 			trace.updateFichierLog();
 	}
+	public abstract Color translate();
+
 
 
 	public String getCourteSyntaxe() {
 		return courteSyntaxe;
 	}
-	public abstract Color translate();
 	public abstract void setFichier(String s);
 	public abstract void closeFichier();
 

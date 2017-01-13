@@ -7,6 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import static org.junit.Assert.*;
 
@@ -18,9 +21,14 @@ public class TestIn {
     private In in;
 
     @Before
-    public void init(){
+    public void init() throws IOException {
         memory = new Memory();
-        in = new In(memory,"tests/testIn.txt");
+        File file = new File("testIn.txt");
+        FileWriter writer = new FileWriter(file);
+        writer.write("2");
+        writer.close();
+        file.createNewFile();
+        in = new In(memory,"testIn.txt");
     }
     @After
     public  void after(){
