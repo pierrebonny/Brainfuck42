@@ -33,8 +33,8 @@ public class TestTranslateToImage {
 
     @Test
     public void TestTranslateEmptyFile()throws IOException {
-        translatetoimage.translate();
-        InputStream is = new BufferedInputStream(new FileInputStream("testimg.bmp"));
+        translatetoimage.translate("empty.txt");
+        InputStream is = new BufferedInputStream(new FileInputStream("empty.bmp"));
         BufferedImage image;
         image = ImageIO.read(is);
         assertTrue(image.getHeight() == 1); //On teste le cas limite du programme vide
@@ -52,8 +52,8 @@ public class TestTranslateToImage {
         writer.write("+-><[].,");
         writer.close();
         bfreader.readFile("testTranslateToImage.txt");
-        translatetoimage.translate();
-        InputStream is = new BufferedInputStream(new FileInputStream("testimg.bmp"));
+        translatetoimage.translate("testTranslateToImage.txt");
+        InputStream is = new BufferedInputStream(new FileInputStream("testTranslateToImage.bmp"));
         BufferedImage image;
         image = ImageIO.read(is);
         color = new Color(image.getRGB(0, 0));

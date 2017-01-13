@@ -38,6 +38,7 @@ public class Trace {
 
     public String getContenuFichierLog(){ return contenuFichierLog;}
     public static void setFile(String newfile){
+        System.out.println("ok");
         int position=newfile.lastIndexOf('.');
         file=newfile.substring(0,position)+".log";
     }

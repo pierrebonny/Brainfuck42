@@ -18,7 +18,7 @@ public class Translatetoimage {
 	private static final int l = 3;
 
 
-	public void translate() throws IOException {
+	public void translate(String namefile) throws IOException {
 		/*
 		int s=0;
 		Set<String> keys=Interpreter.procedures.keySet();
@@ -28,7 +28,7 @@ public class Translatetoimage {
 		s=s- Procedure.nbreTotalProcUtilise;
     	int taille = Computational.getProgramm().size()+s-Procedure.nbreTotalInstructionsProcedures;
     	*/
-
+		String namef;
 		ArrayList<Instruction> programm = this.createListeOfInstructions();
 		int taille = programm.size();
 		BufferedImage buffImg;
@@ -53,7 +53,8 @@ public class Translatetoimage {
 		} else {
 			buffImg = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
 		}
-		ImageIO.write(buffImg, "bmp", new File("testimg.bmp"));
+		namef = namefile.split("\\.")[0];
+		ImageIO.write(buffImg, "bmp", new File(namef +".bmp"));
 	}
 
 	public ArrayList<Instruction> createListeOfInstructions() {

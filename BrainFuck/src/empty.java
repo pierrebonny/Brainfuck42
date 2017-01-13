@@ -9,21 +9,6 @@ public class empty{
    private static File fileIn;
    private static BufferedWriter fileOut;
 
-   private static void hello(int p){
-       while(tab[pointeur] != 0){
-           pointeur += 1;
-           tab[pointeur] += 7;
-           pointeur += 1;
-           tab[pointeur] += 10;
-           pointeur += 1;
-           tab[pointeur] += 3;
-           pointeur += 1;
-           tab[pointeur] += 1;
-           pointeur -= 4;
-           tab[pointeur] -= 1;
-       }
-   }
-
    public static void main(String[] args) throws IOException{
        int nbArgs = args.length;
        int i = 0;

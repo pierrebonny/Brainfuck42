@@ -57,7 +57,7 @@ public class Bfck {
                     System.exit(0);
 
                 } else if (args[i].equals("--translate")) {
-                    translatetoimage.translate();
+                    translatetoimage.translate(args[nbArgs - 1]);
                     System.exit(0);
                 } else if (args[i].equals("-i")) {
                     i++;
