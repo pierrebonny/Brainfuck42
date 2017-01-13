@@ -1,7 +1,0 @@
-INCR
-INCR
-DECR
-RIGHT
-INCR
-RIGHT
-[+++<]

@@ -9,14 +9,15 @@ Team Information
         Fournel Pierre (ppe.fournel@gmail.com - PierreFournel)
         Larzabal Thibault (thibault.larzabal@gmail.com - tlarzabal)
 
-## Week 49
+## Week 2
 
 ###Level 1 : done
 ###Level 2 : done 
-###Level 3 : all slice done, being tested, rapport in progres.
-###Level 4 : to do
+###Level 3 : done
+###Level 4 : done
 
 
 ## Automation of the construction of the software
 
 You have to compile (with the javac command) all the classes, and after execute with the Bfck.sh file.
+If you want to open our project with IntelliJ, you have to import the src file (and not another).
