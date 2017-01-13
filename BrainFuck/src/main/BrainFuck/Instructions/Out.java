@@ -20,6 +20,7 @@ import java.io.FileWriter;
 public class Out extends Instruction {
 
     protected static BufferedWriter fichierOut=null;
+    public String fichierOu;
 
     public Out(Memory memory){
         super(memory);
@@ -28,7 +29,8 @@ public class Out extends Instruction {
     }
 
     public Out(Memory memory, String fichier){
-        super(memory);
+        //fichierOu=fichier;
+        this(memory);
         try{
             fichierOut = new BufferedWriter(new FileWriter(fichier));
         }
@@ -72,10 +74,10 @@ public class Out extends Instruction {
     public void execute(){
         try{
             if(fichierOut!=null){
-                fichierOut.write(memory.getStringMemory());
+                fichierOut.write(String.valueOf(memory));
             }
             else{
-                System.out.println(memory);
+                System.out.print(memory);
             }
         }
         catch(IOException e){

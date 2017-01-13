@@ -12,25 +12,28 @@ public class Macro{
 
     public Macro(int nbInst,String chaine){
 
-        ArrayList<Instruction> premieres=new ArrayList<>();
+        ArrayList<Instruction> premieres=contenuMacro(chaine);
+        for(int i=0;i<nbInst;i++){
+            instructions.addAll(premieres);
+        }
+    }
 
 
+    public ArrayList<Instruction> contenuMacro(String chaine){
+        ArrayList<Instruction> list=new ArrayList<>();
         if (Interpreter.macros.get(chaine) != null) {
-                premieres.addAll(Interpreter.macros.get(chaine).getListeInst());
+            list.addAll(Interpreter.macros.get(chaine).getListeInst());
         }else{
 
             for(int y=0;y<chaine.length();y++){
                 for(Commandes c : Commandes.values()){
                     if(c.getCourte()==chaine.charAt(y)) {
-                        premieres.add(Interpreter.interprete.get(c));
+                        list.add(Interpreter.interprete.get(c));
                     }
                 }
             }
         }
-        
-        for(int i=0;i<nbInst;i++){
-            instructions.addAll(premieres);
-        }
+        return list;
     }
 
     public void addInstructions(int number){
@@ -42,4 +45,5 @@ public class Macro{
     public ArrayList<Instruction> getListeInst(){
         return instructions;
     }
+
 }

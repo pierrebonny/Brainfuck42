@@ -4,6 +4,9 @@ import BrainFuck.Exception.UnderFlowException;
 import BrainFuck.Memory;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.awt.*;
+
 import static org.junit.Assert.*;
 
 /**
@@ -17,6 +20,7 @@ public class TestDecr {
     public void init(){
         memory = new Memory();
         decr = new Decr(memory);
+
     }
 
     @Test(expected = UnderFlowException.class)
@@ -30,5 +34,10 @@ public class TestDecr {
         assertEquals(memory.getMemory(),255);
         decr.execute();
         assertEquals(memory.getMemory(),254);
+    }
+
+    @Test
+    public void testColor(){
+        assertEquals(decr.translate(),new Color(75,0,130));
     }
 }
