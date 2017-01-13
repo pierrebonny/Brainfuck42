@@ -4,6 +4,9 @@ import BrainFuck.Exception.OutofBoundException;
 import BrainFuck.Memory;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.awt.*;
+
 import static org.junit.Assert.*;
 
 /**
@@ -31,5 +34,10 @@ public class TestRight {
         assertEquals(memory.getPosition(),0);
         right.execute();
         assertEquals(memory.getPosition(),1);
+    }
+
+    @Test
+    public void testColor(){
+        assertEquals(right.translate(),new Color(0,0,255));
     }
 }

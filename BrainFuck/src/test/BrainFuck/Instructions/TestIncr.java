@@ -4,6 +4,9 @@ import BrainFuck.Exception.OverFlowException;
 import BrainFuck.Memory;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.awt.*;
+
 import static org.junit.Assert.*;
 
 /**
@@ -30,5 +33,10 @@ public class TestIncr {
         assertEquals(memory.getMemory(),0);
         incr.execute();
         assertEquals(memory.getMemory(),1);
+    }
+
+    @Test
+    public void testColor(){
+        assertEquals(incr.translate(),new Color(255,255,255));
     }
 }

@@ -26,7 +26,7 @@ public class In extends Instruction {
     }
 
     public In(Memory memory, String fichier){
-        super(memory);
+        this(memory);
         try{
             fichierIn = new BufferedReader(new FileReader(fichier));
         }
@@ -63,14 +63,16 @@ public class In extends Instruction {
         int val;
         try{
             if(fichierIn!=null){
+
                 val=fichierIn.read();
                 if(val==-1) {
                     timeOneIN=System.currentTimeMillis();
                     val = sc.nextLine().charAt(0);
                     timeOneIN=System.currentTimeMillis()-timeOneIN;
                     timeAllIn+=timeOneIN;
-                    memory.setMemory(val);
+
                 }
+                memory.setMemory(val);
             }
             else{
                 timeOneIN=System.currentTimeMillis();
@@ -104,8 +106,5 @@ public class In extends Instruction {
     public Color translate(){
         return couleur;
     }
-
-
-
 }
 
